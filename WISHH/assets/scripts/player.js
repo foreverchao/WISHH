@@ -62,6 +62,7 @@ cc.Class({
 
     update (dt) 
     {
+        this.node.angle = 0;
         let anima = this.anima;
         let scaleX = Math.abs(this.node.scaleX);
         this.lv = this.node.getComponent(cc.RigidBody).linearVelocity;
