@@ -12,7 +12,6 @@ cc.Class({
     },
 
     // LIFE-CYCLE CALLBACKS:
-
     onLoad () 
     {
         this._speed = 200;
@@ -22,11 +21,14 @@ cc.Class({
         this.anima = 'idle';
         this.playerAni = this.node.getComponent(cc.Animation);
         this.playerAni.on('finished', this.onAnimaFinished, this);
-
+        this.isOnGround = false;
         cc.systemEvent.on('keydown', this.onKeydown, this);
         cc.systemEvent.on('keyup', this.onKeyup, this);
     },
-
+    onCollisionEnter: function (other, self) 
+    {
+        cc.log(123);
+    },
     onDestroy()
     {
         this.playerAni.off('finished', this.onAnimaFinished, this);
@@ -59,14 +61,28 @@ cc.Class({
     {
         Input[e.keyCode] = 0;
     },
-
+    onEndContact: function (contact, selfCollider, otherCollider) {
+        if(otherCollider.node.group == "ground")
+        {
+            this.isOnGround = false;
+        }      
+    },
+    onPreSolve: function (contact, selfCollider, otherCollider) {
+        //cc.log(otherCollider.node.group)
+        if(otherCollider.node.group == "ground")
+        {
+            this.isOnGround = true;
+        }
+        
+    },
     update (dt) 
     {
+        cc.log(this.isOnGround)
         this.node.angle = 0;
         let anima = this.anima;
         let scaleX = Math.abs(this.node.scaleX);
         this.lv = this.node.getComponent(cc.RigidBody).linearVelocity;
-
+        //cc.log(this.lv.y)
         switch(this.playerState)
         {
             case State.stand:
@@ -97,13 +113,31 @@ cc.Class({
             {
                 this.node.scaleX = -scaleX;
                 this.sp.x = -1;
-                anima = 'run';
+                if(this.isOnGround)
+                {
+                    anima = 'run';
+                }
+                
             }
             else if(Input[cc.macro.KEY.d] || Input[cc.macro.KEY.right])
             {
                 this.node.scaleX = scaleX;
                 this.sp.x = 1;
-                anima = 'run';
+                if(this.isOnGround)
+                {
+                    anima = 'run';
+                }
+                
+            }
+            else if(Input[cc.macro.KEY.w] || Input[cc.macro.KEY.up])
+            {
+                if(this.isOnGround)
+                {
+                    this.sp.y = 1;
+                    this.lv.y = this.sp.y * 250;
+                    anima = 'jump';
+                }
+                
             }
             else
             {
