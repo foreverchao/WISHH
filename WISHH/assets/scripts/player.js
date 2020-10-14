@@ -16,7 +16,7 @@ cc.Class({
     {
         this._speed = 200;
         this.sp = cc.v2(0,0);//current speed
-
+        this.rb = this.node.getComponent(cc.RigidBody);
         this.playerState = State.stand;
         this.anima = 'idle';
         this.playerAni = this.node.getComponent(cc.Animation);
@@ -75,13 +75,68 @@ cc.Class({
         }
         
     },
+    //attack
+    attack()
+    {
+        if(Input[cc.macro.KEY.j])
+        {
+            this.setAni('attack');
+        }
+    },
+    move()
+    {   
+        this.node.angle = 0;
+        let scaleX = Math.abs(this.node.scaleX);
+        this.lv = this.rb.linearVelocity;
+
+        if(Input[cc.macro.KEY.a] || Input[cc.macro.KEY.left])
+        {
+            this.node.scaleX = -scaleX;
+            this.sp.x = -1;
+            if(this.isOnGround)
+            {
+                this.setAni("run");
+            }
+                
+        }
+        else if(Input[cc.macro.KEY.d] || Input[cc.macro.KEY.right])
+        {
+            this.node.scaleX = scaleX;
+            this.sp.x = 1;
+            if(this.isOnGround)
+            {
+                this.setAni("run");
+            }
+                
+        }
+        else if(Input[cc.macro.KEY.w] || Input[cc.macro.KEY.up])
+        {
+            if(this.isOnGround)
+            {
+                this.sp.y = 1;
+                this.lv.y = this.sp.y * 250;
+                this.setAni("jump");
+            }     
+        }
+        else
+        {
+            this.sp.x = 0;
+            this.setAni("idle");
+        }
+
+        if(this.sp.x)
+        {
+            this.lv.x = this.sp.x * this._speed;
+        }
+        else
+        {
+            this.lv.x = 0;
+        }
+        this.rb.linearVelocity = this.lv;
+    },
     update (dt) 
     {
         cc.log(this.isOnGround)
-        this.node.angle = 0;
-        let anima = this.anima;
-        let scaleX = Math.abs(this.node.scaleX);
-        this.lv = this.node.getComponent(cc.RigidBody).linearVelocity;
         //cc.log(this.lv.y)
         switch(this.playerState)
         {
@@ -97,68 +152,12 @@ cc.Class({
 
         if(this.playerState == State.attack)
         {
-            if(Input[cc.macro.KEY.j])
-            {
-                anima = 'attack';
-            }
+            this.attack();
+        }
+        else if(this.playerState == State.stand)
+        {
+            this.move();
         }
 
-        if(this.playerState != State.stand)
-        {
-            this.sp.x = 0;
-        }
-        else
-        {
-            if(Input[cc.macro.KEY.a] || Input[cc.macro.KEY.left])
-            {
-                this.node.scaleX = -scaleX;
-                this.sp.x = -1;
-                if(this.isOnGround)
-                {
-                    anima = 'run';
-                }
-                
-            }
-            else if(Input[cc.macro.KEY.d] || Input[cc.macro.KEY.right])
-            {
-                this.node.scaleX = scaleX;
-                this.sp.x = 1;
-                if(this.isOnGround)
-                {
-                    anima = 'run';
-                }
-                
-            }
-            else if(Input[cc.macro.KEY.w] || Input[cc.macro.KEY.up])
-            {
-                if(this.isOnGround)
-                {
-                    this.sp.y = 1;
-                    this.lv.y = this.sp.y * 250;
-                    anima = 'jump';
-                }
-                
-            }
-            else
-            {
-                this.sp.x = 0;
-                anima = 'idle';
-            }
-        }
-
-        if(this.sp.x)
-        {
-            this.lv.x = this.sp.x * this._speed;
-        }
-        else
-        {
-            this.lv.x = 0;
-        }
-
-        this.node.getComponent(cc.RigidBody).linearVelocity = this.lv;
-        if(anima)
-        {
-            this.setAni(anima);
-        }
     },
 });
