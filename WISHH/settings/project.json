@@ -3,7 +3,8 @@
     "default",
     "Player",
     "Walls",
-    "ground"
+    "ground",
+    "enemy"
   ],
   "collision-matrix": [
     [
@@ -13,17 +14,28 @@
       false,
       false,
       true,
+      true,
       true
     ],
     [
       false,
       true,
-      false
+      false,
+      null,
+      true
     ],
     [
       false,
       true,
       false,
+      false,
+      true
+    ],
+    [
+      false,
+      true,
+      true,
+      true,
       false
     ]
   ],

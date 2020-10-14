@@ -13,7 +13,7 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
     onLoad () 
-    {
+    {   
         this._speed = 200;
         this.sp = cc.v2(0,0);//current speed
         this.rb = this.node.getComponent(cc.RigidBody);
@@ -24,10 +24,6 @@ cc.Class({
         this.isOnGround = false;
         cc.systemEvent.on('keydown', this.onKeydown, this);
         cc.systemEvent.on('keyup', this.onKeyup, this);
-    },
-    onCollisionEnter: function (other, self) 
-    {
-        cc.log(123);
     },
     onDestroy()
     {
@@ -83,6 +79,7 @@ cc.Class({
             this.setAni('attack');
         }
     },
+    //move
     move()
     {   
         this.node.angle = 0;
