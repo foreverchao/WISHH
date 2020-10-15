@@ -180,7 +180,7 @@
       "array": [
         0,
         0,
-        326.6193703792544,
+        318.29681712922275,
         0,
         0,
         0,
@@ -385,7 +385,7 @@
     "_type": 2,
     "_allowSleep": true,
     "_gravityScale": 1,
-    "_linearDamping": 10,
+    "_linearDamping": 2,
     "_angularDamping": 0,
     "_linearVelocity": {
       "__type__": "cc.Vec2",
