@@ -33,7 +33,7 @@ cc.Class({
         cc.director.getPhysicsManager().enabled = true;
         cc.director.getCollisionManager().enabled = true;
         cc.director.getCollisionManager().enabledDebugDraw = true;
-         
+        cc.director.getPhysicsManager().gravity = cc.v2(0, -1000);
     },
 
     start () {

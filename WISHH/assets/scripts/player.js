@@ -13,9 +13,10 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
     onLoad () 
-    {   
-        this.jumpForce = 100000;
-        this._speed = 300;
+    {  
+        
+        this.jumpForce = 250000;
+        this._speed = 380;
         this.sp = cc.v2(0,0);//current speed
         this.rb = this.node.getComponent(cc.RigidBody);
         this.playerState = State.stand;
@@ -64,6 +65,15 @@ cc.Class({
             this.isOnGround = true;
         }
     },
+   /* Dash(x, y)
+    {
+        let damping = this.rb.linearDamping;
+        damping = 5;
+        this.lv = this.rb.linearVelocity;
+        this.lv.x += cc.v2(x,y).x;
+        this.lv.y += cc.v2(x,y).y;
+        this.rb.linearVelocity = this.lv; 
+    },*/
     //attack
     attack()
     {
@@ -99,7 +109,7 @@ cc.Class({
             }
                 
         }
-        else if(Input[cc.macro.KEY.w] || Input[cc.macro.KEY.up])
+        /*else if(Input[cc.macro.KEY.w] || Input[cc.macro.KEY.up])
         {
             if(this.isOnGround)
             {
@@ -107,7 +117,7 @@ cc.Class({
                 this.setAni("jump");
                 this.isOnGround = false;
             }     
-        }
+        }*/
         else
         {
             this.sp.x = 0;
@@ -122,11 +132,40 @@ cc.Class({
         {
             this.lv.x = 0;
         }
-        this.rb.linearVelocity = this.lv;
+        this.rb.linearVelocity = this.lv; 
     },
     update (dt) 
     {
-        cc.log(this.isOnGround)
+        //隨時監聽跳躍鍵
+        if(Input[cc.macro.KEY.w] || Input[cc.macro.KEY.up])
+        {
+            if(this.isOnGround)
+            {
+                this.rb.applyForceToCenter( cc.v2(0,this.jumpForce) , true );
+                this.setAni("jump");
+                this.isOnGround = false;
+            }     
+        }
+        /*if(Input[cc.macro.KEY.l])
+        {
+            this.Dash(this.lv.x, this.lv.y);
+        }*/
+        
+        var fallMultiplier = 3;    //控制下墜時的重力
+        var lowJumpMultiplier = 2; //控制輕跳時的重力
+        var limitMultiplier = 1.5; //增加重力避免漂浮感
+        this.lv = this.rb.linearVelocity;
+        if(this.lv.y < 0) { //當角色下降時
+            this.lv.y += cc.Vec2.UP.y * cc.director.getPhysicsManager().gravity.y * (fallMultiplier - 1) * dt;
+        } else if(this.lv.y > 0 && !Input[cc.macro.KEY.w]) { //當角色輕跳時
+            this.lv.y += cc.Vec2.UP.y * cc.director.getPhysicsManager().gravity.y * (lowJumpMultiplier - 1) * dt;
+        }
+        else if(this.lv.y > 0) { //當角色上升時
+            this.lv.y += cc.Vec2.UP.y * cc.director.getPhysicsManager().gravity.y * (limitMultiplier - 1) * dt;
+        }
+        this.rb.linearVelocity = this.lv; 
+
+        //cc.log(this.isOnGround);
         //cc.log(this.lv.y)
         switch(this.playerState)
         {
