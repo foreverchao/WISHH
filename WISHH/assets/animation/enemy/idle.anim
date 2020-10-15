@@ -1,12 +1,12 @@
 {
   "__type__": "cc.AnimationClip",
-  "_name": "jump",
+  "_name": "idle",
   "_objFlags": 0,
   "_native": "",
-  "_duration": 0.5,
+  "_duration": 0.4,
   "sample": 10,
   "speed": 1,
-  "wrapMode": 1,
+  "wrapMode": 2,
   "curveData": {
     "comps": {
       "cc.Sprite": {
@@ -14,31 +14,25 @@
           {
             "frame": 0,
             "value": {
-              "__uuid__": "97893883-46d9-426a-baed-b3be347dc880"
+              "__uuid__": "450fd103-e203-486d-898d-04d63a212204"
             }
           },
           {
             "frame": 0.1,
             "value": {
-              "__uuid__": "aa75ebf3-09d4-484a-b75b-ed4e29a26b51"
+              "__uuid__": "1c588993-a1db-4f76-ba51-1c4472b3cce3"
             }
           },
           {
             "frame": 0.2,
             "value": {
-              "__uuid__": "a3e572b2-1dee-44d6-8b72-bebc2aaed37f"
+              "__uuid__": "6638849c-b562-4125-a419-143c30ab9280"
             }
           },
           {
             "frame": 0.3,
             "value": {
-              "__uuid__": "1a19ad00-b840-4d75-a8b3-d2dc264aebf1"
-            }
-          },
-          {
-            "frame": 0.4,
-            "value": {
-              "__uuid__": "700edc8a-88a6-4ee7-8b68-61e90e5571a4"
+              "__uuid__": "2208799e-dac9-4560-8309-c8a5694020b6"
             }
           }
         ]
