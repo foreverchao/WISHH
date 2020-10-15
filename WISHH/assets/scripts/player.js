@@ -14,7 +14,8 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
     onLoad () 
     {   
-        this._speed = 200;
+        this.jumpForce = 100000;
+        this._speed = 300;
         this.sp = cc.v2(0,0);//current speed
         this.rb = this.node.getComponent(cc.RigidBody);
         this.playerState = State.stand;
@@ -57,19 +58,11 @@ cc.Class({
     {
         Input[e.keyCode] = 0;
     },
-    onEndContact: function (contact, selfCollider, otherCollider) {
-        if(otherCollider.node.group == "ground")
-        {
-            this.isOnGround = false;
-        }      
-    },
-    onPreSolve: function (contact, selfCollider, otherCollider) {
-        //cc.log(otherCollider.node.group)
-        if(otherCollider.node.group == "ground")
-        {
+    onBeginContact(contact, selfCollider, otherCollider){
+        cc.log(selfCollider.tag)
+        if(selfCollider.tag === 1){
             this.isOnGround = true;
         }
-        
     },
     //attack
     attack()
@@ -110,9 +103,9 @@ cc.Class({
         {
             if(this.isOnGround)
             {
-                this.sp.y = 1;
-                this.lv.y = this.sp.y * 250;
+                this.rb.applyForceToCenter( cc.v2(0,this.jumpForce) , true );
                 this.setAni("jump");
+                this.isOnGround = false;
             }     
         }
         else

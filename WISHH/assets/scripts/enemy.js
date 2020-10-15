@@ -33,9 +33,10 @@ cc.Class({
     },
     onCollisionEnter(other, self)
     {
+        cc.log("123")
         if(other.node.group == 'Player')
         {
-            cc.log("123")
+            
             this.isHit = true;
             this.enemyAni.play("hurt");
         }
