@@ -14,8 +14,8 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
     onLoad () 
     {  
-        
-        this.jumpForce = 250000;
+        this.dashForce = 1000000;
+        this.jumpForce = 180000;
         this._speed = 380;
         this.sp = cc.v2(0,0);//current speed
         this.rb = this.node.getComponent(cc.RigidBody);
@@ -57,6 +57,11 @@ cc.Class({
     },
     onKeyup(e)
     {
+        switch(e.keyCode) {
+            case cc.macro.KEY.l:
+            this.dash();
+        break;
+        }  
         Input[e.keyCode] = 0;
     },
     onBeginContact(contact, selfCollider, otherCollider){
@@ -64,6 +69,19 @@ cc.Class({
         if(selfCollider.tag === 1){
             this.isOnGround = true;
         }
+    },
+    dash()
+    {
+        if(this.node.scaleX < 0)
+        {
+            this.dashForce = -1000000;
+        }
+        else
+        {
+            this.dashForce = 1000000;
+        }
+        this.rb.applyForceToCenter( cc.v2(this.dashForce,0) , true );
+        //this.rb.applyLinearImpulse(cc.v2(1000000,0),cc.v2(0,0),true)
     },
    /* Dash(x, y)
     {
@@ -146,13 +164,9 @@ cc.Class({
                 this.isOnGround = false;
             }     
         }
-        /*if(Input[cc.macro.KEY.l])
-        {
-            this.Dash(this.lv.x, this.lv.y);
-        }*/
         
-        var fallMultiplier = 3;    //控制下墜時的重力
-        var lowJumpMultiplier = 2; //控制輕跳時的重力
+        var fallMultiplier = 2.5;    //控制下墜時的重力
+        var lowJumpMultiplier = 3; //控制輕跳時的重力
         var limitMultiplier = 1.5; //增加重力避免漂浮感
         this.lv = this.rb.linearVelocity;
         if(this.lv.y < 0) { //當角色下降時
