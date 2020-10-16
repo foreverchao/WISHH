@@ -1,9 +1,9 @@
 {
   "ver": "2.3.5",
-  "uuid": "59ef3e05-f699-4781-8cc4-94ccc81e9a79",
+  "uuid": "94a0ad5f-4f8e-4d1d-93e8-ad0b4d0b43b7",
   "type": "sprite",
   "wrapMode": "clamp",
-  "filterMode": "bilinear",
+  "filterMode": "point",
   "premultiplyAlpha": false,
   "genMipmaps": false,
   "packable": true,
@@ -13,8 +13,8 @@
   "subMetas": {
     "slime_idle_0": {
       "ver": "1.0.4",
-      "uuid": "450fd103-e203-486d-898d-04d63a212204",
-      "rawTextureUuid": "59ef3e05-f699-4781-8cc4-94ccc81e9a79",
+      "uuid": "68841749-b47f-43f3-bfed-76fbe050a1fd",
+      "rawTextureUuid": "94a0ad5f-4f8e-4d1d-93e8-ad0b4d0b43b7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
