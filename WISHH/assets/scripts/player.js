@@ -9,6 +9,8 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+        ghostPrefab: cc.Prefab,
+        playerShadow: cc.Node,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -16,6 +18,7 @@ cc.Class({
     {  
         this.dashForce = 1000000;
         this.jumpForce = 180000;
+        this.canDash = true; //判斷是否可以使用衝刺
         this._speed = 380;
         this.sp = cc.v2(0,0);//current speed
         this.rb = this.node.getComponent(cc.RigidBody);
@@ -54,14 +57,16 @@ cc.Class({
     onKeydown(e)
     {
         Input[e.keyCode] = 1;
-    },
-    onKeyup(e)
-    {
         switch(e.keyCode) {
             case cc.macro.KEY.l:
             this.dash();
+            this.canDash = false;
         break;
         }  
+
+    },
+    onKeyup(e)
+    { 
         Input[e.keyCode] = 0;
     },
     onBeginContact(contact, selfCollider, otherCollider){
@@ -72,26 +77,61 @@ cc.Class({
     },
     dash()
     {
-        if(this.node.scaleX < 0)
-        {
-            this.dashForce = -1000000;
+        if(this.canDash){
+            console.log(this.node.x,this.node.y);
+            if(this.node.scaleX < 0 && this.isOnGround)
+            {
+                //this.dashForce = -1000000;
+                var dashMovement = cc.moveBy(0.2, cc.v2(-100, 0));
+            }
+            else if(this.node.scaleX > 0 && this.isOnGround)
+            {
+                //this.dashForce = 1000000;
+                var dashMovement = cc.moveBy(0.2, cc.v2(100, 0));
+
+            }
+            else if(this.node.scaleX < 0 && !this.isOnGround)
+            {
+                var dashMovement = cc.jumpBy(0.7, cc.v2(-10, 10), 80, 1);
+            }
+            else if(this.node.scaleX > 0 && !this.isOnGround)
+            {
+                var dashMovement = cc.jumpBy(0.7, cc.v2(10, 10), 80, 1);
+            }
+            this.node.runAction(dashMovement);
+            //this.rb.applyForceToCenter( cc.v2(this.dashForce,0) , true );   
+            //this.ghost();
         }
-        else
-        {
-            this.dashForce = 1000000;
-        }
-        this.rb.applyForceToCenter( cc.v2(this.dashForce,0) , true );
+ 
         //this.rb.applyLinearImpulse(cc.v2(1000000,0),cc.v2(0,0),true)
+        this.canDash = false;
     },
-   /* Dash(x, y)
+
+    ghost() 
     {
-        let damping = this.rb.linearDamping;
-        damping = 5;
-        this.lv = this.rb.linearVelocity;
-        this.lv.x += cc.v2(x,y).x;
-        this.lv.y += cc.v2(x,y).y;
-        this.rb.linearVelocity = this.lv; 
-    },*/
+        cc.tween(this.node)
+            .call(() => {
+                var ghostChild = cc.instantiate(this.ghostPrefab);
+                var ghostSprite = this.node.getComponent(cc.Sprite).spriteFrame;
+                ghostChild.getComponent(cc.Sprite).spriteFrame = ghostSprite;
+                ghostChild.x = this.node.x;
+                ghostChild.y = this.node.y;
+                this.playerShadow.addChild(ghostChild);
+                console.log(ghostChild.x,ghostChild.y);
+            })
+            .delay(0.3)
+            .call(() => {
+                var ghostChild = cc.instantiate(this.ghostPrefab);
+                var ghostSprite = this.node.getComponent(cc.Sprite).spriteFrame;
+                ghostChild.getComponent(cc.Sprite).spriteFrame = ghostSprite;
+                ghostChild.x = this.node.x;
+                ghostChild.y = this.node.y;
+                this.playerShadow.addChild(ghostChild);
+                console.log(ghostChild.x,ghostChild.y);
+            })
+            .start();
+    },
+
     //attack
     attack()
     {
@@ -192,6 +232,8 @@ cc.Class({
                     break;
                 }
         }
+
+        if(this.isOnGround) this.canDash = true; //落地後就可以衝刺
 
         if(this.playerState == State.attack)
         {
