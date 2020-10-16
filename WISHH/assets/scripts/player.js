@@ -113,7 +113,7 @@ cc.Class({
             this.sp.x = -1;
             if(this.isOnGround)
             {
-                this.setAni("run");
+                this.setAni("move");
             }
                 
         }
@@ -123,7 +123,7 @@ cc.Class({
             this.sp.x = 1;
             if(this.isOnGround)
             {
-                this.setAni("run");
+                this.setAni("move");
             }
                 
         }

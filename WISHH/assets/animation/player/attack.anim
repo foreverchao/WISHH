@@ -3,9 +3,9 @@
   "_name": "attack",
   "_objFlags": 0,
   "_native": "",
-  "_duration": 0.4,
-  "sample": 10,
-  "speed": 1,
+  "_duration": 4,
+  "sample": 1,
+  "speed": 10,
   "wrapMode": 1,
   "curveData": {
     "comps": {
@@ -14,25 +14,25 @@
           {
             "frame": 0,
             "value": {
-              "__uuid__": "ec299381-2b27-48ad-a5d0-46e24e882baa"
+              "__uuid__": "0b022bac-380b-4cbb-9116-45566fde5272"
             }
           },
           {
-            "frame": 0.1,
+            "frame": 1,
             "value": {
-              "__uuid__": "d94b85b0-9fd5-45e8-9853-af10078173e3"
+              "__uuid__": "9c449ff8-568b-4e3c-a110-24ecff645f7b"
             }
           },
           {
-            "frame": 0.2,
+            "frame": 2,
             "value": {
-              "__uuid__": "4e9e5a52-41b2-4fbf-92cd-a25984882a3c"
+              "__uuid__": "5f021409-5791-46a9-9392-31fea4b3b8cb"
             }
           },
           {
-            "frame": 0.3,
+            "frame": 3,
             "value": {
-              "__uuid__": "2cd57bd5-1f45-4dee-901b-1f6e310d706f"
+              "__uuid__": "8dd758c9-2be2-422f-90ec-edb06d1eb049"
             }
           }
         ]
@@ -48,7 +48,7 @@
             }
           },
           {
-            "frame": 0.1,
+            "frame": 1,
             "value": {
               "__type__": "cc.Size",
               "width": 10,
@@ -56,7 +56,7 @@
             }
           },
           {
-            "frame": 0.2,
+            "frame": 2,
             "value": {
               "__type__": "cc.Size",
               "width": 10,
@@ -64,7 +64,7 @@
             }
           },
           {
-            "frame": 0.3,
+            "frame": 3,
             "value": {
               "__type__": "cc.Size",
               "width": 0,
@@ -82,7 +82,7 @@
             }
           },
           {
-            "frame": 0.1,
+            "frame": 1,
             "value": {
               "__type__": "cc.Vec2",
               "x": 6,
@@ -90,7 +90,7 @@
             }
           },
           {
-            "frame": 0.2,
+            "frame": 2,
             "value": {
               "__type__": "cc.Vec2",
               "x": 6,
@@ -98,7 +98,7 @@
             }
           },
           {
-            "frame": 0.3,
+            "frame": 3,
             "value": {
               "__type__": "cc.Vec2",
               "x": 6.1,
