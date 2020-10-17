@@ -3,9 +3,9 @@
   "_name": "hurt",
   "_objFlags": 0,
   "_native": "",
-  "_duration": 0.3,
-  "sample": 10,
-  "speed": 1,
+  "_duration": 3,
+  "sample": 1,
+  "speed": 5,
   "wrapMode": 1,
   "curveData": {
     "comps": {
@@ -18,13 +18,13 @@
             }
           },
           {
-            "frame": 0.1,
+            "frame": 1,
             "value": {
               "__uuid__": "0a5ffa10-eb17-49cb-9ab9-c9118f28601a"
             }
           },
           {
-            "frame": 0.2,
+            "frame": 2,
             "value": {
               "__uuid__": "5341636e-6cc4-45b6-b26c-06ab2b9abd80"
             }
