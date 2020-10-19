@@ -11,6 +11,7 @@ cc.Class({
     properties: {
         ghostPrefab: cc.Prefab,
         playerShadow: cc.Node,
+        colorShow: cc.Node,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -18,8 +19,12 @@ cc.Class({
     {  
         this.dashForce = 1000000;
         this.jumpForce = 180000;
-        this.canDash = true; //判斷是否可以使用衝刺
-        this._speed = 380;
+        this.canJump = true;
+        this.jumpCount = 2; //Counting jump
+        this.red = false;
+        this.blue = false;
+        this.yellow = false;
+        this._speed = 450;
         this.sp = cc.v2(0,0);//current speed
         this.rb = this.node.getComponent(cc.RigidBody);
         this.playerState = State.stand;
@@ -59,44 +64,60 @@ cc.Class({
         Input[e.keyCode] = 1;
         switch(e.keyCode) {
             case cc.macro.KEY.l:
-            this.dash();
-            this.canDash = false;
-        break;
+                this.dash();
+                this.yellow = true;
+                break;
+            case cc.macro.KEY.j:
+                this.attack();
+                this.switchState();
+                this.red = true;
+                break;
+            case cc.macro.KEY.k:
+                this.blue = true;
+                break;
         }  
 
     },
+
     onKeyup(e)
     { 
         Input[e.keyCode] = 0;
+        switch(e.keyCode) {
+            case cc.macro.KEY.w:
+                this.canJump = true;
+                break;
+            case cc.macro.KEY.j:
+                this.red = false;
+                break;
+            case cc.macro.KEY.k:
+                this.blue = false;
+                break;
+            case cc.macro.KEY.l:
+                this.yellow = false;
+                break;
+        }
     },
+
     onBeginContact(contact, selfCollider, otherCollider){
-        cc.log(selfCollider.tag)
+        //cc.log(selfCollider.tag)
         if(selfCollider.tag === 1){
             this.isOnGround = true;
+            this.jumpCount = 2;
         }
     },
     dash()
     {
-        if(this.canDash){
-            console.log(this.node.x,this.node.y);
-            if(this.node.scaleX < 0 && this.isOnGround)
+        if(!this.yellow){
+            //console.log(this.node.x,this.node.y);
+            if(this.node.scaleX < 0)
             {
                 //this.dashForce = -1000000;
-                var dashMovement = cc.moveBy(0.2, cc.v2(-100, 0));
+                var dashMovement = cc.moveBy(0.2, cc.v2(-200, 0));
             }
-            else if(this.node.scaleX > 0 && this.isOnGround)
+            else if(this.node.scaleX > 0)
             {
                 //this.dashForce = 1000000;
-                var dashMovement = cc.moveBy(0.2, cc.v2(100, 0));
-
-            }
-            else if(this.node.scaleX < 0 && !this.isOnGround)
-            {
-                var dashMovement = cc.jumpBy(0.7, cc.v2(-10, 10), 80, 1);
-            }
-            else if(this.node.scaleX > 0 && !this.isOnGround)
-            {
-                var dashMovement = cc.jumpBy(0.7, cc.v2(10, 10), 80, 1);
+                var dashMovement = cc.moveBy(0.2, cc.v2(200, 0));
             }
             this.node.runAction(dashMovement);
             //this.rb.applyForceToCenter( cc.v2(this.dashForce,0) , true );   
@@ -104,7 +125,6 @@ cc.Class({
         }
  
         //this.rb.applyLinearImpulse(cc.v2(1000000,0),cc.v2(0,0),true)
-        this.canDash = false;
     },
 
     ghost() 
@@ -132,12 +152,29 @@ cc.Class({
             .start();
     },
 
+    color_detect()
+    {
+        cc.log(this.red,this.blue,this.yellow);
+        if(this.red && this.blue && this.yellow)  this.colorShow.color = cc.Color.WHITE;
+        else if(this.red && !this.blue && !this.yellow) this.colorShow.color = cc.Color.RED;
+        else if(!this.red && this.blue && !this.yellow) this.colorShow.color = cc.Color.BLUE;
+        else if(!this.red && !this.blue && this.yellow) this.colorShow.color = cc.Color.YELLOW;
+        else if(this.red && this.blue && !this.yellow) this.colorShow.color = new cc.Color(130,0,255);
+        else if(this.red && !this.blue && this.yellow) this.colorShow.color = cc.Color.ORANGE;
+        else if(!this.red && this.blue && this.yellow) this.colorShow.color = cc.Color.GREEN;
+        else this.colorShow.color = cc.Color.BLACK;
+    },
+
     //attack
     attack()
     {
-        if(Input[cc.macro.KEY.j])
+        if(Input[cc.macro.KEY.j] && !this.red)
         {
             this.setAni('attack');
+        }
+        else if(Input[cc.macro.KEY.k] && !this.blue)
+        {
+
         }
     },
     //move
@@ -167,19 +204,31 @@ cc.Class({
             }
                 
         }
-        /*else if(Input[cc.macro.KEY.w] || Input[cc.macro.KEY.up])
-        {
-            if(this.isOnGround)
-            {
-                this.rb.applyForceToCenter( cc.v2(0,this.jumpForce) , true );
-                this.setAni("jump");
-                this.isOnGround = false;
-            }     
-        }*/
         else
         {
             this.sp.x = 0;
             this.setAni("idle");
+        }
+
+        if(Input[cc.macro.KEY.w] || Input[cc.macro.KEY.up])
+        {
+            if(this.canJump && this.jumpCount!=0)
+            {
+                this.jumpForce2 = 120000;
+                if(this.jumpCount==2) this.rb.applyForceToCenter( cc.v2(0,this.jumpForce) , true );
+                else if(this.jumpCount==1) 
+                {
+                    if(this.rb.linearVelocity.y < 100) this.jumpForce2 = 200000;
+                    if(this.rb.linearVelocity.y < -300) this.jumpForce2 = 400000;
+                    this.rb.applyForceToCenter( cc.v2(0,this.jumpForce2) , true );
+
+                    cc.log((this.rb.linearVelocity.y));
+                }
+                this.setAni("jump");
+                this.isOnGround = false;
+                this.canJump = false;
+                this.jumpCount --;
+            }     
         }
 
         if(this.sp.x)
@@ -190,21 +239,31 @@ cc.Class({
         {
             this.lv.x = 0;
         }
-        this.rb.linearVelocity = this.lv; 
+        this.rb.linearVelocity = this.lv;
     },
-    update (dt) 
+
+    switchState()
     {
-        //隨時監聽跳躍鍵
-        if(Input[cc.macro.KEY.w] || Input[cc.macro.KEY.up])
+        switch(this.playerState)
         {
-            if(this.isOnGround)
-            {
-                this.rb.applyForceToCenter( cc.v2(0,this.jumpForce) , true );
-                this.setAni("jump");
-                this.isOnGround = false;
-            }     
+            case State.stand:
+                {
+                    if(Input[cc.macro.KEY.j] && !this.red)
+                    {
+                        this.playerState = State.attack;
+                    }
+                    break;
+                }
         }
-        
+    },
+
+    update (dt) 
+    {        
+        this.color_detect();
+        if(this.playerState == State.stand)
+        {
+            this.move();
+        }
         var fallMultiplier = 2.5;    //控制下墜時的重力
         var lowJumpMultiplier = 3; //控制輕跳時的重力
         var limitMultiplier = 1.5; //增加重力避免漂浮感
@@ -220,29 +279,6 @@ cc.Class({
         this.rb.linearVelocity = this.lv; 
 
         //cc.log(this.isOnGround);
-        //cc.log(this.lv.y)
-        switch(this.playerState)
-        {
-            case State.stand:
-                {
-                    if(Input[cc.macro.KEY.j])
-                    {
-                        this.playerState = State.attack;
-                    }
-                    break;
-                }
-        }
-
-        if(this.isOnGround) this.canDash = true; //落地後就可以衝刺
-
-        if(this.playerState == State.attack)
-        {
-            this.attack();
-        }
-        else if(this.playerState == State.stand)
-        {
-            this.move();
-        }
 
     },
 });
