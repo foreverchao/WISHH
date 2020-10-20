@@ -19,6 +19,7 @@ cc.Class({
     {  
         this.dashForce = 1000000;
         this.jumpForce = 180000;
+        this.slideSpeed = 300;
         this.canJump = true;
         this.jumpCount = 2; //Counting jump
         this.red = false;
@@ -32,6 +33,8 @@ cc.Class({
         this.playerAni = this.node.getComponent(cc.Animation);
         this.playerAni.on('finished', this.onAnimaFinished, this);
         this.isOnGround = false;
+        this.onWall = false;
+        this.wallSide = -1; //判斷目前貼的是左邊還是右邊 右邊:-1 左邊: 1
         cc.systemEvent.on('keydown', this.onKeydown, this);
         cc.systemEvent.on('keyup', this.onKeyup, this);
     },
@@ -99,12 +102,39 @@ cc.Class({
     },
 
     onBeginContact(contact, selfCollider, otherCollider){
-        //cc.log(selfCollider.tag)
+        cc.log(selfCollider.tag);
         if(selfCollider.tag === 1){
             this.isOnGround = true;
             this.jumpCount = 2;
+            this.onWall = false;
+        }
+        else if(selfCollider.tag === 2){ //left
+            this.onWall = true;
+            this.jumpCount = 2;
+            this.wallSide = 1;
+        }
+        else if(selfCollider.tag === 3){ //right
+            this.onWall = true;
+            this.jumpCount = 2;
+            this.wallSide = -1;
         }
     },
+
+    wallSlide()
+    {
+        this.lv = this.rb.linearVelocity;
+        var pushingWall = false;
+        if((this.rb.linearVelocity.x>0 && this.wallSide==-1) || (this.rb.linearVelocity.x<0 && this.wallSide==1))
+            pushingWall = true;
+        var push = this.pushingWall ? 0: this.rb.linearVelocity.x;
+        if(pushingWall){
+        this.lv.x = push;
+        this.lv.y = -this.slideSpeed;
+        this.rb.linearVelocity = this.lv;
+        }
+        else this.onWall = false;
+    },
+
     dash()
     {
         if(!this.yellow){
@@ -154,7 +184,7 @@ cc.Class({
 
     color_detect()
     {
-        cc.log(this.red,this.blue,this.yellow);
+        //cc.log(this.red,this.blue,this.yellow);
         if(this.red && this.blue && this.yellow)  this.colorShow.color = cc.Color.WHITE;
         else if(this.red && !this.blue && !this.yellow) this.colorShow.color = cc.Color.RED;
         else if(!this.red && this.blue && !this.yellow) this.colorShow.color = cc.Color.BLUE;
@@ -218,11 +248,10 @@ cc.Class({
                 if(this.jumpCount==2) this.rb.applyForceToCenter( cc.v2(0,this.jumpForce) , true );
                 else if(this.jumpCount==1) 
                 {
-                    if(this.rb.linearVelocity.y < 100) this.jumpForce2 = 200000;
-                    if(this.rb.linearVelocity.y < -300) this.jumpForce2 = 400000;
+                    this.jumpForce2 = (152000000-200000*this.rb.linearVelocity.y)/(830);
                     this.rb.applyForceToCenter( cc.v2(0,this.jumpForce2) , true );
 
-                    cc.log((this.rb.linearVelocity.y));
+                    //cc.log((this.rb.linearVelocity.y),this.jumpForce2);
                 }
                 this.setAni("jump");
                 this.isOnGround = false;
@@ -276,9 +305,10 @@ cc.Class({
         else if(this.lv.y > 0) { //當角色上升時
             this.lv.y += cc.Vec2.UP.y * cc.director.getPhysicsManager().gravity.y * (limitMultiplier - 1) * dt;
         }
+        if(this.onWall) this.wallSlide();
         this.rb.linearVelocity = this.lv; 
 
-        //cc.log(this.isOnGround);
+        //cc.log(this.onWall);
 
     },
 });
