@@ -30,13 +30,16 @@ cc.Class({
 
      onLoad () 
      {
-        this.speed = 800;
+        //this.speed = 800;
      },
 
     start () {
         this.node.parent = cc.find("Canvas");
         this.node.position = cc.find("Canvas/player").position;
-            
+        if(cc.find("Canvas/player").scaleX < 0)
+            this.speed = -800;
+        else
+            this.speed = 800;    
         /*this.node.runAction(
             //cc.repeat()
               //cc.sequence(//顺序执行括号中的代码
@@ -58,6 +61,7 @@ cc.Class({
     },
      update (dt) 
      {
-        this.node.x += (dt * this.speed);
+         if(this.speed)
+            this.node.x += (dt * this.speed);
      },
 });
