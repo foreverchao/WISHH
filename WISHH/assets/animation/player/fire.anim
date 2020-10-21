@@ -57,5 +57,11 @@
       }
     }
   },
-  "events": []
+  "events": [
+    {
+      "frame": 3,
+      "func": "fire",
+      "params": []
+    }
+  ]
 }

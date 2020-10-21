@@ -12,6 +12,7 @@ cc.Class({
         ghostPrefab: cc.Prefab,
         playerShadow: cc.Node,
         colorShow: cc.Node,
+        fireBall: cc.Prefab,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -205,6 +206,7 @@ cc.Class({
     {
         if(Input[cc.macro.KEY.j] && !this.red)
         {
+            //this.fire();
             this.setAni('fire');
         }
         else if(Input[cc.macro.KEY.l] && !this.yellow)
@@ -298,6 +300,17 @@ cc.Class({
                     break;
                 }
         }
+    },
+    fire()
+    {
+        this.newNode = cc.instantiate(this.fireBall);
+        /*if(this.node.scaleX < 0)
+        {
+            this.newNode.getComponent("fireBallControl").speed = -800;
+            cc.log(this.newNode.getComponent("fireBallControl").speed)
+        }*/
+            
+        this.node.addChild(this.newNode);
     },
 
     update (dt) 
