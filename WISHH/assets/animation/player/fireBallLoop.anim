@@ -1,0 +1,49 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "fireBallLoop",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 5,
+  "sample": 1,
+  "speed": 12,
+  "wrapMode": 2,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "b2110bd6-b47f-4c93-a0d8-7fd71fd76ba4"
+            }
+          },
+          {
+            "frame": 1,
+            "value": {
+              "__uuid__": "2d8681b7-fb6c-4eff-ac5c-8af38e0c6803"
+            }
+          },
+          {
+            "frame": 2,
+            "value": {
+              "__uuid__": "7c802712-7f6c-49e5-b5d0-b9f68c6d8a8f"
+            }
+          },
+          {
+            "frame": 3,
+            "value": {
+              "__uuid__": "28c02ea1-bcba-4519-8235-8845f2fc1a67"
+            }
+          },
+          {
+            "frame": 4,
+            "value": {
+              "__uuid__": "cc858330-c896-4434-b480-cf3439a124dd"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

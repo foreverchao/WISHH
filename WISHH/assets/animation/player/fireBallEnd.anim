@@ -1,0 +1,49 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "fireBallEnd",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 5,
+  "sample": 1,
+  "speed": 12,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "2774bb06-257c-4060-b42d-137f549ef401"
+            }
+          },
+          {
+            "frame": 1,
+            "value": {
+              "__uuid__": "37ec90c4-ba52-4d30-a52d-d83156ba6842"
+            }
+          },
+          {
+            "frame": 2,
+            "value": {
+              "__uuid__": "b3b376ff-0012-4590-8525-ab37b819602a"
+            }
+          },
+          {
+            "frame": 3,
+            "value": {
+              "__uuid__": "a83aa979-654b-424b-b4b3-9e604c6924b9"
+            }
+          },
+          {
+            "frame": 4,
+            "value": {
+              "__uuid__": "2e18e0ff-1dda-4008-abbd-d500b4a9d250"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

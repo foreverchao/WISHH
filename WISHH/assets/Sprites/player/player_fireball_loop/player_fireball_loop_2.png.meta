@@ -1,9 +1,9 @@
 {
   "ver": "2.3.5",
-  "uuid": "d36765db-47af-4354-a715-3d9179ff6d7b",
+  "uuid": "0eefb2f6-ad27-480b-9278-eeead9866926",
   "type": "sprite",
   "wrapMode": "clamp",
-  "filterMode": "bilinear",
+  "filterMode": "point",
   "premultiplyAlpha": false,
   "genMipmaps": false,
   "packable": true,
@@ -13,8 +13,8 @@
   "subMetas": {
     "player_fireball_loop_2": {
       "ver": "1.0.4",
-      "uuid": "af326fe0-890e-4287-9f76-2fc4c7ebfd72",
-      "rawTextureUuid": "d36765db-47af-4354-a715-3d9179ff6d7b",
+      "uuid": "7c802712-7f6c-49e5-b5d0-b9f68c6d8a8f",
+      "rawTextureUuid": "0eefb2f6-ad27-480b-9278-eeead9866926",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

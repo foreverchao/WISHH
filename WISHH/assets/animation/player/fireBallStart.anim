@@ -1,0 +1,43 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "fireBallStart",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 4,
+  "sample": 1,
+  "speed": 12,
+  "wrapMode": 2,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "0c5482eb-5ea1-4924-b9f0-ceef7d7ebde3"
+            }
+          },
+          {
+            "frame": 1,
+            "value": {
+              "__uuid__": "ac40809f-6d27-4ceb-a1c2-b416213c9e86"
+            }
+          },
+          {
+            "frame": 2,
+            "value": {
+              "__uuid__": "f0996856-718b-47a2-8575-af841f54ddb3"
+            }
+          },
+          {
+            "frame": 3,
+            "value": {
+              "__uuid__": "557efd10-f5da-4ec8-9719-d22aeaab4d50"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

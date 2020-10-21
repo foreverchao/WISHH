@@ -30,7 +30,8 @@ cc.Class({
 
      onLoad () 
      {
-        //this.speed = 800;
+        this.fireBallAni = this.node.getComponent(cc.Animation);
+        this.anima = 'NULL';
      },
 
     start () {
@@ -39,7 +40,8 @@ cc.Class({
         if(cc.find("Canvas/player").scaleX < 0)
             this.speed = -800;
         else
-            this.speed = 800;    
+            this.speed = 800;
+        this.setAni("fireBallLoop"); 
         /*this.node.runAction(
             //cc.repeat()
               //cc.sequence(//顺序执行括号中的代码
@@ -50,7 +52,6 @@ cc.Class({
     },
     onCollisionEnter(other, self)
     {
-        cc.log("dsfafs")
         this.node.destroy();
         /*if(other.node.group == 'Player')
         {
@@ -58,6 +59,14 @@ cc.Class({
             this.isHit = true;
             this.enemyAni.play("hurt");
         }*/
+    },
+    setAni(anima)
+    {
+        cc.log("test")
+        if(this.anima == anima)
+            return;
+        this.anima = anima;
+        this.fireBallAni.play(anima);
     },
      update (dt) 
      {
