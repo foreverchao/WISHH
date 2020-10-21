@@ -32,27 +32,51 @@ cc.Class({
      {
         this.fireBallAni = this.node.getComponent(cc.Animation);
         this.anima = 'NULL';
+        this.fireBallAni.on('finished', this.onAnimaFinished, this);
      },
+     onDestroy()
+    {
+        this.fireBallAni.off('finished', this.onAnimaFinished, this);
+    },
 
     start () {
         this.node.parent = cc.find("Canvas");
         this.node.position = cc.find("Canvas/player").position;
+        //check the direction
         if(cc.find("Canvas/player").scaleX < 0)
+        {
             this.speed = -800;
+            this.node.scaleX *= -1;
+        }
         else
+        {
             this.speed = 800;
-        this.setAni("fireBallLoop"); 
+        }
+        this.setAni("fireBallStart"); 
         /*this.node.runAction(
             //cc.repeat()
               //cc.sequence(//顺序执行括号中的代码
                 cc.moveBy(10,600,0))*/
                 //cc.removeSelf(true),
-     
+    
                 //))
+    },
+    onAnimaFinished(e, data)
+    {
+        if(data.name == 'fireBallStart')
+        {
+            this.setAni('fireBallLoop');
+        }
+        else if(data.name == 'fireBallEnd')
+        {
+            this.node.destroy();
+        }
     },
     onCollisionEnter(other, self)
     {
-        this.node.destroy();
+        this.fireBallAni.stop();
+        this.speed = 0;
+        this.setAni("fireBallEnd");
         /*if(other.node.group == 'Player')
         {
             
@@ -62,7 +86,6 @@ cc.Class({
     },
     setAni(anima)
     {
-        cc.log("test")
         if(this.anima == anima)
             return;
         this.anima = anima;
