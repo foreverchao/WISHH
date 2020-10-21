@@ -48,7 +48,11 @@ cc.Class({
 
     onAnimaFinished(e, data)
     {
-        if(data.name == 'attack')
+        if(data.name == 'fire')
+        {
+            this.playerState = State.stand;
+            this.setAni('idle');
+        }else if(data.name == 'light')
         {
             this.playerState = State.stand;
             this.setAni('idle');
@@ -67,7 +71,8 @@ cc.Class({
         Input[e.keyCode] = 1;
         switch(e.keyCode) {
             case cc.macro.KEY.l:
-                this.dash();
+                this.attack();
+                this.switchState();
                 this.yellow = true;
                 break;
             case cc.macro.KEY.j:
@@ -200,7 +205,12 @@ cc.Class({
     {
         if(Input[cc.macro.KEY.j] && !this.red)
         {
-            this.setAni('attack');
+            this.setAni('fire');
+        }
+        else if(Input[cc.macro.KEY.l] && !this.yellow)
+        {
+            this.dash();
+            this.setAni('light');
         }
         else if(Input[cc.macro.KEY.k] && !this.blue)
         {
@@ -278,6 +288,10 @@ cc.Class({
             case State.stand:
                 {
                     if(Input[cc.macro.KEY.j] && !this.red)
+                    {
+                        this.playerState = State.attack;
+                    }
+                    else if(Input[cc.macro.KEY.l] && !this.yellow)
                     {
                         this.playerState = State.attack;
                     }
