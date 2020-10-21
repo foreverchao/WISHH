@@ -145,18 +145,18 @@ cc.Class({
     {
         if(!this.yellow){
             //console.log(this.node.x,this.node.y);
+            this.lv = this.rb.linearVelocity;
+            this.lv.y = 0;
+            this.rb.linearVelocity = this.lv;
             if(this.node.scaleX < 0)
             {
-                //this.dashForce = -1000000;
-                var dashMovement = cc.moveBy(0.2, cc.v2(-200, 0));
+                this.dashForce = -500000;
             }
             else if(this.node.scaleX > 0)
             {
-                //this.dashForce = 1000000;
-                var dashMovement = cc.moveBy(0.2, cc.v2(200, 0));
+                this.dashForce = 500000;
             }
-            this.node.runAction(dashMovement);
-            //this.rb.applyForceToCenter( cc.v2(this.dashForce,0) , true );   
+            this.rb.applyForceToCenter( cc.v2(this.dashForce,0) , true );   
             //this.ghost();
         }
  
@@ -256,14 +256,13 @@ cc.Class({
         {
             if(this.canJump && this.jumpCount!=0)
             {
-                this.jumpForce2 = 120000;
+                this.jumpForce = (152000000-200000*this.rb.linearVelocity.y)/(830);
                 if(this.jumpCount==2) this.rb.applyForceToCenter( cc.v2(0,this.jumpForce) , true );
                 else if(this.jumpCount==1) 
                 {
-                    this.jumpForce2 = (152000000-200000*this.rb.linearVelocity.y)/(830);
-                    this.rb.applyForceToCenter( cc.v2(0,this.jumpForce2) , true );
-
+                    this.rb.applyForceToCenter( cc.v2(0,this.jumpForce) , true );
                     //cc.log((this.rb.linearVelocity.y),this.jumpForce2);
+                    //this.ghost();
                 }
                 this.setAni("jump");
                 this.isOnGround = false;
@@ -314,7 +313,7 @@ cc.Class({
     },
 
     update (dt) 
-    {        
+    {    
         this.color_detect();
         if(this.playerState == State.stand)
         {
