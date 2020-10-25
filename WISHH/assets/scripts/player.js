@@ -9,6 +9,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+        lightPrefab: cc.Prefab,
         ghostPrefab: cc.Prefab,
         playerShadow: cc.Node,
         colorShow: cc.Node,
@@ -20,7 +21,7 @@ cc.Class({
     {  
         this.dashForce = 1000000;
         this.jumpForce = 180000;
-        this.slideSpeed = 300;
+        this.slideSpeed = 250;
         this.canJump = true;
         this.jumpCount = 2; //Counting jump
         this.red = false;
@@ -35,6 +36,7 @@ cc.Class({
         this.playerAni.on('finished', this.onAnimaFinished, this);
         this.isOnGround = false;
         this.onWall = false;
+        this.pushingWall = false;
         this.wallSide = -1; //判斷目前貼的是左邊還是右邊 右邊:-1 左邊: 1
         cc.systemEvent.on('keydown', this.onKeydown, this);
         cc.systemEvent.on('keyup', this.onKeyup, this);
@@ -58,6 +60,11 @@ cc.Class({
             this.playerState = State.stand;
             this.setAni('idle');
         }
+        else
+        {
+            this.playerState = State.stand;
+            this.setAni('idle');
+        }
     },
     setAni(anima)
     {
@@ -74,6 +81,7 @@ cc.Class({
             case cc.macro.KEY.l:
                 this.attack();
                 this.switchState();
+                this.playerState = State.stand;
                 this.yellow = true;
                 break;
             case cc.macro.KEY.j:
@@ -118,6 +126,7 @@ cc.Class({
             this.onWall = true;
             this.jumpCount = 2;
             this.wallSide = 1;
+            cc.log("left")
         }
         else if(selfCollider.tag === 3){ //right
             this.onWall = true;
@@ -129,11 +138,11 @@ cc.Class({
     wallSlide()
     {
         this.lv = this.rb.linearVelocity;
-        var pushingWall = false;
+        this.pushingWall = false;
         if((this.rb.linearVelocity.x>0 && this.wallSide==-1) || (this.rb.linearVelocity.x<0 && this.wallSide==1))
-            pushingWall = true;
+            this.pushingWall = true;
         var push = this.pushingWall ? 0: this.rb.linearVelocity.x;
-        if(pushingWall){
+        if(this.pushingWall){
         this.lv.x = push;
         this.lv.y = -this.slideSpeed;
         this.rb.linearVelocity = this.lv;
@@ -145,18 +154,26 @@ cc.Class({
     {
         if(!this.yellow){
             //console.log(this.node.x,this.node.y);
-            this.lv = this.rb.linearVelocity;
-            this.lv.y = 0;
-            this.rb.linearVelocity = this.lv;
+            var light = cc.instantiate(this.lightPrefab);
+            var dashDistance;
+            light.x = this.node.x;
+            light.y = this.node.y;
             if(this.node.scaleX < 0)
-            {
-                this.dashForce = -500000;
+            { 
+                //this.dashForce = -500000;
+                light.scaleX*= -1;
+                dashDistance = -300;
             }
             else if(this.node.scaleX > 0)
             {
-                this.dashForce = 500000;
+                //this.dashForce = 10000000;
+                dashDistance = 300;
             }
-            this.rb.applyForceToCenter( cc.v2(this.dashForce,0) , true );   
+            this.playerShadow.addChild(light);
+            this.scheduleOnce(function(){ light.destroy();},0.83);
+            //this.rb.applyForceToCenter( cc.v2(this.dashForce,0) , true );
+            this.node.x += dashDistance;
+            //cc.director.getPhysicsManager().gravity = cc.v2(0, -1000);   
             //this.ghost();
         }
  
@@ -212,7 +229,7 @@ cc.Class({
         else if(Input[cc.macro.KEY.l] && !this.yellow)
         {
             this.dash();
-            this.setAni('light');
+            this.setAni('idle');
         }
         else if(Input[cc.macro.KEY.k] && !this.blue)
         {
@@ -333,8 +350,6 @@ cc.Class({
         }
         if(this.onWall) this.wallSlide();
         this.rb.linearVelocity = this.lv; 
-
-        //cc.log(this.onWall);
 
     },
 });
