@@ -37,6 +37,7 @@ cc.Class({
         this.isOnGround = false;
         this.onWall = false;
         this.pushingWall = false;
+        this.isDashing = false;
         this.wallSide = -1; //判斷目前貼的是左邊還是右邊 右邊:-1 左邊: 1
         cc.systemEvent.on('keydown', this.onKeydown, this);
         cc.systemEvent.on('keyup', this.onKeyup, this);
@@ -116,7 +117,6 @@ cc.Class({
     },
 
     onBeginContact(contact, selfCollider, otherCollider){
-        cc.log(selfCollider.tag);
         if(selfCollider.tag === 1){
             this.isOnGround = true;
             this.jumpCount = 2;
@@ -126,7 +126,6 @@ cc.Class({
             this.onWall = true;
             this.jumpCount = 2;
             this.wallSide = 1;
-            cc.log("left")
         }
         else if(selfCollider.tag === 3){ //right
             this.onWall = true;
@@ -153,26 +152,33 @@ cc.Class({
     dash()
     {
         if(!this.yellow){
+            this.isDashing = true;
             //console.log(this.node.x,this.node.y);
             var light = cc.instantiate(this.lightPrefab);
             var dashDistance;
             light.x = this.node.x;
             light.y = this.node.y;
+            this.lv = this.rb.linearVelocity;
             if(this.node.scaleX < 0)
             { 
-                //this.dashForce = -500000;
-                light.scaleX*= -1;
-                dashDistance = -300;
+                this.lv.x = -100000;
+                light.scaleX *= -1; 
+                //dashDistance = -300;
             }
             else if(this.node.scaleX > 0)
             {
-                //this.dashForce = 10000000;
-                dashDistance = 300;
+                this.lv.x = 100000;
+                //dashDistance = 300;
             }
             this.playerShadow.addChild(light);
-            this.scheduleOnce(function(){ light.destroy();},0.83);
+            this.lv.y = 0;
+            this.rb.linearVelocity = this.lv;
+            this.rb.gravityScale = 0;
+            this.scheduleOnce(function(){ light.destroy();this.isDashing = false;cc.log("destroy")},0.83);
+            this.scheduleOnce(function(){ this.isDashing = false;cc.log("stop");this.rb.gravityScale = 1;},0.1);
+            cc.log(this.lv.x)
             //this.rb.applyForceToCenter( cc.v2(this.dashForce,0) , true );
-            this.node.x += dashDistance;
+            //this.node.x += dashDistance;
             //cc.director.getPhysicsManager().gravity = cc.v2(0, -1000);   
             //this.ghost();
         }
@@ -278,7 +284,6 @@ cc.Class({
                 else if(this.jumpCount==1) 
                 {
                     this.rb.applyForceToCenter( cc.v2(0,this.jumpForce) , true );
-                    //cc.log((this.rb.linearVelocity.y),this.jumpForce2);
                     //this.ghost();
                 }
                 this.setAni("jump");
@@ -332,7 +337,7 @@ cc.Class({
     update (dt) 
     {    
         this.color_detect();
-        if(this.playerState == State.stand)
+        if(this.playerState == State.stand && !this.isDashing)
         {
             this.move();
         }
@@ -340,16 +345,17 @@ cc.Class({
         var lowJumpMultiplier = 3; //控制輕跳時的重力
         var limitMultiplier = 1.5; //增加重力避免漂浮感
         this.lv = this.rb.linearVelocity;
-        if(this.lv.y < 0) { //當角色下降時
-            this.lv.y += cc.Vec2.UP.y * cc.director.getPhysicsManager().gravity.y * (fallMultiplier - 1) * dt;
-        } else if(this.lv.y > 0 && !Input[cc.macro.KEY.w]) { //當角色輕跳時
-            this.lv.y += cc.Vec2.UP.y * cc.director.getPhysicsManager().gravity.y * (lowJumpMultiplier - 1) * dt;
+        if(!this.isDashing) {
+            if(this.lv.y < 0) { //當角色下降時
+                this.lv.y += cc.Vec2.UP.y * cc.director.getPhysicsManager().gravity.y * (fallMultiplier - 1) * dt;
+            } else if(this.lv.y > 0 && !Input[cc.macro.KEY.w]) { //當角色輕跳時
+                this.lv.y += cc.Vec2.UP.y * cc.director.getPhysicsManager().gravity.y * (lowJumpMultiplier - 1) * dt;
+            }
+            else if(this.lv.y > 0) { //當角色上升時
+                this.lv.y += cc.Vec2.UP.y * cc.director.getPhysicsManager().gravity.y * (limitMultiplier - 1) * dt;
+            }
+            if(this.onWall) this.wallSlide();
+            this.rb.linearVelocity = this.lv; 
         }
-        else if(this.lv.y > 0) { //當角色上升時
-            this.lv.y += cc.Vec2.UP.y * cc.director.getPhysicsManager().gravity.y * (limitMultiplier - 1) * dt;
-        }
-        if(this.onWall) this.wallSlide();
-        this.rb.linearVelocity = this.lv; 
-
     },
 });
