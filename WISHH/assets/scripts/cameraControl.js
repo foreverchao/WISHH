@@ -10,6 +10,7 @@ cc.Class({
 
     properties: {
         player: cc.Node,
+        UI: cc.Node,
         // foo: {
         //     // ATTRIBUTES:
         //     default: null,        // The default value will be used only when the component attaching
@@ -43,5 +44,6 @@ cc.Class({
         let currentPosition = this.node.getPosition();
         currentPosition.lerp(targerPosition, 0.1, currentPosition);
         this.node.setPosition(currentPosition);
+        this.UI.setPosition(currentPosition);
     },
 });

@@ -14,11 +14,18 @@ cc.Class({
         playerShadow: cc.Node,
         colorShow: cc.Node,
         fireBall: cc.Prefab,
+        redMP:cc.Node,
+        blueMP:cc.Node,
+        yellowMP:cc.Node
     },
 
     // LIFE-CYCLE CALLBACKS:
     onLoad () 
     {  
+        this.redMagicPoint = 6;//red mp
+        this.blueMagicPoint = 6;//blie mp
+        this.yellowMagicPoint = 6;//yellow mp
+        this.setMP();
         this.dashForce = 1000000;
         this.jumpForce = 180000;
         this.slideSpeed = 250;
@@ -80,15 +87,21 @@ cc.Class({
         Input[e.keyCode] = 1;
         switch(e.keyCode) {
             case cc.macro.KEY.l:
-                this.attack();
-                this.switchState();
-                this.playerState = State.stand;
-                this.yellow = true;
+                if(this.yellowMagicPoint > 0)
+                {
+                    this.attack();
+                    this.switchState();
+                    this.playerState = State.stand;
+                    this.yellow = true;
+                }
                 break;
             case cc.macro.KEY.j:
-                this.attack();
-                this.switchState();
-                this.red = true;
+                if(this.redMagicPoint > 0)
+                {
+                    this.attack();
+                    this.switchState();
+                    this.red = true;
+                }
                 break;
             case cc.macro.KEY.k:
                 this.blue = true;
@@ -152,6 +165,8 @@ cc.Class({
     dash()
     {
         if(!this.yellow){
+            this.yellowMagicPoint--;
+            this.setMP();
             this.isDashing = true;
             //console.log(this.node.x,this.node.y);
             var light = cc.instantiate(this.lightPrefab);
@@ -229,7 +244,6 @@ cc.Class({
     {
         if(Input[cc.macro.KEY.j] && !this.red)
         {
-            //this.fire();
             this.setAni('fire');
         }
         else if(Input[cc.macro.KEY.l] && !this.yellow)
@@ -312,11 +326,11 @@ cc.Class({
                 {
                     if(Input[cc.macro.KEY.j] && !this.red)
                     {
-                        this.playerState = State.attack;
+                        this.playerState = State.attack;                        
                     }
                     else if(Input[cc.macro.KEY.l] && !this.yellow)
-                    {
-                        this.playerState = State.attack;
+                    {  
+                        this.playerState = State.attack;  
                     }
                     break;
                 }
@@ -324,6 +338,8 @@ cc.Class({
     },
     fire()
     {
+        this.redMagicPoint--;
+        this.setMP();
         this.newNode = cc.instantiate(this.fireBall);
         /*if(this.node.scaleX < 0)
         {
@@ -332,6 +348,11 @@ cc.Class({
         }*/
             
         this.node.addChild(this.newNode);
+    },
+    setMP(){
+        this.redMP.getComponent(cc.Label).string = this.redMagicPoint;
+        this.blueMP.getComponent(cc.Label).string = this.blueMagicPoint;
+        this.yellowMP.getComponent(cc.Label).string = this.yellowMagicPoint;
     },
 
     update (dt) 

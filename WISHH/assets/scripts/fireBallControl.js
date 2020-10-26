@@ -74,6 +74,8 @@ cc.Class({
     },
     onCollisionEnter(other, self)
     {
+        if(this.anima == "fireBallEnd")
+            return;
         this.fireBallAni.stop();
         this.speed = 0;
         this.setAni("fireBallEnd");
