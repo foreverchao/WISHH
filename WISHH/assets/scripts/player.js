@@ -68,7 +68,12 @@ cc.Class({
         {
             this.playerState = State.stand;
             this.setAni('idle');
+        }else if(data.name == 'ice')
+        {
+            this.playerState = State.stand;
+            this.setAni('idle');
         }
+        
         else
         {
             this.playerState = State.stand;
@@ -259,6 +264,7 @@ cc.Class({
         }
         else if(Input[cc.macro.KEY.k] && !this.blue)
         {
+            this.setAni('ice');
             this.snow();
         }
     },

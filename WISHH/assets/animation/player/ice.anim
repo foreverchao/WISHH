@@ -1,12 +1,12 @@
 {
   "__type__": "cc.AnimationClip",
-  "_name": "ice_down",
+  "_name": "ice",
   "_objFlags": 0,
   "_native": "",
   "_duration": 5,
   "sample": 1,
-  "speed": 12,
-  "wrapMode": 2,
+  "speed": 10,
+  "wrapMode": 1,
   "curveData": {
     "comps": {
       "cc.Sprite": {
@@ -14,31 +14,31 @@
           {
             "frame": 0,
             "value": {
-              "__uuid__": "16634632-51d9-4fe4-b3a1-3cd910f6d2d5"
+              "__uuid__": "e11b9a6e-9b96-4e07-b148-977b9a6b94b3"
             }
           },
           {
             "frame": 1,
             "value": {
-              "__uuid__": "f992dd2e-dab6-4b75-9f1c-6c5c5dce75c3"
+              "__uuid__": "f429da23-fcbf-466d-94d5-52b02160b546"
             }
           },
           {
             "frame": 2,
             "value": {
-              "__uuid__": "a7948fa7-784d-4371-bc5f-0a0dcca49328"
+              "__uuid__": "f12beb87-1130-4258-96f1-970a263f99c0"
             }
           },
           {
             "frame": 3,
             "value": {
-              "__uuid__": "67652cd8-427c-47f9-a5f0-93d2d7af2e94"
+              "__uuid__": "c3903b64-7ead-43b9-8a24-58c7dbdca545"
             }
           },
           {
             "frame": 4,
             "value": {
-              "__uuid__": "3f66e71b-aeb3-4656-a24f-0d16cf40fbd0"
+              "__uuid__": "dafea413-8b4c-4e03-8ceb-5b456b8d3a9d"
             }
           }
         ]
