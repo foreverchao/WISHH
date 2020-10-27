@@ -44,6 +44,6 @@ cc.Class({
         let currentPosition = this.node.getPosition();
         currentPosition.lerp(targerPosition, 0.1, currentPosition);
         this.node.setPosition(currentPosition);
-        this.UI.setPosition(currentPosition);
+        this.UI.setPosition(currentPosition.x-200,currentPosition.y+200);
     },
 });

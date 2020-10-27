@@ -14,6 +14,10 @@ cc.Class({
         snowBallPerfab: cc.Prefab,
         playerShadow: cc.Node,
         colorShow: cc.Node,
+        colorBar: cc.Node,
+        redBar: cc.Prefab,
+        blueBar: cc.Prefab,
+        yellowBar: cc.Prefab,
         fireBall: cc.Prefab,
         redMP:cc.Node,
         blueMP:cc.Node,
@@ -387,9 +391,28 @@ cc.Class({
     },
 
     setMP(){
-        this.redMP.getComponent(cc.Label).string = this.redMagicPoint;
-        this.blueMP.getComponent(cc.Label).string = this.blueMagicPoint;
-        this.yellowMP.getComponent(cc.Label).string = this.yellowMagicPoint;
+        this.colorBar.removeAllChildren();
+        for(var i=0; i<this.redMagicPoint; i++)
+        {
+            var red = cc.instantiate(this.redBar);
+            red.x = -22 + i*5;
+            red.y = 7;
+            this.colorBar.addChild(red);
+        }
+        for(var i=0; i<this.blueMagicPoint; i++)
+        {
+            var blue = cc.instantiate(this.blueBar);
+            blue.x = -22 + i*5;
+            blue.y = 0;
+            this.colorBar.addChild(blue);
+        }
+        for(var i=0; i<this.yellowMagicPoint; i++)
+        {
+            var yellow = cc.instantiate(this.yellowBar);
+            yellow.x = -22 + i*5;
+            yellow.y = -7;
+            this.colorBar.addChild(yellow);
+        }
     },
 
     update (dt) 

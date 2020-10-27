@@ -11,7 +11,7 @@ cc.Class({
     properties: {
         color: {
             default: "red",
-            type: cc.String,
+            //type: cc.String,
             visible : true
         }
     },
