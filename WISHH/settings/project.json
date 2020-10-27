@@ -1,18 +1,24 @@
 {
   "group-list": [
-    "default",
+    "defult",
     "Player",
     "Walls",
     "ground",
-    "enemy"
+    "enemy",
+    "Players Bullet"
   ],
   "collision-matrix": [
     [
-      true
+      true,
+      null,
+      false,
+      false,
+      false
     ],
     [
       false,
       false,
+      true,
       true,
       true,
       true
@@ -22,6 +28,7 @@
       true,
       false,
       null,
+      true,
       true
     ],
     [
@@ -29,10 +36,20 @@
       true,
       false,
       false,
+      true,
       true
     ],
     [
       false,
+      true,
+      true,
+      true,
+      false,
+      true
+    ],
+    [
+      false,
+      true,
       true,
       true,
       true,

@@ -31,6 +31,7 @@ cc.Class({
         this.blueMagicPoint = 6;//blue mp
         this.yellowMagicPoint = 6;//yellow mp
         this.setMP();
+        this.canMove = true;
         this.dashForce = 1000000;
         this.jumpForce = 180000;
         this.slideSpeed = 250;
@@ -145,6 +146,7 @@ cc.Class({
     },
 
     onBeginContact(contact, selfCollider, otherCollider){
+        cc.log(selfCollider.tag);
         if(selfCollider.tag === 1){
             this.isOnGround = true;
             this.jumpCount = 2;
@@ -159,6 +161,11 @@ cc.Class({
             this.onWall = true;
             this.jumpCount = 2;
             this.wallSide = -1;
+        }
+        else if(otherCollider.node.name == "spike")
+        {
+            this.dead();
+            this.canMove = false;
         }
     },
 
@@ -214,6 +221,11 @@ cc.Class({
         }
  
         //this.rb.applyLinearImpulse(cc.v2(1000000,0),cc.v2(0,0),true)
+    },
+
+    dead()
+    {
+        this.setAni('player_die');
     },
 
     ghost() 
@@ -417,10 +429,12 @@ cc.Class({
 
     update (dt) 
     {    
-        this.color_detect();
-        if(this.playerState == State.stand && !this.isDashing)
-        {
-            this.move();
+        if(this.canMove){
+            this.color_detect();
+            if(this.playerState == State.stand && !this.isDashing)
+            {
+                this.move();
+            }
         }
         var fallMultiplier = 2.5;    //控制下墜時的重力
         var lowJumpMultiplier = 3; //控制輕跳時的重力
