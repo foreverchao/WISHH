@@ -186,7 +186,7 @@
       "array": [
         0,
         0,
-        290.1618273953749,
+        223.5444295342025,
         0,
         0,
         0,
@@ -5391,7 +5391,11 @@
     },
     "_enabled": true,
     "_defaultClip": null,
-    "_clips": [],
+    "_clips": [
+      {
+        "__uuid__": "63c8f857-193b-4560-bc9d-7d18cb7b1e2f"
+      }
+    ],
     "playOnLoad": false,
     "_id": "995pUHQ7JDN4r+HVUMthTJ"
   },
