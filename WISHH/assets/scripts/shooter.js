@@ -15,7 +15,7 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
      onLoad () {
-        this.hp = 5;
+        this.hp = 1;
         this.isHit = false;
         this.shooterAni = this.node.getComponent(cc.Animation);
         this.shooterAni.play("shooter");
@@ -28,6 +28,7 @@ cc.Class({
     shoot(){
         this.newNode = cc.instantiate(this.the_shot);
         this.node.addChild(this.newNode);
+        this.newNode.x += 10;
     },
 
      update (dt) {

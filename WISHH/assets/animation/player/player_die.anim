@@ -6,7 +6,7 @@
   "_duration": 20,
   "sample": 1,
   "speed": 12,
-  "wrapMode": 2,
+  "wrapMode": 1,
   "curveData": {
     "comps": {
       "cc.Sprite": {
@@ -14,7 +14,7 @@
           {
             "frame": 0,
             "value": {
-              "__uuid__": "92ff6eef-4778-4b46-be42-90a238bb0683"
+              "__uuid__": "667884ff-c9b6-4fb8-a0cd-508c89fc6570"
             }
           },
           {

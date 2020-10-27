@@ -78,7 +78,11 @@ cc.Class({
             this.playerState = State.stand;
             this.setAni('idle');
         }
-        
+        else if(data.name == 'player_die')
+        {
+            this.playerState = State.stand;
+            //this.setAni('idle');
+        }
         else
         {
             this.playerState = State.stand;
@@ -100,6 +104,7 @@ cc.Class({
             case cc.macro.KEY.l:
                 if(this.yellowMagicPoint > 0)
                 {
+                    this.node.group = "defult";
                     this.attack();
                     this.switchState();
                     this.playerState = State.stand;
@@ -162,7 +167,8 @@ cc.Class({
             this.jumpCount = 2;
             this.wallSide = -1;
         }
-        else if(otherCollider.node.name == "spike")
+        else if(otherCollider.node.name == "spike" || otherCollider.node.name == "slime" || otherCollider.node.name == "shooter" ||
+        otherCollider.node.name == "the_shot")
         {
             this.dead();
             this.canMove = false;
@@ -187,6 +193,7 @@ cc.Class({
     dash()
     {
         if(!this.yellow){
+            this.node.group = "defult";
             this.yellowMagicPoint--;
             this.setMP();
             this.isDashing = true;
@@ -211,7 +218,7 @@ cc.Class({
             this.lv.y = 0;
             this.rb.linearVelocity = this.lv;
             this.rb.gravityScale = 0;
-            this.scheduleOnce(function(){ light.destroy();this.isDashing = false;cc.log("destroy")},0.83);
+            this.scheduleOnce(function(){ light.destroy();this.isDashing = false;cc.log("destroy");this.node.group = "Player";},0.83);
             this.scheduleOnce(function(){ this.isDashing = false;cc.log("stop");this.rb.gravityScale = 1;},0.1);
             cc.log(this.lv.x)
             //this.rb.applyForceToCenter( cc.v2(this.dashForce,0) , true );
@@ -226,6 +233,10 @@ cc.Class({
     dead()
     {
         this.setAni('player_die');
+        /*cc.director.preloadScene("menu", function() {
+            cc.loader.onProgress = null;
+            cc.director.loadScene("menu");
+        });*/
     },
 
     ghost() 
@@ -429,6 +440,7 @@ cc.Class({
 
     update (dt) 
     {    
+        cc.log(this.node.group)
         if(this.canMove){
             this.color_detect();
             if(this.playerState == State.stand && !this.isDashing)

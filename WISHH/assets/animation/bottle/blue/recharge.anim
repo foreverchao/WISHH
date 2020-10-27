@@ -1,0 +1,61 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "recharge",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 7,
+  "sample": 1,
+  "speed": 0.7,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "2538ee2e-55e3-4fc0-9607-8e32e889fad8"
+            }
+          },
+          {
+            "frame": 1,
+            "value": {
+              "__uuid__": "38294ac1-e6c5-4c45-b6c1-b3a1a4981b4f"
+            }
+          },
+          {
+            "frame": 2,
+            "value": {
+              "__uuid__": "6a68e604-1a4f-4e52-aae2-abc52814387c"
+            }
+          },
+          {
+            "frame": 3,
+            "value": {
+              "__uuid__": "b4fd6824-ff6f-4cf4-abd2-705be530243e"
+            }
+          },
+          {
+            "frame": 4,
+            "value": {
+              "__uuid__": "503bb5dc-9a7c-4407-8f9d-b9d39e57e78d"
+            }
+          },
+          {
+            "frame": 5,
+            "value": {
+              "__uuid__": "5e901b20-b4f3-4eb4-a715-3b5822c957cc"
+            }
+          },
+          {
+            "frame": 6,
+            "value": {
+              "__uuid__": "d8ef0640-d844-4d3e-9441-0a23e0a7dd40"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}
