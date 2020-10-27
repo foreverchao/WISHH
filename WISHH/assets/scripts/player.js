@@ -21,7 +21,8 @@ cc.Class({
         fireBall: cc.Prefab,
         redMP:cc.Node,
         blueMP:cc.Node,
-        yellowMP:cc.Node
+        yellowMP:cc.Node,
+        final: cc.Node,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -172,6 +173,12 @@ cc.Class({
         {
             this.dead();
             this.canMove = false;
+        }
+        else if(otherCollider.node.name == "final")
+        {
+            cc.log("flag");
+            var anim =this.final.getComponent(cc.Animation);
+            anim.play("final");
         }
     },
 
