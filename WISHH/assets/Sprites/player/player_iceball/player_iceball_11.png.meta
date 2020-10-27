@@ -1,0 +1,36 @@
+{
+  "ver": "2.3.5",
+  "uuid": "47a8f37f-4206-4e29-a651-bdc45ed6a46c",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "point",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 56,
+  "height": 56,
+  "platformSettings": {},
+  "subMetas": {
+    "player_iceball_11": {
+      "ver": "1.0.4",
+      "uuid": "c870ce10-e0c0-4389-8291-7bf0cfd7998f",
+      "rawTextureUuid": "47a8f37f-4206-4e29-a651-bdc45ed6a46c",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -0.5,
+      "offsetY": 0.5,
+      "trimX": 24,
+      "trimY": 24,
+      "width": 7,
+      "height": 7,
+      "rawWidth": 56,
+      "rawHeight": 56,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

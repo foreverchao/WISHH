@@ -11,6 +11,7 @@ cc.Class({
     properties: {
         lightPrefab: cc.Prefab,
         ghostPrefab: cc.Prefab,
+        snowBallPerfab: cc.Prefab,
         playerShadow: cc.Node,
         colorShow: cc.Node,
         fireBall: cc.Prefab,
@@ -23,7 +24,7 @@ cc.Class({
     onLoad () 
     {  
         this.redMagicPoint = 6;//red mp
-        this.blueMagicPoint = 6;//blie mp
+        this.blueMagicPoint = 6;//blue mp
         this.yellowMagicPoint = 6;//yellow mp
         this.setMP();
         this.dashForce = 1000000;
@@ -104,7 +105,12 @@ cc.Class({
                 }
                 break;
             case cc.macro.KEY.k:
-                this.blue = true;
+                if(this.blueMagicPoint > 0)
+                {
+                    this.attack();
+                    this.switchState();
+                    this.blue = true;
+                }
                 break;
         }  
 
@@ -253,7 +259,7 @@ cc.Class({
         }
         else if(Input[cc.macro.KEY.k] && !this.blue)
         {
-
+            this.snow();
         }
     },
     //move
@@ -336,6 +342,7 @@ cc.Class({
                 }
         }
     },
+
     fire()
     {
         this.redMagicPoint--;
@@ -349,6 +356,27 @@ cc.Class({
             
         this.node.addChild(this.newNode);
     },
+
+    snow()
+    {
+        this.blueMagicPoint--;
+        this.setMP();
+        var snowBall = cc.instantiate(this.snowBallPerfab);
+        snowBall.x = this.node.x;
+        snowBall.y = this.node.y;
+        this.playerShadow.addChild(snowBall);
+        snowRb = snowBall.getComponent(cc.RigidBody);
+        if(this.node.scaleX < 0)
+        {
+            snowRb.applyForceToCenter( cc.v2(-50000,15000));
+        }
+        else if(this.node.scaleX > 0)
+        {
+            snowRb.applyForceToCenter( cc.v2(50000,15000));
+        }
+
+    },
+
     setMP(){
         this.redMP.getComponent(cc.Label).string = this.redMagicPoint;
         this.blueMP.getComponent(cc.Label).string = this.blueMagicPoint;
