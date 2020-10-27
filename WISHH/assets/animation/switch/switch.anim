@@ -3,9 +3,9 @@
   "_name": "switch",
   "_objFlags": 0,
   "_native": "",
-  "_duration": 0.08333333333333333,
-  "sample": 60,
-  "speed": 1,
+  "_duration": 5,
+  "sample": 1,
+  "speed": 9,
   "wrapMode": 1,
   "curveData": {
     "comps": {
@@ -18,25 +18,25 @@
             }
           },
           {
-            "frame": 0.016666666666666666,
+            "frame": 1,
             "value": {
               "__uuid__": "8b0d0a27-6a42-43b3-99af-72347b8deee1"
             }
           },
           {
-            "frame": 0.03333333333333333,
+            "frame": 2,
             "value": {
               "__uuid__": "eee41ec1-ce91-4c13-bbd5-c193d403cf18"
             }
           },
           {
-            "frame": 0.05,
+            "frame": 3,
             "value": {
               "__uuid__": "a81e69cf-c937-4917-b7ce-35f459593e03"
             }
           },
           {
-            "frame": 0.06666666666666667,
+            "frame": 4,
             "value": {
               "__uuid__": "6aed91cf-8330-47d5-966d-bd51e7e8b521"
             }

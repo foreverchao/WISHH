@@ -265,7 +265,6 @@ cc.Class({
         else if(Input[cc.macro.KEY.k] && !this.blue)
         {
             this.setAni('ice');
-            this.snow();
         }
     },
     //move
@@ -341,6 +340,10 @@ cc.Class({
                         this.playerState = State.attack;                        
                     }
                     else if(Input[cc.macro.KEY.l] && !this.yellow)
+                    {  
+                        this.playerState = State.attack;  
+                    }
+                    else if(Input[cc.macro.KEY.k] && !this.blue)
                     {  
                         this.playerState = State.attack;  
                     }

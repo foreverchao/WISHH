@@ -3,9 +3,9 @@
   "_name": "door",
   "_objFlags": 0,
   "_native": "",
-  "_duration": 0.11666666666666667,
-  "sample": 60,
-  "speed": 1,
+  "_duration": 4,
+  "sample": 1,
+  "speed": 9,
   "wrapMode": 1,
   "curveData": {
     "comps": {
@@ -18,19 +18,19 @@
             }
           },
           {
-            "frame": 0.03333333333333333,
+            "frame": 1,
             "value": {
               "__uuid__": "3f24dfea-0623-4111-a787-142e64062a13"
             }
           },
           {
-            "frame": 0.06666666666666667,
+            "frame": 2,
             "value": {
               "__uuid__": "af4c7eaf-c527-4359-8b7b-92bd5e709e8f"
             }
           },
           {
-            "frame": 0.1,
+            "frame": 3,
             "value": {
               "__uuid__": "60f4d45f-5aef-4385-9357-29b461ba008b"
             }
