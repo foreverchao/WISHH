@@ -105,7 +105,9 @@ cc.Class({
             case cc.macro.KEY.l:
                 if(this.yellowMagicPoint > 0)
                 {
-                    this.node.group = "defult";
+                    //cc.director.getCollisionManger().enabled = false;
+                    this.node.group = "Invincible";
+                    //this.playerState_Invincible();
                     this.attack();
                     this.switchState();
                     this.playerState = State.stand;
@@ -171,8 +173,9 @@ cc.Class({
         else if(otherCollider.node.name == "spike" || otherCollider.node.name == "slime" || otherCollider.node.name == "shooter" ||
         otherCollider.node.name == "the_shot")
         {
-            this.dead();
-            this.canMove = false;
+                //if(!this.isDashing) cc.log('deadStatus'); else cc.log('undeadStatus');
+                 this.dead();
+                 this.canMove = false;
         }
         else if(otherCollider.node.name == "final")
         {
@@ -200,7 +203,8 @@ cc.Class({
     dash()
     {
         if(!this.yellow){
-            this.node.group = "defult";
+            //this.node.group = "Invincible";
+            //this.node.color.fromHEX('#C3EA13');
             this.yellowMagicPoint--;
             this.setMP();
             this.isDashing = true;
@@ -225,7 +229,8 @@ cc.Class({
             this.lv.y = 0;
             this.rb.linearVelocity = this.lv;
             this.rb.gravityScale = 0;
-            this.scheduleOnce(function(){ light.destroy();this.isDashing = false;cc.log("destroy");this.node.group = "Player";},0.83);
+            this.scheduleOnce(function(){ light.destroy();this.isDashing = false;cc.log("destroy");},0.83);
+            this.scheduleOnce(function(){this.node.group = "Player";},3);//this.node.color.fromHEX('#FFFFFF');
             this.scheduleOnce(function(){ this.isDashing = false;cc.log("stop");this.rb.gravityScale = 1;},0.1);
             cc.log(this.lv.x)
             //this.rb.applyForceToCenter( cc.v2(this.dashForce,0) , true );
@@ -293,14 +298,21 @@ cc.Class({
         }
         else if(Input[cc.macro.KEY.l] && !this.yellow)
         {
+            
             this.dash();
             this.setAni('idle');
+            
         }
         else if(Input[cc.macro.KEY.k] && !this.blue)
         {
             this.setAni('ice');
         }
     },
+    //into "Invincible";
+    /*playerState_Invincible(){
+        this.node.group = "Invincible";
+    },
+    */
     //move
     move()
     {   
@@ -447,6 +459,7 @@ cc.Class({
 
     update (dt) 
     {    
+        //cc.log("isDashing " + this.isDashing);
         cc.log(this.node.group)
         if(this.canMove){
             this.color_detect();

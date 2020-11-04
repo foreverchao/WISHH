@@ -90,10 +90,10 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 218
+        "__id__": 220
       },
       {
-        "__id__": 219
+        "__id__": 221
       }
     ],
     "_prefab": null,
@@ -186,7 +186,7 @@
       "array": [
         0,
         0,
-        269.1217039753645,
+        284.8952007232322,
         0,
         0,
         0,
@@ -8210,7 +8210,7 @@
         "__id__": 206
       },
       {
-        "__id__": 211
+        "__id__": 213
       }
     ],
     "_active": true,
@@ -8284,6 +8284,12 @@
       },
       {
         "__id__": 210
+      },
+      {
+        "__id__": 211
+      },
+      {
+        "__id__": 212
       }
     ],
     "_prefab": null,
@@ -8353,7 +8359,7 @@
       "__uuid__": "68841749-b47f-43f3-bfed-76fbe050a1fd"
     },
     "_type": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -8418,6 +8424,57 @@
     "_id": "f7jprBLbVJ5o/7lqSrlQCy"
   },
   {
+    "__type__": "cc.RigidBody",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 206
+    },
+    "_enabled": true,
+    "_type": 0,
+    "_allowSleep": true,
+    "_gravityScale": 1,
+    "_linearDamping": 0,
+    "_angularDamping": 0,
+    "_linearVelocity": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_angularVelocity": 0,
+    "_fixedRotation": false,
+    "enabledContactListener": false,
+    "bullet": false,
+    "awakeOnLoad": true,
+    "_id": "cb18vlsmdK5qrEAJsoEAw1"
+  },
+  {
+    "__type__": "cc.PhysicsBoxCollider",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 206
+    },
+    "_enabled": true,
+    "tag": 0,
+    "_density": 1,
+    "_sensor": false,
+    "_friction": 0.2,
+    "_restitution": 0,
+    "body": null,
+    "_offset": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_size": {
+      "__type__": "cc.Size",
+      "width": 14,
+      "height": 13
+    },
+    "_id": "bdFSRHThlKsoDdkl+ksigi"
+  },
+  {
     "__type__": "cc.Node",
     "_name": "shooter",
     "_objFlags": 0,
@@ -8427,12 +8484,6 @@
     "_children": [],
     "_active": true,
     "_components": [
-      {
-        "__id__": 212
-      },
-      {
-        "__id__": 213
-      },
       {
         "__id__": 214
       },
@@ -8444,6 +8495,12 @@
       },
       {
         "__id__": 217
+      },
+      {
+        "__id__": 218
+      },
+      {
+        "__id__": 219
       }
     ],
     "_prefab": null,
@@ -8499,7 +8556,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 211
+      "__id__": 213
     },
     "_enabled": true,
     "_materials": [
@@ -8531,7 +8588,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 211
+      "__id__": 213
     },
     "_enabled": true,
     "_defaultClip": null,
@@ -8548,7 +8605,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 211
+      "__id__": 213
     },
     "_enabled": true,
     "tag": 0,
@@ -8569,7 +8626,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 211
+      "__id__": 213
     },
     "_enabled": true,
     "the_shot": {
@@ -8582,7 +8639,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 211
+      "__id__": 213
     },
     "_enabled": true,
     "_type": 0,
@@ -8607,7 +8664,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 211
+      "__id__": 213
     },
     "_enabled": true,
     "tag": 0,
