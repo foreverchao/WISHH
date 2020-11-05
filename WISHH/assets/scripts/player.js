@@ -153,6 +153,14 @@ cc.Class({
         }
     },
 
+    onCollisionEnter(other, self)
+    {
+        if(other.node.name == "the_shot") {
+            this.dead();
+            this.canMove = false;
+        }
+    },
+
     onBeginContact(contact, selfCollider, otherCollider){
         cc.log(selfCollider.tag);
         if(selfCollider.tag === 1){
@@ -170,12 +178,13 @@ cc.Class({
             this.jumpCount = 2;
             this.wallSide = -1;
         }
-        else if(otherCollider.node.name == "spike" || otherCollider.node.name == "slime" || otherCollider.node.name == "shooter" ||
-        otherCollider.node.name == "the_shot")
+        else if((otherCollider.node.name == "spike" || otherCollider.node.name == "slime" || otherCollider.node.name == "shooter" ||
+        otherCollider.node.name == "the_shot") && this.node.group != "Invincible")
         {
-                //if(!this.isDashing) cc.log('deadStatus'); else cc.log('undeadStatus');
-                 this.dead();
-                 this.canMove = false;
+            //if(!this.isDashing) cc.log('deadStatus'); else cc.log('undeadStatus');
+            this.dead();
+            this.canMove = false;
+            cc.log("dead");
         }
         else if(otherCollider.node.name == "final")
         {
@@ -230,7 +239,7 @@ cc.Class({
             this.rb.linearVelocity = this.lv;
             this.rb.gravityScale = 0;
             this.scheduleOnce(function(){ light.destroy();this.isDashing = false;cc.log("destroy");},0.83);
-            this.scheduleOnce(function(){this.node.group = "Player";},3);//this.node.color.fromHEX('#FFFFFF');
+            this.scheduleOnce(function(){this.node.group = "Player";},0.83);//this.node.color.fromHEX('#FFFFFF');
             this.scheduleOnce(function(){ this.isDashing = false;cc.log("stop");this.rb.gravityScale = 1;},0.1);
             cc.log(this.lv.x)
             //this.rb.applyForceToCenter( cc.v2(this.dashForce,0) , true );
