@@ -186,7 +186,7 @@
       "array": [
         0,
         0,
-        284.8952007232322,
+        274.5300529996671,
         0,
         0,
         0,
@@ -8303,8 +8303,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 32,
-      "height": 32
+      "width": 14,
+      "height": 13
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -8458,7 +8458,7 @@
     "_enabled": true,
     "tag": 0,
     "_density": 1,
-    "_sensor": false,
+    "_sensor": true,
     "_friction": 0.2,
     "_restitution": 0,
     "body": null,
