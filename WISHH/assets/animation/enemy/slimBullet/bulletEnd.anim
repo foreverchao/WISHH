@@ -1,0 +1,49 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "bulletEnd",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 5,
+  "sample": 1,
+  "speed": 8,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "9f0cdaa5-8b2e-4bfa-8525-edb36a1604b7"
+            }
+          },
+          {
+            "frame": 1,
+            "value": {
+              "__uuid__": "6071f3a5-1a2b-4fb4-9f67-86a1a463f4b1"
+            }
+          },
+          {
+            "frame": 2,
+            "value": {
+              "__uuid__": "8ea98494-6229-402b-a0bf-82be47fc440e"
+            }
+          },
+          {
+            "frame": 3,
+            "value": {
+              "__uuid__": "8751a203-b787-4547-b27a-566378d96142"
+            }
+          },
+          {
+            "frame": 4,
+            "value": {
+              "__uuid__": "dd3634ca-bf11-48f9-80e1-a9dd32bcb086"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

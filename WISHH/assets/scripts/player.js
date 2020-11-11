@@ -162,7 +162,7 @@ cc.Class({
     },
 
     onBeginContact(contact, selfCollider, otherCollider){
-        cc.log(selfCollider.tag);
+        //cc.log(selfCollider.tag);
         if(selfCollider.tag === 1){
             this.isOnGround = true;
             this.jumpCount = 2;
@@ -469,7 +469,7 @@ cc.Class({
     update (dt) 
     {    
         //cc.log("isDashing " + this.isDashing);
-        cc.log(this.node.group)
+        //cc.log(this.node.group)
         if(this.canMove){
             this.color_detect();
             if(this.playerState == State.stand && !this.isDashing)
