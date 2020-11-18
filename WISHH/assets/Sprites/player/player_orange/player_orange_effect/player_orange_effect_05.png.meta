@@ -1,6 +1,6 @@
 {
   "ver": "2.3.5",
-  "uuid": "0e7997fa-6dc1-41a5-a438-763e3cb108f3",
+  "uuid": "7fc54ff8-ed5a-4075-918b-116794965591",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "point",
@@ -13,8 +13,8 @@
   "subMetas": {
     "player_orange_effect_05": {
       "ver": "1.0.4",
-      "uuid": "2004ead9-16cd-40a4-9c92-720be2320755",
-      "rawTextureUuid": "0e7997fa-6dc1-41a5-a438-763e3cb108f3",
+      "uuid": "44a98287-1310-4950-8292-b8cb987de65c",
+      "rawTextureUuid": "7fc54ff8-ed5a-4075-918b-116794965591",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
