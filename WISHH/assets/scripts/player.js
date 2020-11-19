@@ -1,10 +1,5 @@
 
 const Input = {};
-const State = 
-{
-    stand: 1,
-    attack: 2,
-};
 cc.Class({
     extends: cc.Component,
 
@@ -23,6 +18,8 @@ cc.Class({
         blueMP:cc.Node,
         yellowMP:cc.Node,
         final: cc.Node,
+        enemies: cc.Node,
+        orangeEffect: cc.Prefab,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -44,7 +41,6 @@ cc.Class({
         this._speed = 450;
         this.sp = cc.v2(0,0);//current speed
         this.rb = this.node.getComponent(cc.RigidBody);
-        this.playerState = State.stand;
         this.anima = 'idle';
         this.playerAni = this.node.getComponent(cc.Animation);
         this.playerAni.on('finished', this.onAnimaFinished, this);
@@ -53,6 +49,7 @@ cc.Class({
         this.pushingWall = false;
         this.isDashing = false;
         this.wallSide = -1; //判斷目前貼的是左邊還是右邊 右邊:-1 左邊: 1
+        this.isAttacking = false;
         cc.systemEvent.on('keydown', this.onKeydown, this);
         cc.systemEvent.on('keyup', this.onKeyup, this);
     },
@@ -68,25 +65,29 @@ cc.Class({
     {
         if(data.name == 'fire')
         {
-            this.playerState = State.stand;
             this.setAni('idle');
-        }else if(data.name == 'light')
+            this.isAttacking = false;
+        }
+        else if(data.name == 'light')
         {
-            this.playerState = State.stand;
             this.setAni('idle');
+            this.isAttacking = false;
         }else if(data.name == 'ice')
         {
-            this.playerState = State.stand;
             this.setAni('idle');
+            this.isAttacking = false;
+        }
+        else if(data.name == 'orange')
+        {
+            this.setAni('idle');
+            this.isAttacking = false;
         }
         else if(data.name == 'player_die')
         {
-            this.playerState = State.stand;
             //this.setAni('idle');
         }
         else
         {
-            this.playerState = State.stand;
             this.setAni('idle');
         }
     },
@@ -94,7 +95,7 @@ cc.Class({
     {
         if(this.anima == anima)
             return;
-        
+        this.playerAni.stop();
         this.anima = anima;
         this.playerAni.play(anima);
     },
@@ -105,28 +106,18 @@ cc.Class({
             case cc.macro.KEY.l:
                 if(this.yellowMagicPoint > 0)
                 {
-                    //cc.director.getCollisionManger().enabled = false;
-                    this.node.group = "Invincible";
-                    //this.playerState_Invincible();
-                    this.attack();
-                    this.switchState();
-                    this.playerState = State.stand;
                     this.yellow = true;
                 }
                 break;
             case cc.macro.KEY.j:
                 if(this.redMagicPoint > 0)
                 {
-                    this.attack();
-                    this.switchState();
                     this.red = true;
                 }
                 break;
             case cc.macro.KEY.k:
                 if(this.blueMagicPoint > 0)
                 {
-                    this.attack();
-                    this.switchState();
                     this.blue = true;
                 }
                 break;
@@ -142,13 +133,16 @@ cc.Class({
                 this.canJump = true;
                 break;
             case cc.macro.KEY.j:
-                this.red = false;
+                this.attack();
                 break;
             case cc.macro.KEY.k:
-                this.blue = false;
+                this.attack();
                 break;
             case cc.macro.KEY.l:
-                this.yellow = false;
+                //cc.director.getCollisionManger().enabled = false;
+                this.node.group = "Invincible";
+                //this.playerState_Invincible();
+                this.attack();
                 break;
         }
     },
@@ -211,7 +205,7 @@ cc.Class({
 
     dash()
     {
-        if(!this.yellow){
+        if(this.yellow){
             //this.node.group = "Invincible";
             //this.node.color.fromHEX('#C3EA13');
             this.yellowMagicPoint--;
@@ -301,21 +295,33 @@ cc.Class({
     //attack
     attack()
     {
-        if(Input[cc.macro.KEY.j] && !this.red)
+        this.isAttacking = true;
+        if(this.red && this.yellow)
+        {
+            this.orangeAttack();
+            this.setAni('orange');
+            this.red = false;
+            this.yellow = false;
+        }
+        else if(this.red)
         {
             this.setAni('fire');
+            this.red = false;
         }
-        else if(Input[cc.macro.KEY.l] && !this.yellow)
+        else if(this.yellow)
         {
             
             this.dash();
             this.setAni('idle');
+            this.yellow = false;
             
         }
-        else if(Input[cc.macro.KEY.k] && !this.blue)
+        else if(this.blue)
         {
             this.setAni('ice');
+            this.blue = false;
         }
+        cc.log(this.anima)
     },
     //into "Invincible";
     /*playerState_Invincible(){
@@ -333,7 +339,7 @@ cc.Class({
         {
             this.node.scaleX = -scaleX;
             this.sp.x = -1;
-            if(this.isOnGround)
+            if(this.isOnGround && !this.isAttacking)
             {
                 this.setAni("move");
             }
@@ -343,7 +349,7 @@ cc.Class({
         {
             this.node.scaleX = scaleX;
             this.sp.x = 1;
-            if(this.isOnGround)
+            if(this.isOnGround && !this.isAttacking)
             {
                 this.setAni("move");
             }
@@ -352,7 +358,8 @@ cc.Class({
         else
         {
             this.sp.x = 0;
-            this.setAni("idle");
+            if(!this.isAttacking)
+                this.setAni("idle");
         }
 
         if(Input[cc.macro.KEY.w] || Input[cc.macro.KEY.up])
@@ -384,29 +391,55 @@ cc.Class({
         this.rb.linearVelocity = this.lv;
     },
 
-    switchState()
+    /*switchState()
     {
         switch(this.playerState)
         {
             case State.stand:
                 {
-                    if(Input[cc.macro.KEY.j] && !this.red)
+                    if(this.red)
                     {
                         this.playerState = State.attack;                        
                     }
-                    else if(Input[cc.macro.KEY.l] && !this.yellow)
+                    else if(this.yellow)
                     {  
                         this.playerState = State.attack;  
                     }
-                    else if(Input[cc.macro.KEY.k] && !this.blue)
+                    else if(this.blue)
                     {  
                         this.playerState = State.attack;  
                     }
                     break;
                 }
         }
-    },
+    },*/
 
+    orangeAttack()
+    {
+        this.redMagicPoint--;
+        this.yellowMagicPoint--;
+        this.setMP();
+        this.setAni('orange');
+        let tempLen = 9999999999;
+        let attackedEnemy = null;
+        for(let i = 0 ; i < this.enemies.childrenCount ; i++)//find the nearest enemy
+        {
+            let tempX = this.node.x - this.enemies.children[i].x;
+            let tempY = this.node.y - this.enemies.children[i].y;
+            let tmepv = cc.v2(tempX, tempY);
+            cc.log(tmepv.mag())
+            if(tmepv.mag() < tempLen)
+            {
+                tempLen = tmepv.mag();
+                attackedEnemy = this.enemies.children[i];
+            }
+        }
+        let tempNode = cc.instantiate(this.orangeEffect);
+        attackedEnemy.addChild(tempNode);
+        attackedEnemy.getComponent('enemy').isHit = true;
+        attackedEnemy.getComponent('enemy').hurt();
+        cc.log(attackedEnemy.getComponent('enemy').hp)
+    },
     fire()
     {
         this.redMagicPoint--;
@@ -472,7 +505,7 @@ cc.Class({
         //cc.log(this.node.group)
         if(this.canMove){
             this.color_detect();
-            if(this.playerState == State.stand && !this.isDashing)
+            if(/*this.playerState == State.stand && */!this.isDashing)
             {
                 this.move();
             }

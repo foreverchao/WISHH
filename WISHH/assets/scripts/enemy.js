@@ -38,10 +38,8 @@ cc.Class({
         {
             this.isHit = false;
             this.setAni("idle");
-            if(this.hp == 0)
-            {
+            if(this.hp <=0)
                 this.node.destroy();
-            }
         }
         else if(data.name == 'attack2')
         {
