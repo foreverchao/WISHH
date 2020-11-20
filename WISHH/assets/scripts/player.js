@@ -261,6 +261,7 @@ cc.Class({
                 this.lv.x = 100000;
                 //dashDistance = 300;
             }
+            this.scheduleOnce(function(){ this.lv.x = 0;this.rb.linearVelocity = this.lv;this.isAttacking = false;},0.1);
             this.playerShadow.addChild(light);
             this.lv.y = 0;
             this.rb.linearVelocity = this.lv;
