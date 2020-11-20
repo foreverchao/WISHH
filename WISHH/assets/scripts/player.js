@@ -25,9 +25,9 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
     onLoad () 
     {  
-        this.redMagicPoint = 6;//red mp
-        this.blueMagicPoint = 6;//blue mp
-        this.yellowMagicPoint = 6;//yellow mp
+        this.redMagicPoint = 10;//red mp
+        this.blueMagicPoint = 10;//blue mp
+        this.yellowMagicPoint = 10;//yellow mp
         this.setMP();
         this.canMove = true;
         this.dashForce = 1000000;
@@ -61,6 +61,37 @@ cc.Class({
     },
     //start () {},
 
+    colorCoolDown(color) //使用完顏色冷卻
+    {
+        if(color == 1) //Red
+        {
+            this.redMagicPoint = 0;
+            this.setMP();
+            this.schedule(function() {
+                this.redMagicPoint++;
+                this.setMP();
+            }, 0.2, 9, 0); //(間隔時間 , 重複次數 , 一開始延遲時間)
+        }
+        else if(color == 2) //Blue
+        {
+            this.blueMagicPoint = 0;
+            this.setMP();
+            this.schedule(function() {
+                this.blueMagicPoint++;
+                this.setMP();
+            }, 0.2, 9, 0);
+        }
+        else if(color == 3) //Yellow
+        {
+            this.yellowMagicPoint = 0;
+            this.setMP();
+            this.schedule(function() {
+                this.yellowMagicPoint++;
+                this.setMP();
+            }, 0.2, 9, 0);
+        }
+    },
+
     onAnimaFinished(e, data)
     {
         if(data.name == 'fire')
@@ -86,6 +117,11 @@ cc.Class({
         {
             //this.setAni('idle');
         }
+        else if(data.name == 'purple')
+        {
+            this.setAni('idle');
+            this.isAttacking = false;
+        }
         else
         {
             this.setAni('idle');
@@ -104,19 +140,19 @@ cc.Class({
         Input[e.keyCode] = 1;
         switch(e.keyCode) {
             case cc.macro.KEY.l:
-                if(this.yellowMagicPoint > 0)
+                if(this.yellowMagicPoint >= 10)
                 {
                     this.yellow = true;
                 }
                 break;
             case cc.macro.KEY.j:
-                if(this.redMagicPoint > 0)
+                if(this.redMagicPoint >= 10)
                 {
                     this.red = true;
                 }
                 break;
             case cc.macro.KEY.k:
-                if(this.blueMagicPoint > 0)
+                if(this.blueMagicPoint >= 10)
                 {
                     this.blue = true;
                 }
@@ -140,8 +176,6 @@ cc.Class({
                 break;
             case cc.macro.KEY.l:
                 //cc.director.getCollisionManger().enabled = false;
-                this.node.group = "Invincible";
-                //this.playerState_Invincible();
                 this.attack();
                 break;
         }
@@ -206,10 +240,9 @@ cc.Class({
     dash()
     {
         if(this.yellow){
-            //this.node.group = "Invincible";
+            this.node.group = "Invincible";
             //this.node.color.fromHEX('#C3EA13');
-            this.yellowMagicPoint--;
-            this.setMP();
+            this.colorCoolDown(3);
             this.isDashing = true;
             //console.log(this.node.x,this.node.y);
             var light = cc.instantiate(this.lightPrefab);
@@ -295,22 +328,31 @@ cc.Class({
     //attack
     attack()
     {
-        this.isAttacking = true;
         if(this.red && this.yellow)
         {
+            this.isAttacking = true;
             this.orangeAttack();
             this.setAni('orange');
             this.red = false;
             this.yellow = false;
         }
+        else if(this.blue && this.red)
+        {
+            this.isAttacking = true;
+            this.purpleAttack();
+            this.setAni('purple');
+            this.blue = false;
+            this.red = false;
+        }
         else if(this.red)
         {
+            this.isAttacking = true;
             this.setAni('fire');
             this.red = false;
         }
         else if(this.yellow)
         {
-            
+            this.isAttacking = true;
             this.dash();
             this.setAni('idle');
             this.yellow = false;
@@ -318,6 +360,7 @@ cc.Class({
         }
         else if(this.blue)
         {
+            this.isAttacking = true;
             this.setAni('ice');
             this.blue = false;
         }
@@ -414,11 +457,16 @@ cc.Class({
         }
     },*/
 
+    purpleAttack()
+    {
+        this.colorCoolDown(1);
+        this.colorCoolDown(2);
+    },
+
     orangeAttack()
     {
-        this.redMagicPoint--;
-        this.yellowMagicPoint--;
-        this.setMP();
+        this.colorCoolDown(1);
+        this.colorCoolDown(3);
         this.setAni('orange');
         let tempLen = 9999999999;
         let attackedEnemy = null;
@@ -434,16 +482,18 @@ cc.Class({
                 attackedEnemy = this.enemies.children[i];
             }
         }
+        if(attackedEnemy != null) {
         let tempNode = cc.instantiate(this.orangeEffect);
         attackedEnemy.addChild(tempNode);
         attackedEnemy.getComponent('enemy').isHit = true;
         attackedEnemy.getComponent('enemy').hurt();
         cc.log(attackedEnemy.getComponent('enemy').hp)
+        }
     },
     fire()
     {
-        this.redMagicPoint--;
-        this.setMP();
+        //this.redMagicPoint--;
+        this.colorCoolDown(1);
         this.newNode = cc.instantiate(this.fireBall);
         /*if(this.node.scaleX < 0)
         {
@@ -456,8 +506,7 @@ cc.Class({
 
     snow()
     {
-        this.blueMagicPoint--;
-        this.setMP();
+        this.colorCoolDown(2);
         var snowBall = cc.instantiate(this.snowBallPerfab);
         snowBall.x = this.node.x;
         snowBall.y = this.node.y;
@@ -505,7 +554,7 @@ cc.Class({
         //cc.log(this.node.group)
         if(this.canMove){
             this.color_detect();
-            if(/*this.playerState == State.stand && */!this.isDashing)
+            if(/*this.playerState == State.stand && */!this.isDashing && !this.isAttacking)
             {
                 this.move();
             }
