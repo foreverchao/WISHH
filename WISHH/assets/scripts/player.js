@@ -20,6 +20,7 @@ cc.Class({
         final: cc.Node,
         enemies: cc.Node,
         orangeEffect: cc.Prefab,
+        purpleEffect: cc.Prefab,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -462,6 +463,16 @@ cc.Class({
     {
         this.colorCoolDown(1);
         this.colorCoolDown(2);
+        this.scheduleOnce(function(){
+            var purpleGhost = cc.instantiate(this.purpleEffect);
+            purpleGhost.x = this.node.x + 100;
+            purpleGhost.y = this.node.y;
+            this.playerShadow.addChild(purpleGhost);
+            var purpleGhost = cc.instantiate(this.purpleEffect);
+            purpleGhost.x = this.node.x + -100;
+            purpleGhost.y = this.node.y;
+            this.playerShadow.addChild(purpleGhost);
+            },0.9);
     },
 
     orangeAttack()
