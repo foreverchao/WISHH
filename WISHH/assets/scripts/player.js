@@ -139,7 +139,7 @@ cc.Class({
     {
         Input[e.keyCode] = 1;
         switch(e.keyCode) {
-            case cc.macro.KEY.l:
+            case cc.macro.KEY.k:
                 if(this.yellowMagicPoint >= 10)
                 {
                     this.yellow = true;
@@ -151,7 +151,7 @@ cc.Class({
                     this.red = true;
                 }
                 break;
-            case cc.macro.KEY.k:
+            case cc.macro.KEY.l:
                 if(this.blueMagicPoint >= 10)
                 {
                     this.blue = true;
@@ -171,10 +171,10 @@ cc.Class({
             case cc.macro.KEY.j:
                 this.attack();
                 break;
-            case cc.macro.KEY.k:
+            case cc.macro.KEY.l:
                 this.attack();
                 break;
-            case cc.macro.KEY.l:
+            case cc.macro.KEY.k:
                 //cc.director.getCollisionManger().enabled = false;
                 this.attack();
                 break;
