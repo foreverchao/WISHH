@@ -1,0 +1,37 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "purpleEffect",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.6,
+  "sample": 5,
+  "speed": 1,
+  "wrapMode": 2,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "0963b9df-d9df-4330-b9f7-d559c57decee"
+            }
+          },
+          {
+            "frame": 0.2,
+            "value": {
+              "__uuid__": "1e31ff85-fb21-4140-b6e5-821430d56dca"
+            }
+          },
+          {
+            "frame": 0.4,
+            "value": {
+              "__uuid__": "55285dac-d955-48c3-8a4c-4b831b88c161"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}
