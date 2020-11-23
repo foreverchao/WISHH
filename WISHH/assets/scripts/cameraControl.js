@@ -39,7 +39,7 @@ cc.Class({
     update (dt) 
     {
         let targerPosition = this.player.getPosition();
-        targerPosition.y = cc.misc.clampf(targerPosition.y, 0, 650);
+        targerPosition.y = cc.misc.clampf(targerPosition.y, -1800, 650);
         //targerPosition.x = cc.misc.clampf(targerPosition.x, -225, 1000);
         let currentPosition = this.node.getPosition();
         currentPosition.lerp(targerPosition, 0.1, currentPosition);
