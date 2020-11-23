@@ -57,6 +57,8 @@ cc.Class({
     },
     detectPlayer()
     {
+        if(Math.abs(this.player.y - this.node.y) > 100)
+            return;
         if(this.isHit)
             return;
         if(this.player.x > this.rangeL.x && this.player.x < this.rangeR.x)

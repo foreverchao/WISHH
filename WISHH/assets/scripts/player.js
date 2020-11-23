@@ -503,6 +503,10 @@ cc.Class({
             attackedEnemy.getComponent('enemy').isHit = true;
             attackedEnemy.getComponent('enemy').hurt();
         }
+        else if(attackedEnemy.name == 'barrier')
+        {
+            this.scheduleOnce(function(){attackedEnemy.destroy();},0.5);
+        }
         }
     },
     fire()
