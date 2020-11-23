@@ -9,6 +9,8 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+        left: {default: 0},
+        right:{default: 0},
         // foo: {
         //     // ATTRIBUTES:
         //     default: null,        // The default value will be used only when the component attaching
@@ -30,19 +32,20 @@ cc.Class({
 
     onLoad () 
     {
-        this.rangeL = this.node.x - 300;
+        /*this.rangeL = this.node.x - 300;
         this.rangeUp = this.node.y + 100;
         this.ranheDown = this.node.y - 100;
         this.rb = this.node.getComponent(cc.RigidBody);
-        this.node.getComponent(cc.Animation).play("move");
         this.posiX = this.node.x;
         this.posiY = this.node.y;
         this.move();
+*/
+        this.node.getComponent(cc.Animation).play("move");
         this.end = true;
     },
     move()
     {
-        this.end = false;
+        /*this.end = false;
         this.node.stopAction();
         let scaleX = Math.abs(this.node.scaleX);
         let randNumX = Math.floor(Math.random()*600);
@@ -67,7 +70,21 @@ cc.Class({
         let callFunc = cc.callFunc(() => {
             this.end = true;
         });
-        this.node.runAction(cc.sequence(action, callFunc));
+        this.node.runAction(cc.sequence(action, callFunc));*/
+        this.end = false
+        let scaleX = Math.abs(this.node.scaleX);
+        let callFunc1 = cc.callFunc(() => {
+            this.node.scaleX = -scaleX;
+        });
+        let callFunc2 = cc.callFunc(() => {
+            this.node.scaleX = scaleX;
+        });
+        let action1 = cc.moveTo(10, this.left, this.node.y);
+        let action2 = cc.moveTo(10, this.right, this.node.y);
+        let callFunc = cc.callFunc(() => {
+            this.end = true;
+        });
+        this.node.runAction(cc.sequence(callFunc1, action1,callFunc2,  action2, callFunc));
     },
 
 
