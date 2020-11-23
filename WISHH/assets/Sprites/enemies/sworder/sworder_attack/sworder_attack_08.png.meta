@@ -1,0 +1,36 @@
+{
+  "ver": "2.3.5",
+  "uuid": "9ea6d145-7519-4468-91e2-0987fbb38c54",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "point",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 64,
+  "height": 32,
+  "platformSettings": {},
+  "subMetas": {
+    "sworder_attack_08": {
+      "ver": "1.0.4",
+      "uuid": "1cde3448-f464-42e2-92f3-82cf48edd12a",
+      "rawTextureUuid": "9ea6d145-7519-4468-91e2-0987fbb38c54",
+      "trimType": "custom",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 64,
+      "height": 32,
+      "rawWidth": 64,
+      "rawHeight": 32,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

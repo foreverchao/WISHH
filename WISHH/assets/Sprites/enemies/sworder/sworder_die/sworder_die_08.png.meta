@@ -1,0 +1,36 @@
+{
+  "ver": "2.3.5",
+  "uuid": "64fd54f1-2236-4e97-83e0-463ff93c9a4e",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "point",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 64,
+  "height": 32,
+  "platformSettings": {},
+  "subMetas": {
+    "sworder_die_08": {
+      "ver": "1.0.4",
+      "uuid": "03eb98fe-67c3-44b5-aed9-272a22722c85",
+      "rawTextureUuid": "64fd54f1-2236-4e97-83e0-463ff93c9a4e",
+      "trimType": "custom",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 64,
+      "height": 32,
+      "rawWidth": 64,
+      "rawHeight": 32,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
