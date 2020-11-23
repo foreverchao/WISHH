@@ -12,7 +12,6 @@ cc.Class({
         player: cc.Node,
         rangeR: cc.Node,
         rangeL: cc.Node,
-        bulletPrefab: cc.Prefab
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -20,7 +19,7 @@ cc.Class({
     onLoad () 
     {
         this.sp = cc.v2(0,0);//current speed
-        this._speed = 50;
+        this._speed = 450;
         this.rb = this.node.getComponent(cc.RigidBody);
         this.lv = this.rb.linearVelocity;
         this.moveLeft = false;//move to left
@@ -28,31 +27,16 @@ cc.Class({
         this.hp = 5;
         this.isHit = false;
         this.isAttacking = false;
-        this.enemyAni = this.node.getComponent(cc.Animation);
+        this.sworderAni = this.node.getComponent(cc.Animation);
         this.setAni("idle");
-        this.enemyAni.on('finished', this.onAnimaFinished, this);
+        this.sworderAni.on('finished', this.onAnimaFinished, this);
     },
     onAnimaFinished(e, data)
     {
-        if(data.name == 'hurt')
-        {
-            this.isHit = false;
-            this.setAni("idle");
-            if(this.hp <=0)
-                this.node.destroy();
-        }
-        else if(data.name == 'attack2')
+        if(data.name == 'attack')
         {
             this.isAttacking = false;
             this.setAni("idle");
-        }
-    },
-    onCollisionEnter(other, self)
-    {
-        if(other.node.group == 'Player')
-        {           
-            this.isHit = true;
-            this.hurt();
         }
     },
     setAni(anima)
@@ -60,7 +44,16 @@ cc.Class({
         if(this.anima == anima)
             return;
         this.anima = anima;
-        this.enemyAni.play(anima);
+        this.sworderAni.play(anima);
+    },
+    onCollisionEnter(other, self)
+    {
+        if(other.node.group == 'Player')
+        {           
+            
+            //this.isHit = true;
+            this.hurt();
+        }
     },
     detectPlayer()
     {
@@ -69,13 +62,13 @@ cc.Class({
         if(this.player.x > this.rangeL.x && this.player.x < this.rangeR.x)
         {
             let scaleX = Math.abs(this.node.scaleX);
-            if((this.player.x - this.node.x) < 150 && (this.player.x - this.node.x) > 0 )
+            if((this.player.x - this.node.x) < 100 && (this.player.x - this.node.x) > 0 )
             {
                 this.node.scaleX = scaleX;
                 this.attack();
                 this.isAttacking = true;
             }
-            else if((this.node.x - this.player.x) < 150 && (this.node.x - this.player.x) > 0 )
+            else if((this.node.x - this.player.x) < 100 && (this.node.x - this.player.x) > 0 )
             {
                 this.node.scaleX = -scaleX;
                 this.attack();
@@ -94,30 +87,17 @@ cc.Class({
                 this.move();
             }
         }
+        else
+        {
+            this.setAni("idle");
+        }
     },
     attack()
     {
         if(this.isAttacking)
             return;
-        this.setAni("attack2");
+        this.setAni("attack");
     },
-    shoot()
-    {
-        let bullet = cc.instantiate(this.bulletPrefab);
-        bullet.x = this.node.x;
-        bullet.y = this.node.y;
-        cc.find("Canvas").addChild(bullet);
-        bulletRb = bullet.getComponent(cc.RigidBody);
-        if(this.node.scaleX < 0)
-        {
-            bulletRb.applyForceToCenter( cc.v2(-7000,1500));
-        }
-        else if(this.node.scaleX > 0)
-        {
-            bulletRb.applyForceToCenter( cc.v2(7000,1500));
-        }
-    },
-
     move()
     {   
         this.node.angle = 0;
@@ -154,10 +134,15 @@ cc.Class({
         if(this.anima == 'hurt')
             return;
         this.hp--;
-        this.setAni("hurt");
+        if(this.hp <=0)
+            this.node.destroy();
+        //this.setAni("hurt");
+    },
+    start () {
+
     },
 
-     update (dt) {
+    update (dt) {
         this.detectPlayer();
      },
 });

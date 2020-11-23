@@ -184,7 +184,8 @@ cc.Class({
 
     onCollisionEnter(other, self)
     {
-        if(other.node.name == "the_shot") {
+        cc.log(other.node.name)
+        if(other.node.name == "the_shot" || other.node.name =="sworder" || other.node.name =="bat" || other.node.name == "slime_attack_2_effect_1_0") {
             this.dead();
             this.canMove = false;
         }
@@ -207,7 +208,7 @@ cc.Class({
             this.jumpCount = 2;
             this.wallSide = -1;
         }
-        else if((otherCollider.node.name == "spike" || otherCollider.node.name == "slime" || otherCollider.node.name == "shooter" ||
+        else if((otherCollider.node.name == "slime_attack_2_effect_1_0" || otherCollider.node.name == "bat" || otherCollider.node.name == "sworder" || otherCollider.node.name == "spike" || otherCollider.node.name == "slime" || otherCollider.node.name == "shooter" ||
         otherCollider.node.name == "the_shot") && this.node.group != "Invincible")
         {
             //if(!this.isDashing) cc.log('deadStatus'); else cc.log('undeadStatus');
@@ -497,9 +498,11 @@ cc.Class({
         if(attackedEnemy != null) {
         let tempNode = cc.instantiate(this.orangeEffect);
         attackedEnemy.addChild(tempNode);
-        attackedEnemy.getComponent('enemy').isHit = true;
-        attackedEnemy.getComponent('enemy').hurt();
-        cc.log(attackedEnemy.getComponent('enemy').hp)
+        if(attackedEnemy.name == 'slim')
+        {
+            attackedEnemy.getComponent('enemy').isHit = true;
+            attackedEnemy.getComponent('enemy').hurt();
+        }
         }
     },
     fire()
