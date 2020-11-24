@@ -24,7 +24,7 @@ cc.Class({
         this.lv = this.rb.linearVelocity;
         this.moveLeft = false;//move to left
         this.moveRight = false;// move to right
-        this.hp = 5;
+        this.hp = 3;
         this.isHit = false;
         this.isAttacking = false;
         this.sworderAni = this.node.getComponent(cc.Animation);

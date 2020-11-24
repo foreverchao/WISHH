@@ -79,14 +79,23 @@ cc.Class({
         let callFunc2 = cc.callFunc(() => {
             this.node.scaleX = scaleX;
         });
-        let action1 = cc.moveTo(10, this.left, this.node.y);
-        let action2 = cc.moveTo(10, this.right, this.node.y);
+        let action1 = cc.moveTo(7, this.left, this.node.y);
+        let action2 = cc.moveTo(7, this.right, this.node.y);
         let callFunc = cc.callFunc(() => {
             this.end = true;
         });
         this.node.runAction(cc.sequence(callFunc1, action1,callFunc2,  action2, callFunc));
     },
 
+    onCollisionEnter(other, self)
+    {
+        if(other.node.group == 'Player')
+        {           
+            
+            //this.isHit = true;
+            this.node.destroy();
+        }
+    },
 
      update (dt) 
      {
