@@ -19,12 +19,12 @@ cc.Class({
     onLoad () 
     {
         this.sp = cc.v2(0,0);//current speed
-        this._speed = 450;
+        this._speed = 400;
         this.rb = this.node.getComponent(cc.RigidBody);
         this.lv = this.rb.linearVelocity;
         this.moveLeft = false;//move to left
         this.moveRight = false;// move to right
-        this.hp = 1;
+        this.hp = 2;
         this.isHit = false;
         this.isAttacking = false;
         this.sworderAni = this.node.getComponent(cc.Animation);
@@ -50,9 +50,11 @@ cc.Class({
     {
         if(other.node.group == 'Player' && other.node.name != "player")
         {           
-            
+            /*if(other.node.name == "orangeEffect")
+                this.scheduleOnce(function(){ this.hurt();;},0.5);
             //this.isHit = true;
-            this.hurt();
+            else*/
+                this.hurt();
         }
     },
     detectPlayer()
@@ -140,6 +142,7 @@ cc.Class({
             this.node.destroy();
         //this.setAni("hurt");
     },
+    
     start () {
 
     },

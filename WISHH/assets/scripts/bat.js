@@ -91,9 +91,11 @@ cc.Class({
     {
         if(other.node.group == 'Player' && other.node.name != "player")
         {           
-            
+            /*if(other.node.name == "orangeEffect")
+                this.scheduleOnce(function(){ this.node.destroy();},0.5);
             //this.isHit = true;
-            this.node.destroy();
+            else*/
+                this.node.destroy();
         }
     },
 
