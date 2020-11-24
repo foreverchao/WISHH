@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "orangeEffect",
+    "_name": "the_shot",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -42,8 +42,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 24,
-      "height": 26
+      "width": 5,
+      "height": 1
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -75,8 +75,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 1,
-    "groupIndex": 1,
+    "_groupIndex": 4,
+    "groupIndex": 4,
     "_id": ""
   },
   {
@@ -95,7 +95,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "88ec7c62-efd5-493f-a889-60efbbf23cba"
+      "__uuid__": "a804de48-a9ab-4a07-9bee-74bed3590515"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -112,24 +112,28 @@
     "_id": ""
   },
   {
-    "__type__": "cc.Animation",
+    "__type__": "cc.BoxCollider",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 1
     },
     "_enabled": true,
-    "_defaultClip": null,
-    "_clips": [
-      {
-        "__uuid__": "1f6239d2-5ef3-4b95-ae0c-8b16bbafcb21"
-      }
-    ],
-    "playOnLoad": true,
+    "tag": 0,
+    "_offset": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_size": {
+      "__type__": "cc.Size",
+      "width": 5,
+      "height": 1
+    },
     "_id": ""
   },
   {
-    "__type__": "ab727bngwlCu6KWN1vMgXj2",
+    "__type__": "cbf05gBISZBH50VIOD51Z5h",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -144,9 +148,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "95abec29-bbe4-40c1-b47a-793e7aa2a9b3"
+      "__uuid__": "c2463acb-d9b0-4132-b936-b521e292ec5d"
     },
-    "fileId": "2cl048JaZHuJBS5aPgybnj",
+    "fileId": "2ebhbclRFLj6tk72kusEdq",
     "sync": false
   }
 ]

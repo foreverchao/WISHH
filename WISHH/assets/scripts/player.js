@@ -433,7 +433,7 @@ cc.Class({
         {
             if(this.canJump && this.jumpCount!=0)
             {
-                this.jumpForce = (152000000-200000*this.rb.linearVelocity.y)/(830);
+                this.jumpForce = (172000000-200000*this.rb.linearVelocity.y)/(830);
                 if(this.jumpCount==2) this.rb.applyForceToCenter( cc.v2(0,this.jumpForce) , true );
                 else if(this.jumpCount==1) 
                 {

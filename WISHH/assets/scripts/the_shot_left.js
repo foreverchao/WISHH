@@ -29,6 +29,6 @@ cc.Class({
     },
     update (dt) {
         if(this.speed)
-            this.node.x -= (dt * this.speed);
+            this.node.x += (dt * this.speed);
     },
 });

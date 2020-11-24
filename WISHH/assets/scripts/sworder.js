@@ -24,7 +24,7 @@ cc.Class({
         this.lv = this.rb.linearVelocity;
         this.moveLeft = false;//move to left
         this.moveRight = false;// move to right
-        this.hp = 3;
+        this.hp = 1;
         this.isHit = false;
         this.isAttacking = false;
         this.sworderAni = this.node.getComponent(cc.Animation);
@@ -48,7 +48,7 @@ cc.Class({
     },
     onCollisionEnter(other, self)
     {
-        if(other.node.group == 'Player')
+        if(other.node.group == 'Player' && other.node.name != "player")
         {           
             
             //this.isHit = true;
