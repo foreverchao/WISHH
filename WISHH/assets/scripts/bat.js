@@ -79,8 +79,8 @@ cc.Class({
         let callFunc2 = cc.callFunc(() => {
             this.node.scaleX = scaleX;
         });
-        let action1 = cc.moveTo(7, this.left, this.node.y);
-        let action2 = cc.moveTo(7, this.right, this.node.y);
+        let action1 = cc.moveTo(5, this.left, this.node.y);
+        let action2 = cc.moveTo(5, this.right, this.node.y);
         let callFunc = cc.callFunc(() => {
             this.end = true;
         });

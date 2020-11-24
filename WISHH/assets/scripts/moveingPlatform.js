@@ -38,7 +38,7 @@ cc.Class({
         {
             cc.tween(this.platform[i])
               .to(5,{position: cc.v2(this.position1[i].x,this.position1[i].y)})
-              .to(8,{position: cc.v2(this.position2[i].x,this.position2[i].y)})
+              .to(5,{position: cc.v2(this.position2[i].x,this.position2[i].y)})
               .call(() => { this.trigger = false; })
               .start();
         }
