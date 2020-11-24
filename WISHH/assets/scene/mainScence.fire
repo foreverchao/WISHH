@@ -78,6 +78,9 @@
         "__id__": 440
       },
       {
+        "__id__": 210
+      },
+      {
         "__id__": 13
       },
       {
@@ -136,9 +139,6 @@
       },
       {
         "__id__": 711
-      },
-      {
-        "__id__": 210
       }
     ],
     "_active": true,
@@ -240,7 +240,7 @@
       "array": [
         0,
         0,
-        293.6605823498321,
+        293.6800555982492,
         0,
         0,
         0,
@@ -380,8 +380,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -5061.168,
-        -490.232,
+        -309.123,
+        -104.146,
         0,
         0,
         0,
@@ -1677,8 +1677,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -22,
-        7,
+        -22.449,
+        6.775,
         0,
         0,
         0,
@@ -1784,7 +1784,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -22,
+        -22.449,
         0,
         0,
         0,
@@ -1891,7 +1891,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -22,
+        -22.449,
         -7,
         0,
         0,
@@ -11698,7 +11698,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -837.59,
+        -1524.921,
         -1557.982,
         0,
         0,
@@ -13372,7 +13372,7 @@
       "y": 0
     },
     "_angularVelocity": 0,
-    "_fixedRotation": true,
+    "_fixedRotation": false,
     "enabledContactListener": true,
     "bullet": false,
     "awakeOnLoad": true,
@@ -13854,7 +13854,7 @@
       "y": 0
     },
     "_angularVelocity": 0,
-    "_fixedRotation": true,
+    "_fixedRotation": false,
     "enabledContactListener": true,
     "bullet": false,
     "awakeOnLoad": true,
@@ -14104,7 +14104,7 @@
       "y": 0
     },
     "_angularVelocity": 0,
-    "_fixedRotation": true,
+    "_fixedRotation": false,
     "enabledContactListener": true,
     "bullet": false,
     "awakeOnLoad": true,
@@ -25219,7 +25219,7 @@
       "ctor": "Float64Array",
       "array": [
         -450.265,
-        123.342,
+        124.39,
         0,
         0,
         0,

@@ -76,7 +76,7 @@ cc.Class({
             else this.node.scaleX = 5;
             var dist = this.node.position.sub(this.player.position).mag();
 
-            var movingSpeed = 0.5;
+            var movingSpeed = 0.3;
             if(dist > 150) {
                 this.node.x = cc.misc.lerp( this.node.x ,this.player.x ,dt * movingSpeed );
                 this.node.y = cc.misc.lerp( this.node.y ,this.player.y ,dt * movingSpeed );
