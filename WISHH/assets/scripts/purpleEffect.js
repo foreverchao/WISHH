@@ -29,7 +29,7 @@ cc.Class({
     search()
     {
         if(!this.targetLock) {
-            let tempLen = 250;
+            let tempLen = 350;
             for(let i = 0 ; i < this.enemies.childrenCount ; i++)//find the nearest enemy
             {
                 let tempX = this.node.x - this.enemies.children[i].x;
@@ -51,7 +51,7 @@ cc.Class({
         this.targetLock = false;
         if(this.node.x > this.targetX && this.node.scaleX > 0) this.node.scaleX *= -1;
         cc.tween(this.node)
-        .to(0.3,{position: cc.v2(this.targetX, this.targetY)})
+        .to(0.4,{position: cc.v2(this.targetX, this.targetY)})
         .call(() => {  this.node.getComponent(cc.Animation).play('purpleEffect_End');}) 
         .delay(0.5)
         .call(() => { this.node.destroy();})
