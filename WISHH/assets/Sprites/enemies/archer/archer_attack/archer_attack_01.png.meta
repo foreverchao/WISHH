@@ -1,0 +1,36 @@
+{
+  "ver": "2.3.5",
+  "uuid": "3b82ed42-8f55-4a09-87f4-3074b679ba79",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 32,
+  "height": 20,
+  "platformSettings": {},
+  "subMetas": {
+    "archer_attack_01": {
+      "ver": "1.0.4",
+      "uuid": "d52a5802-4aa1-420e-8150-4a993e3869f2",
+      "rawTextureUuid": "3b82ed42-8f55-4a09-87f4-3074b679ba79",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": -2,
+      "trimX": 6,
+      "trimY": 4,
+      "width": 20,
+      "height": 16,
+      "rawWidth": 32,
+      "rawHeight": 20,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
