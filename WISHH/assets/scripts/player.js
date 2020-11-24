@@ -123,6 +123,11 @@ cc.Class({
             this.setAni('idle');
             this.isAttacking = false;
         }
+        else if(data.name == 'green')
+        {
+            this.setAni('idle');
+            this.isAttacking = false;
+        }
         else
         {
             this.setAni('idle');
@@ -341,6 +346,14 @@ cc.Class({
             this.red = false;
             this.yellow = false;
         }
+        else if(this.blue && this.yellow)
+        {
+            this.isAttacking = true;
+            this.greenAttack();
+            this.setAni('green');
+            this.blue = false;
+            this.yellow = false;
+        }
         else if(this.blue && this.red)
         {
             this.isAttacking = true;
@@ -461,6 +474,15 @@ cc.Class({
                 }
         }
     },*/
+
+    greenAttack()
+    {
+        this.jumpForce = (192000000-200000*this.rb.linearVelocity.y)/(830);
+        this.colorCoolDown(3);
+        this.colorCoolDown(2);
+        this.rb.applyForceToCenter( cc.v2(0,this.jumpForce) , true );
+
+    },
 
     purpleAttack()
     {
@@ -584,6 +606,7 @@ cc.Class({
         var lowJumpMultiplier = 3; //控制輕跳時的重力
         var limitMultiplier = 1.5; //增加重力避免漂浮感
         this.lv = this.rb.linearVelocity;
+        cc.log(this.lv.y);
         if(!this.isDashing) {
             if(this.lv.y < 0) { //當角色下降時
                 this.lv.y += cc.Vec2.UP.y * cc.director.getPhysicsManager().gravity.y * (fallMultiplier - 1) * dt;
