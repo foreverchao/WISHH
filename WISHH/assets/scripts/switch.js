@@ -51,6 +51,7 @@ cc.Class({
 
     onCollisionEnter(other, self)
     {
+        cc.log(other.node.name)
        this.node.getComponent(cc.Animation).play();
        this.afterDoor.getComponent(cc.Animation).play();
        this.afterDoor.getComponent(cc.PhysicsBoxCollider).enabled = false;

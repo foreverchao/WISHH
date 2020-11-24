@@ -184,7 +184,6 @@ cc.Class({
 
     onCollisionEnter(other, self)
     {
-        cc.log(other.node.name)
         if(other.node.name == "the_shot" || other.node.name =="sworder" || other.node.name =="bat" || other.node.name == "slime_attack_2_effect_1_0") {
             this.dead();
             this.canMove = false;
@@ -193,6 +192,7 @@ cc.Class({
 
     onBeginContact(contact, selfCollider, otherCollider){
         //cc.log(selfCollider.tag);
+        cc.log( otherCollider.node.name);
         if(selfCollider.tag === 1){
             this.isOnGround = true;
             this.jumpCount = 2;
@@ -283,6 +283,8 @@ cc.Class({
 
     dead()
     {
+        this.rb.linearVelocity.x = 0;
+        this.rb.linearVelocity.y = 0;
         this.setAni('player_die');
         /*cc.director.preloadScene("menu", function() {
             cc.loader.onProgress = null;
