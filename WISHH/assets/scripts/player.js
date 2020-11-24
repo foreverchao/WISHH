@@ -163,6 +163,12 @@ cc.Class({
                     this.blue = true;
                 }
                 break;
+            case cc.macro.KEY.r:
+                if(!this.canMove)
+                {
+                    cc.director.loadScene('mainScence');
+                }
+                break;
         }  
 
     },

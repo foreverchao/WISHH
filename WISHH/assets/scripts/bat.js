@@ -89,7 +89,7 @@ cc.Class({
 
     onCollisionEnter(other, self)
     {
-        if(other.node.group == 'Player')
+        if(other.node.group == 'Player' && other.node.name != "player")
         {           
             
             //this.isHit = true;
