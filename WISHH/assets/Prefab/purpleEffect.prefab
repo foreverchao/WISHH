@@ -54,8 +54,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        192,
-        217,
+        -575.083,
+        -1466.569,
         0,
         0,
         0,
@@ -63,7 +63,7 @@
         1,
         5,
         5,
-        1
+        5
       ]
     },
     "_eulerAngles": {
@@ -125,6 +125,9 @@
     "_clips": [
       {
         "__uuid__": "85a76bee-1ae7-4ed4-b2e5-20140b6a9f2f"
+      },
+      {
+        "__uuid__": "2d72adde-9dff-43ba-86bb-28a5deb0c200"
       }
     ],
     "playOnLoad": true,
@@ -148,7 +151,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "4fbIA7HnJHKqgaPcMKYrh1",
+    "fileId": "80yrI4rT9PKLw/p72Ezw3H",
     "sync": false
   }
 ]
