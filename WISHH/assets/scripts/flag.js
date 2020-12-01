@@ -28,13 +28,24 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad () 
+    
+    onCollisionEnter(other, self)
     {
-        cc.director.getPhysicsManager().enabled = true;
-        cc.director.getCollisionManager().enabled = true;
-        cc.director.getCollisionManager().enabledDebugDraw = true;
-        //cc.director.getPhysicsManager().debugDrawFlags = cc.PhysicsManager.DrawBits.e_aabbBit ||cc.PhysicsManager.DrawBits.e_pairBit;
-        cc.director.getPhysicsManager().gravity = cc.v2(0, -1000);
+        if(!this.flagUsed) this.reach();
+    },
+
+    reach() {
+        this.flagUsed = true;
+        this.node.getComponent(cc.Animation).play("final");
+        var playerNode = cc.find('Canvas/player');
+        var point = playerNode.getComponent('player').respawnPoint;
+        point.x = this.node.x;
+        point.y = this.node.y;
+        playerNode.getComponent('player').respawnPoint = point;
+    },
+
+    onLoad () {
+        this.flagUsed = false;
     },
 
     start () {

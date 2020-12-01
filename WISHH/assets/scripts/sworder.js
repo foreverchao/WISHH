@@ -98,6 +98,8 @@ cc.Class({
     },
     attack()
     {
+        this.lv.x = 0;
+        this.rb.linearVelocity = this.lv;
         if(this.isAttacking)
             return;
         this.setAni("attack");

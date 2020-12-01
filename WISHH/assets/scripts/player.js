@@ -21,6 +21,7 @@ cc.Class({
         enemies: cc.Node,
         orangeEffect: cc.Prefab,
         purpleEffect: cc.Prefab,
+        respawnPoint: cc.Vec2, //復活座標
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -51,6 +52,8 @@ cc.Class({
         this.isDashing = false;
         this.wallSide = -1; //判斷目前貼的是左邊還是右邊 右邊:-1 左邊: 1
         this.isAttacking = false;
+        this.greening = false;
+        this.respawnPoint = cc.v2(-327,-191); //預設復活座標
         cc.systemEvent.on('keydown', this.onKeydown, this);
         cc.systemEvent.on('keyup', this.onKeyup, this);
     },
@@ -127,6 +130,7 @@ cc.Class({
         {
             this.setAni('idle');
             this.isAttacking = false;
+            this.greening = false;
         }
         else
         {
@@ -166,7 +170,12 @@ cc.Class({
             case cc.macro.KEY.r:
                 if(!this.canMove)
                 {
-                    cc.director.loadScene('mainScence');
+                    //cc.director.loadScene('mainScence');
+                    this.node.setPosition(this.respawnPoint.x, this.respawnPoint.y);
+                    this.canMove = true;
+                    this.setAni('idle');
+                    this.isAttacking = false;
+                    this.isOnGround = true;
                 }
                 break;
         }  
@@ -203,7 +212,7 @@ cc.Class({
 
     onBeginContact(contact, selfCollider, otherCollider){
         //cc.log(selfCollider.tag);
-        cc.log( otherCollider.node.name);
+        //cc.log( otherCollider.node.name);
         if(selfCollider.tag === 1){
             this.isOnGround = true;
             this.jumpCount = 2;
@@ -280,7 +289,7 @@ cc.Class({
             this.rb.linearVelocity = this.lv;
             this.rb.gravityScale = 0;
             this.scheduleOnce(function(){ light.destroy();this.isDashing = false;cc.log("destroy");},0.83);
-            this.scheduleOnce(function(){this.node.group = "Player";},0.83);//this.node.color.fromHEX('#FFFFFF');
+            this.scheduleOnce(function(){this.node.group = "Player";cc.log("I'm Player")},0.83);//this.node.color.fromHEX('#FFFFFF');
             this.scheduleOnce(function(){ this.isDashing = false;cc.log("stop");this.rb.gravityScale = 1;},0.1);
             cc.log(this.lv.x)
             //this.rb.applyForceToCenter( cc.v2(this.dashForce,0) , true );
@@ -297,10 +306,6 @@ cc.Class({
         this.rb.linearVelocity.x = 0;
         this.rb.linearVelocity.y = 0;
         this.setAni('player_die');
-        /*cc.director.preloadScene("menu", function() {
-            cc.loader.onProgress = null;
-            cc.director.loadScene("menu");
-        });*/
     },
 
     ghost() 
@@ -388,7 +393,7 @@ cc.Class({
             this.setAni('ice');
             this.blue = false;
         }
-        cc.log(this.anima)
+        //cc.log(this.anima)
     },
     //into "Invincible";
     /*playerState_Invincible(){
@@ -406,7 +411,7 @@ cc.Class({
         {
             this.node.scaleX = -scaleX;
             this.sp.x = -1;
-            if(this.isOnGround && !this.isAttacking)
+            if(this.isOnGround && !this.isAttacking && !this.greening)
             {
                 this.setAni("move");
             }
@@ -416,7 +421,7 @@ cc.Class({
         {
             this.node.scaleX = scaleX;
             this.sp.x = 1;
-            if(this.isOnGround && !this.isAttacking)
+            if(this.isOnGround && !this.isAttacking && !this.greening)
             {
                 this.setAni("move");
             }
@@ -425,7 +430,7 @@ cc.Class({
         else
         {
             this.sp.x = 0;
-            if(!this.isAttacking)
+            if(!this.isAttacking && !this.greening)
                 this.setAni("idle");
         }
 
@@ -483,10 +488,12 @@ cc.Class({
 
     greenAttack()
     {
-        this.jumpForce = (292000000-200000*this.rb.linearVelocity.y)/(830);
+        this.greening = true;
+        this.jumpForce = (232000000-200000*this.rb.linearVelocity.y)/(830);
         this.colorCoolDown(3);
         this.colorCoolDown(2);
         this.rb.applyForceToCenter( cc.v2(0,this.jumpForce) , true );
+        this.isAttacking = false;
 
     },
 
@@ -612,7 +619,7 @@ cc.Class({
         var lowJumpMultiplier = 3; //控制輕跳時的重力
         var limitMultiplier = 1.5; //增加重力避免漂浮感
         this.lv = this.rb.linearVelocity;
-        cc.log(this.lv.y);
+        //cc.log(this.lv.y);
         if(!this.isDashing) {
             if(this.lv.y < 0) { //當角色下降時
                 this.lv.y += cc.Vec2.UP.y * cc.director.getPhysicsManager().gravity.y * (fallMultiplier - 1) * dt;
