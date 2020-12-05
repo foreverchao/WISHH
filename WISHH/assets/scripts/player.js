@@ -489,7 +489,7 @@ cc.Class({
     greenAttack()
     {
         this.greening = true;
-        this.jumpForce = (232000000-200000*this.rb.linearVelocity.y)/(830);
+        this.jumpForce = (344000000-200000*this.rb.linearVelocity.y)/(830);
         this.colorCoolDown(3);
         this.colorCoolDown(2);
         this.rb.applyForceToCenter( cc.v2(0,this.jumpForce) , true );
