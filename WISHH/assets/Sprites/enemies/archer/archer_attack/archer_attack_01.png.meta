@@ -3,7 +3,7 @@
   "uuid": "3b82ed42-8f55-4a09-87f4-3074b679ba79",
   "type": "sprite",
   "wrapMode": "clamp",
-  "filterMode": "bilinear",
+  "filterMode": "point",
   "premultiplyAlpha": false,
   "genMipmaps": false,
   "packable": true,

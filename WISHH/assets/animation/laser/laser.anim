@@ -3,7 +3,7 @@
   "_name": "laser",
   "_objFlags": 0,
   "_native": "",
-  "_duration": 30,
+  "_duration": 32,
   "sample": 1,
   "speed": 25,
   "wrapMode": 1,
@@ -105,6 +105,202 @@
             "frame": 29,
             "value": {
               "__uuid__": "282d3bb0-fc72-47ff-afd6-0419d624564f"
+            }
+          },
+          {
+            "frame": 31,
+            "value": {
+              "__uuid__": "ed5a624c-89c1-4109-bd83-098de9cd9c74"
+            }
+          }
+        ]
+      },
+      "cc.BoxCollider": {
+        "size": [
+          {
+            "frame": 14,
+            "value": {
+              "__type__": "cc.Size",
+              "width": 0,
+              "height": 0
+            }
+          },
+          {
+            "frame": 15,
+            "value": {
+              "__type__": "cc.Size",
+              "width": 2.1,
+              "height": 81.1
+            }
+          },
+          {
+            "frame": 16,
+            "value": {
+              "__type__": "cc.Size",
+              "width": 5.8,
+              "height": 81.1
+            }
+          },
+          {
+            "frame": 17,
+            "value": {
+              "__type__": "cc.Size",
+              "width": 10,
+              "height": 81.1
+            }
+          },
+          {
+            "frame": 18,
+            "value": {
+              "__type__": "cc.Size",
+              "width": 14,
+              "height": 81.1
+            }
+          },
+          {
+            "frame": 19,
+            "value": {
+              "__type__": "cc.Size",
+              "width": 18,
+              "height": 81.1
+            }
+          },
+          {
+            "frame": 20,
+            "value": {
+              "__type__": "cc.Size",
+              "width": 19.9,
+              "height": 81.1
+            }
+          },
+          {
+            "frame": 26,
+            "value": {
+              "__type__": "cc.Size",
+              "width": 14,
+              "height": 81.1
+            }
+          },
+          {
+            "frame": 27,
+            "value": {
+              "__type__": "cc.Size",
+              "width": 10.1,
+              "height": 81.1
+            }
+          },
+          {
+            "frame": 28,
+            "value": {
+              "__type__": "cc.Size",
+              "width": 6.1,
+              "height": 81.1
+            }
+          },
+          {
+            "frame": 29,
+            "value": {
+              "__type__": "cc.Size",
+              "width": 2.1,
+              "height": 81.1
+            }
+          },
+          {
+            "frame": 31,
+            "value": {
+              "__type__": "cc.Size",
+              "width": 0,
+              "height": 0
+            }
+          }
+        ],
+        "offset": [
+          {
+            "frame": 15,
+            "value": {
+              "__type__": "cc.Vec2",
+              "x": 0,
+              "y": -13
+            }
+          },
+          {
+            "frame": 16,
+            "value": {
+              "__type__": "cc.Vec2",
+              "x": 0,
+              "y": -13
+            }
+          },
+          {
+            "frame": 17,
+            "value": {
+              "__type__": "cc.Vec2",
+              "x": 0,
+              "y": -13
+            }
+          },
+          {
+            "frame": 18,
+            "value": {
+              "__type__": "cc.Vec2",
+              "x": 0,
+              "y": -13
+            }
+          },
+          {
+            "frame": 19,
+            "value": {
+              "__type__": "cc.Vec2",
+              "x": 0,
+              "y": -13
+            }
+          },
+          {
+            "frame": 20,
+            "value": {
+              "__type__": "cc.Vec2",
+              "x": 0,
+              "y": -13
+            }
+          },
+          {
+            "frame": 26,
+            "value": {
+              "__type__": "cc.Vec2",
+              "x": 0,
+              "y": -13
+            }
+          },
+          {
+            "frame": 27,
+            "value": {
+              "__type__": "cc.Vec2",
+              "x": 0,
+              "y": -13
+            }
+          },
+          {
+            "frame": 28,
+            "value": {
+              "__type__": "cc.Vec2",
+              "x": 0,
+              "y": -13
+            }
+          },
+          {
+            "frame": 29,
+            "value": {
+              "__type__": "cc.Vec2",
+              "x": 0,
+              "y": -13
+            }
+          },
+          {
+            "frame": 31,
+            "value": {
+              "__type__": "cc.Vec2",
+              "x": 0,
+              "y": 50
             }
           }
         ]

@@ -204,7 +204,7 @@ cc.Class({
 
     onCollisionEnter(other, self)
     {
-        if(other.node.name == "the_shot" || other.node.name =="sworder" || other.node.name =="bat" || other.node.name == "slime_attack_2_effect_1_0") {
+        if(other.node.name == "archer" || other.node.name == "arrow" || other.node.name == "laser" || other.node.name == "laserHalf" || other.node.name == "the_shot" || other.node.name =="sworder" || other.node.name =="bat" || other.node.name == "slime_attack_2_effect_1_0") {
             this.dead();
             this.canMove = false;
         }
