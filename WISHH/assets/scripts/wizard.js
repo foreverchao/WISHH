@@ -12,6 +12,7 @@ cc.Class({
         player: cc.Node,
         rangeR: cc.Node,
         rangeL: cc.Node,
+        effect1: cc.Node,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -30,10 +31,11 @@ cc.Class({
         this.wizardAni = this.node.getComponent(cc.Animation);
         this.setAni("idle");
         this.wizardAni.on('finished', this.onAnimaFinished, this);
+        this.effect1.active = false;
     },
     onAnimaFinished(e, data)
     {
-        if(data.name == 'attack_0')
+        if(data.name == 'attack_1')
         {
             this.isAttacking = false;
             this.setAni("idle");
@@ -69,14 +71,14 @@ cc.Class({
             if((this.player.x - this.node.x) < 100 && (this.player.x - this.node.x) > 0 )
             {
                 this.node.scaleX = scaleX;
-                this.attack_0();
+                this.attack_1();
                 this.isAttacking = true;
                 
             }
             else if((this.node.x - this.player.x) < 100 && (this.node.x - this.player.x) > 0 )
             {
                 this.node.scaleX = -scaleX;
-                this.attack_0();
+                this.attack_1();
                 this.isAttacking = true;
                 
             }
@@ -106,6 +108,27 @@ cc.Class({
         if(this.isAttacking)
             return;
         this.setAni("attack_0");
+    },
+
+
+    attack_1(){
+        this.tempX  = this.node.x;
+        this.node.x = 1000;
+        this.effect1.active = true;
+        
+            this.effect1.getComponent("cc.Animation").play();
+            this.scheduleOnce(function(){
+                for( var i =0; i< this.effect1.childrenCount;i++){
+                    this.effect1.children[i].getComponent("cc.Animation").play();
+                }
+
+            },1)
+           
+            this.scheduleOnce(function(){this.effect1.active = false;},2)
+        
+            this.scheduleOnce(function(){this.node.x = -260.63;},3)
+        
+        
     },
     move()
     {   
@@ -151,6 +174,8 @@ cc.Class({
     start () {
 
     },
+
+   
 
     update (dt) {
         this.detectPlayer();
