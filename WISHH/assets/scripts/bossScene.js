@@ -19,6 +19,7 @@ cc.Class({
     // onLoad () {},
 
     start () {
+        //this.randomTwoEmptyLase();
     },
     threeLaser()
     {

@@ -35,6 +35,7 @@ cc.Class({
         cc.director.getCollisionManager().enabledDebugDraw = true;
         //cc.director.getPhysicsManager().debugDrawFlags = cc.PhysicsManager.DrawBits.e_aabbBit ||cc.PhysicsManager.DrawBits.e_pairBit;
         cc.director.getPhysicsManager().gravity = cc.v2(0, -1000);
+        cc.game.setFrameRate(60);
     },
 
     start () {

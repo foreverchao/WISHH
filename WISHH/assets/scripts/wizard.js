@@ -12,7 +12,9 @@ cc.Class({
         player: cc.Node,
         rangeR: cc.Node,
         rangeL: cc.Node,
-        effect1: cc.Node,
+        effect1 : cc.Node,
+        effect2 : cc.Node,
+        bossPos :cc.Node,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -32,6 +34,8 @@ cc.Class({
         this.setAni("idle");
         this.wizardAni.on('finished', this.onAnimaFinished, this);
         this.effect1.active = false;
+        this.effect2.active = false;
+        this.bossPos.active = false;
     },
     onAnimaFinished(e, data)
     {
@@ -71,14 +75,14 @@ cc.Class({
             if((this.player.x - this.node.x) < 100 && (this.player.x - this.node.x) > 0 )
             {
                 this.node.scaleX = scaleX;
-                this.attack_1();
+                this.attack_2();
                 this.isAttacking = true;
                 
             }
             else if((this.node.x - this.player.x) < 100 && (this.node.x - this.player.x) > 0 )
             {
                 this.node.scaleX = -scaleX;
-                this.attack_1();
+                this.attack_2();
                 this.isAttacking = true;
                 
             }
@@ -112,7 +116,7 @@ cc.Class({
 
 
     attack_1(){
-        this.tempX  = this.node.x;
+        //this.tempX  = this.node.x;
         this.node.x = 1000;
         this.effect1.active = true;
         
@@ -120,14 +124,43 @@ cc.Class({
             this.scheduleOnce(function(){
                 for( var i =0; i< this.effect1.childrenCount;i++){
                     this.effect1.children[i].getComponent("cc.Animation").play();
+                    this.effect1.children[i].y = Math.random() * (420 + 57) -57;
                 }
 
-            },1)
+            },0.5)
            
             this.scheduleOnce(function(){this.effect1.active = false;},2)
         
-            this.scheduleOnce(function(){this.node.x = -260.63;},3)
+            this.scheduleOnce(function(){this.node.x = 190.434;},0.5)
         
+        
+    },
+
+    attack_2(){
+        
+
+            if(this.player.x >= -136){
+                this.bossPos.x = -385.98;
+                this.bossPos.scaleX = 5;
+            }
+            else{
+                this.bossPos.x = 134.597;
+                this.bossPos.scaleX = -5;
+                
+            }
+            this.bossPos.active = true;
+            this.bossPos.getComponent("cc.Animation").play();
+            this.effect2.x = this.player.x;
+            this.effect2.y = this.player.y;
+            this.scheduleOnce(function(){
+                
+                this.effect2.active = true;
+                this.effect2.getComponent("cc.Animation").play();
+            },0.5)
+           
+            this.scheduleOnce(function(){this.effect2.active = false;this.bossPos.active = false},2)
+        
+            this.scheduleOnce(function(){this.node.x = 190.434;},0.5)
         
     },
     move()
