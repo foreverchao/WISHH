@@ -204,7 +204,8 @@ cc.Class({
 
     onCollisionEnter(other, self)
     {
-        if(other.node.name == "enemyFireBall" ||other.node.name == "effect_2" ||other.node.name == "wizard_effect_1" || other.node.name == "wizard" || other.node.name == "archer" || other.node.name == "arrow" || other.node.name == "laser" || other.node.name == "laserHalf" || other.node.name == "the_shot" || other.node.name =="sworder" || other.node.name =="bat" || other.node.name == "slime_attack_2_effect_1_0") {
+        if(other.node.name == "enemyFireBall" ||other.node.name == "effect_2" ||other.node.name == "wizard_effect_1" || other.node.name == "wizard" || other.node.name == "archer" || other.node.name == "arrow" || other.node.name == "laser" || other.node.name == "laserHalf" || other.node.name == "the_shot" || other.node.name =="sworder" || other.node.name =="bat" || other.node.name == "slime_attack_2_effect_1_0"
+           || other.node.name == "NewFireBall") {
             this.dead();
             this.canMove = false;
         }
@@ -521,16 +522,17 @@ cc.Class({
         this.setAni('orange');
         let tempLen = 9999999999;
         let attackedEnemy = null;
-        for(let i = 0 ; i < this.enemies.childrenCount ; i++)//find the nearest enemy
+        this.OrangeInteractItem = cc.find("Canvas/OrangeInteractItem");
+        for(let i = 0 ; i < this.OrangeInteractItem.childrenCount ; i++)//find the nearest enemy
         {
-            let tempX = this.node.x - this.enemies.children[i].x;
-            let tempY = this.node.y - this.enemies.children[i].y;
+            let tempX = this.node.x - this.OrangeInteractItem.children[i].x;
+            let tempY = this.node.y - this.OrangeInteractItem.children[i].y;
             let tmepv = cc.v2(tempX, tempY);
             cc.log(tmepv.mag())
             if(tmepv.mag() < tempLen)
             {
                 tempLen = tmepv.mag();
-                attackedEnemy = this.enemies.children[i];
+                attackedEnemy = this.OrangeInteractItem.children[i];
             }
         }
         if(attackedEnemy != null) {
@@ -541,7 +543,7 @@ cc.Class({
             attackedEnemy.getComponent('enemy').isHit = true;
             attackedEnemy.getComponent('enemy').hurt();
         }
-        else if(attackedEnemy.name == 'barrier')
+        else if(attackedEnemy.name == 'barrier' || attackedEnemy.name == 'wizard_effect_4' )
         {
             this.scheduleOnce(function(){attackedEnemy.destroy();},0.5);
         }
@@ -571,11 +573,11 @@ cc.Class({
         snowRb = snowBall.getComponent(cc.RigidBody);
         if(this.node.scaleX < 0)
         {
-            snowRb.applyForceToCenter( cc.v2(-50000,15000));
+            snowRb.applyForceToCenter( cc.v2(-40000,12000));
         }
         else if(this.node.scaleX > 0)
         {
-            snowRb.applyForceToCenter( cc.v2(50000,15000));
+            snowRb.applyForceToCenter( cc.v2(40000,12000));
         }
 
     },

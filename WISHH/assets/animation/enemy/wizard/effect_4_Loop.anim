@@ -1,11 +1,11 @@
 {
   "__type__": "cc.AnimationClip",
-  "_name": "attack_1",
+  "_name": "effect_4_Loop",
   "_objFlags": 0,
   "_native": "",
-  "_duration": 3,
+  "_duration": 4,
   "sample": 1,
-  "speed": 5,
+  "speed": 6,
   "wrapMode": 2,
   "curveData": {
     "comps": {
@@ -14,19 +14,25 @@
           {
             "frame": 0,
             "value": {
-              "__uuid__": "6c7f80af-6e58-42da-8c6a-9e344430b0bb"
+              "__uuid__": "02982aa8-8b3d-4f30-8dfb-5b9db55667ea"
             }
           },
           {
             "frame": 1,
             "value": {
-              "__uuid__": "6c7f80af-6e58-42da-8c6a-9e344430b0bb"
+              "__uuid__": "ca9d254f-a216-42a3-b09e-93c63b8124c8"
             }
           },
           {
             "frame": 2,
             "value": {
-              "__uuid__": "d19bd1cc-baf4-462f-bb42-e012b02155b2"
+              "__uuid__": "a0cd278e-8452-4525-b450-7b938547a417"
+            }
+          },
+          {
+            "frame": 3,
+            "value": {
+              "__uuid__": "4a3af1b5-5317-4d9a-a52d-2506d6398793"
             }
           }
         ]

@@ -9,90 +9,55 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        // foo: {
-        //     // ATTRIBUTES:
-        //     default: null,        // The default value will be used only when the component attaching
-        //                           // to a node for the first time
-        //     type: cc.SpriteFrame, // optional, default is typeof default
-        //     serializable: true,   // optional, default is true
-        // },
-        // bar: {
-        //     get () {
-        //         return this._bar;
-        //     },
-        //     set (value) {
-        //         this._bar = value;
-        //     }
-        // },
+
     },
 
     // LIFE-CYCLE CALLBACKS:
 
      onLoad () 
      {
-        this.fireBallAni = this.node.getComponent(cc.Animation);
-        this.anima = 'NULL';
-        this.fireBallAni.on('finished', this.onAnimaFinished, this);
+        this.canvasNode = cc.find("Canvas");
+        this.map_center = this.canvasNode.getChildByName("Center"); 
+
+        var flySpeed = 200;
+
+        if(this.node.x - this.map_center.x > 0 && this.node.y - this.map_center.y > 0) //在畫面右上角
+        {
+            this.speed = -flySpeed;
+        }
+        else if(this.node.x - this.map_center.x > 0 && this.node.y - this.map_center.y < 0) //在畫面右下角
+        {
+            this.speed = -flySpeed;
+        }
+        else if(this.node.x - this.map_center.x < 0 && this.node.y - this.map_center.y > 0) //在畫面左上角
+        {
+            this.node.scaleX = -5;
+            this.speed = flySpeed;
+        }
+        else if(this.node.x - this.map_center.x < 0 && this.node.y - this.map_center.y < 0) //在畫面左下角
+        {
+            this.node.scaleX = -5;
+            this.speed = flySpeed;
+        }
      },
-     onDestroy()
-    {
-        this.fireBallAni.off('finished', this.onAnimaFinished, this);
-    },
+
+    
 
     start () {
-        this.node.parent = cc.find("Canvas");
-        this.node.position = cc.find("Canvas/player").position;
-        //check the direction
-        if(cc.find("Canvas/player").scaleX < 0)
-        {
-            this.speed = -800;
-            this.node.scaleX *= -1;
-        }
-        else
-        {
-            this.speed = 800;
-        }
-        this.setAni("fireBallStart"); 
-        /*this.node.runAction(
-            //cc.repeat()
-              //cc.sequence(//顺序执行括号中的代码
-                cc.moveBy(10,600,0))*/
-                //cc.removeSelf(true),
-    
-                //))
+
     },
     onAnimaFinished(e, data)
     {
-        if(data.name == 'fireBallStart')
-        {
-            this.setAni('fireBallLoop');
-        }
-        else if(data.name == 'fireBallEnd')
+
+    },
+    onCollisionEnter(other, self)
+    {
+        if(other.node.group == 'ground'||other.node.group == 'Walls' )
         {
             this.node.destroy();
         }
     },
-    onCollisionEnter(other, self)
-    {
-        if(this.anima == "fireBallEnd")
-            return;
-        this.fireBallAni.stop();
-        this.speed = 0;
-        this.setAni("fireBallEnd");
-        /*if(other.node.group == 'Player')
-        {
-            
-            this.isHit = true;
-            this.enemyAni.play("hurt");
-        }*/
-    },
-    setAni(anima)
-    {
-        if(this.anima == anima)
-            return;
-        this.anima = anima;
-        this.fireBallAni.play(anima);
-    },
+
      update (dt) 
      {
          if(this.speed)

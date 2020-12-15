@@ -3,9 +3,9 @@
   "_name": "attack_2",
   "_objFlags": 0,
   "_native": "",
-  "_duration": 0.11666666666666667,
-  "sample": 60,
-  "speed": 0.2,
+  "_duration": 7,
+  "sample": 1,
+  "speed": 4,
   "wrapMode": 1,
   "curveData": {
     "comps": {
@@ -18,37 +18,37 @@
             }
           },
           {
-            "frame": 0.016666666666666666,
+            "frame": 1,
             "value": {
               "__uuid__": "2ba19299-0a07-4835-a3d8-6eccc68b9197"
             }
           },
           {
-            "frame": 0.03333333333333333,
+            "frame": 2,
             "value": {
               "__uuid__": "25a0ef1b-d528-4186-a2d2-473ff06424cb"
             }
           },
           {
-            "frame": 0.05,
+            "frame": 3,
             "value": {
               "__uuid__": "f49c18ea-fe0d-4b2f-9492-1c4ba0ff9938"
             }
           },
           {
-            "frame": 0.06666666666666667,
+            "frame": 4,
             "value": {
               "__uuid__": "00edd302-f460-41ad-87b1-07e16ec3610e"
             }
           },
           {
-            "frame": 0.08333333333333333,
+            "frame": 5,
             "value": {
               "__uuid__": "c6de357c-904e-4f01-80b2-03b9167e22a5"
             }
           },
           {
-            "frame": 0.1,
+            "frame": 6,
             "value": {
               "__uuid__": "d79fc5a7-18e4-49ab-93b2-5bf9a0993b31"
             }
