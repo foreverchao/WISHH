@@ -13,13 +13,105 @@ cc.Class({
             default: [],
             type: cc.Node,  
         },
-        player: cc.Node
+        player: cc.Node,
+        wizard: cc.number,
+    },
+   
+    onLoad () {
+        this.flag = false;
     },
 
-    // onLoad () {},
-
     start () {
-        //this.randomTwoEmptyLase();
+        
+    },
+    laserOpen(){
+        this.flag = true,
+        cc.tween(this.node)
+        .call(() => { this.threeLaser(); })
+        .delay(1)
+        .call(() => { this.randomLaser(); })
+        .delay(1)
+        .call(() => { this.allLaser(); })
+        .delay(1)
+        .call(() => { this.randomTwoEmptyLaser(); })
+        .delay(1)
+        .call(() => { this.threeLaser(); })
+        .delay(2)
+        .call(() => { this.randomLaser(); })
+        .delay(3)
+        .call(() => { this.randomTwoEmptyLaser(); })
+        .delay(1)
+        .call(() => { this.threeLaser(); })
+        .delay(2)
+        .call(() => { this.randomLaser(); })
+        .delay(3)
+        .call(() => { this.randomTwoEmptyLaser(); })
+        .delay(1)
+        .call(() => { this.threeLaser(); })
+        .delay(2)
+        .call(() => { this.randomLaser(); })
+        .delay(3)
+        .call(() => { this.randomTwoEmptyLaser(); })
+        .delay(1)
+        .call(() => { this.threeLaser(); })
+        .delay(2)
+        .call(() => { this.randomLaser(); })
+        .delay(3)
+        .call(() => { this.randomTwoEmptyLaser(); })
+        .delay(1)
+        .call(() => { this.threeLaser(); })
+        .delay(2)
+        .call(() => { this.randomLaser(); })
+        .delay(3)
+        .call(() => { this.randomTwoEmptyLaser(); })
+        .delay(1)
+        .call(() => { this.threeLaser(); })
+        .delay(2)
+        .call(() => { this.randomLaser(); })
+        .delay(3)
+        .call(() => { this.randomTwoEmptyLaser(); })
+        .delay(1)
+        .call(() => { this.threeLaser(); })
+        .delay(2)
+        .call(() => { this.randomLaser(); })
+        .delay(3)
+        .call(() => { this.randomTwoEmptyLaser(); })
+        .delay(1)
+        .call(() => { this.threeLaser(); })
+        .delay(2)
+        .call(() => { this.randomLaser(); })
+        .delay(3)
+        .call(() => { this.randomTwoEmptyLaser(); })
+        .delay(1)
+        .call(() => { this.threeLaser(); })
+        .delay(2)
+        .call(() => { this.randomLaser(); })
+        .delay(3)
+        .call(() => { this.randomTwoEmptyLaser(); })
+        .delay(1)
+        .call(() => { this.threeLaser(); })
+        .delay(2)
+        .call(() => { this.randomLaser(); })
+        .delay(3)
+        .call(() => { this.randomTwoEmptyLaser(); })
+        .delay(1)
+        .call(() => { this.threeLaser(); })
+        .delay(2)
+        .call(() => { this.randomLaser(); })
+        .delay(3)
+        .call(() => { this.randomTwoEmptyLaser(); })
+        .delay(1)
+        .call(() => { this.threeLaser(); })
+        .delay(2)
+        .call(() => { this.randomLaser(); })
+        .delay(3)
+        .call(() => { this.randomTwoEmptyLaser(); })
+        .delay(1)
+        .call(() => { this.threeLaser(); })
+        .delay(2)
+        .call(() => { this.randomLaser(); })
+        .delay(3)
+        .start()
     },
     threeLaser()
     {
@@ -74,8 +166,12 @@ cc.Class({
                 continue;
             this.lasers[i].getComponent("laser").shoot();
         }
-    }
+    },
 
 
-    // update (dt) {},
+    update (dt) {
+       if(this.wizard <=5 && this.flag == false){
+           this.laserOpen();
+       }
+    },
 });

@@ -42,6 +42,8 @@ cc.Class({
         point.x = this.node.x;
         point.y = this.node.y;
         playerNode.getComponent('player').respawnPoint = point;
+
+        cc.director.loadScene("bossScence");
     },
 
     onLoad () {

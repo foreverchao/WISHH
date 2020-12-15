@@ -14,7 +14,8 @@ cc.Class({
         rangeL: cc.Node,
         effect1 : cc.Node,
         effect2 : cc.Node,
-        bossPos :cc.Node,
+        bossPos : cc.Node,
+        effect4 : cc.Node,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -27,7 +28,7 @@ cc.Class({
         this.lv = this.rb.linearVelocity;
         this.moveLeft = false;//move to left
         this.moveRight = false;// move to right
-        this.hp = 2;
+        this.hp = 1;
         this.isHit = false;
         this.isAttacking = false;
         this.wizardAni = this.node.getComponent(cc.Animation);
@@ -75,14 +76,14 @@ cc.Class({
             if((this.player.x - this.node.x) < 100 && (this.player.x - this.node.x) > 0 )
             {
                 this.node.scaleX = scaleX;
-                this.attack_2();
+                this.attack_0();
                 this.isAttacking = true;
                 
             }
             else if((this.node.x - this.player.x) < 100 && (this.node.x - this.player.x) > 0 )
             {
                 this.node.scaleX = -scaleX;
-                this.attack_2();
+                this.attack_0();
                 this.isAttacking = true;
                 
             }
@@ -102,6 +103,400 @@ cc.Class({
         else
         {
             this.setAni("idle");
+        }
+    },
+    attack(){
+        if(this.hp > 0 && this.hp >=5){
+            cc.tween(this.node)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay()
+            .call(() => { this.attack_1(); })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay()
+            .call(() => { this.attack_2(); })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay()
+            .call(() => { this.attack_1(); })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay()
+            .call(() => { this.attack_2(); })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay()
+            .call(() => { this.attack_1(); })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay()
+            .call(() => { this.attack_2(); })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay()
+            .call(() => { this.attack_1(); })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay()
+            .call(() => { this.attack_2(); })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay()
+            .call(() => { this.attack_1(); })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay()
+            .call(() => { this.attack_2(); })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay()
+            .call(() => { this.attack_1(); })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay()
+            .call(() => { this.attack_2(); })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay()
+            .call(() => { this.attack_1(); })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay()
+            .call(() => { this.attack_2(); })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay()
+            .call(() => { this.attack_1(); })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay()
+            .call(() => { this.attack_2(); })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay()
+            .call(() => { this.attack_1(); })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay()
+            .call(() => { this.attack_2(); })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay()
+            .call(() => { this.attack_1(); })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay()
+            .call(() => { this.attack_2(); })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay()
+            .call(() => { this.attack_1(); })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay()
+            .call(() => { this.attack_2(); })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay()
+            .call(() => { this.attack_1(); })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .delay(1)
+            .call(() => { this.node.x = 1000 })
+            .delay()
+            .call(() => { this.attack_2(); })
+            .delay(1)
+            .call(() => { this.node.x = Math.random() * (-540 - 246) +246 })
+            .start()
+                /*this.scheduleOnce(function(){ this.node.x = 1000;},2)
+                this.scheduleOnce(function(){this.attack_1();},4)
+                this.scheduleOnce(function(){this.node.x = Math.random() * (-540 - 246) +246},7)
+                //this.scheduleOnce(function(){this.attack_2()},5)
+                this.scheduleOnce(function(){ this.node.x = 1000;},9)
+                this.scheduleOnce(function(){this.attack_1();},12)
+                this.scheduleOnce(function(){this.node.x = Math.random() * (-540 - 246) +246},15)
+                this.scheduleOnce(function(){this.node.x = Math.random() * (-540 - 246) +246},17)
+                this.scheduleOnce(function(){this.node.x = Math.random() * (-540 - 246) +246},19)
+                this.scheduleOnce(function(){this.node.x = Math.random() * (-540 - 246) +246},21)
+                this.scheduleOnce(function(){this.node.x = Math.random() * (-540 - 246) +246},23)
+                this.scheduleOnce(function(){this.node.x = Math.random() * (-540 - 246) +246},25)
+                this.scheduleOnce(function(){this.node.x = Math.random() * (-540 - 246) +246},27)
+                this.scheduleOnce(function(){this.node.x = Math.random() * (-540 - 246) +246},29)
+                this.scheduleOnce(function(){this.node.x = Math.random() * (-540 - 246) +246},31)
+
+                this.scheduleOnce(function(){this.node.x = Math.random() * (-540 - 246) +246},33)
+                this.scheduleOnce(function(){this.node.x = Math.random() * (-540 - 246) +246},35)
+                this.scheduleOnce(function(){this.node.x = Math.random() * (-540 - 246) +246},37)*/
+        }
+        else if(this.hp <=5 && this.hp >0){
+            
         }
     },
     attack_0()
@@ -127,18 +522,18 @@ cc.Class({
                     this.effect1.children[i].y = Math.random() * (420 + 57) -57;
                 }
 
-            },0.5)
+            },1)
            
             this.scheduleOnce(function(){this.effect1.active = false;},2)
         
-            this.scheduleOnce(function(){this.node.x = 190.434;},0.5)
+            //this.scheduleOnce(function(){this.node.x = 190.434;},0.5)
         
         
     },
 
     attack_2(){
         
-
+            this.node.x = 1000;
             if(this.player.x >= -136){
                 this.bossPos.x = -385.98;
                 this.bossPos.scaleX = 5;
@@ -160,8 +555,25 @@ cc.Class({
            
             this.scheduleOnce(function(){this.effect2.active = false;this.bossPos.active = false},2)
         
-            this.scheduleOnce(function(){this.node.x = 190.434;},0.5)
+            //this.scheduleOnce(function(){this.node.x = 190.434;},3)
         
+    },
+
+    attack_4(){
+        this.node.x = 1000;
+        this.effect4.getChildByName("bossPos").active = true;
+        this.effect4.getChildByName("bossPos").getComponent("cc.Animation").play();
+        //this.effect4.x = -323.34;
+        //this.effect4.y = -169.752;
+        this.scheduleOnce(function(){
+            
+            this.effect4.active = true;
+            this.effect4.getComponent("cc.Animation").play();
+        },0.5)
+       
+        this.scheduleOnce(function(){this.effect4.getChildByName("bossPos").active = false},2)
+    
+        this.scheduleOnce(function(){this.node.x = 190.434;},3)
     },
     move()
     {   
@@ -199,13 +611,20 @@ cc.Class({
         if(this.anima == 'hurt')
             return;
         this.hp--;
-        if(this.hp <=0)
+        var temp = cc.find("Canvas");
+        temp.getComponent("bossScene").wizard=this.hp;
+        if(this.hp <=0){
             this.node.destroy();
+            var win = cc.find("Win");
+            win.active = true;
+            //cc.director.loadScene("winScence");
+        }
+            
         //this.setAni("hurt");
     },
     
     start () {
-
+        this.attack();
     },
 
    

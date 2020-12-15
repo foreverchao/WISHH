@@ -204,7 +204,7 @@ cc.Class({
 
     onCollisionEnter(other, self)
     {
-        if(other.node.name == "effect_2" ||other.node.name == "wizard_effect_1" || other.node.name == "wizard" || other.node.name == "archer" || other.node.name == "arrow" || other.node.name == "laser" || other.node.name == "laserHalf" || other.node.name == "the_shot" || other.node.name =="sworder" || other.node.name =="bat" || other.node.name == "slime_attack_2_effect_1_0") {
+        if(other.node.name == "enemyFireBall" ||other.node.name == "effect_2" ||other.node.name == "wizard_effect_1" || other.node.name == "wizard" || other.node.name == "archer" || other.node.name == "arrow" || other.node.name == "laser" || other.node.name == "laserHalf" || other.node.name == "the_shot" || other.node.name =="sworder" || other.node.name =="bat" || other.node.name == "slime_attack_2_effect_1_0") {
             this.dead();
             this.canMove = false;
         }
@@ -228,7 +228,7 @@ cc.Class({
             this.jumpCount = 2;
             this.wallSide = -1;
         }
-        else if((otherCollider.node.name == "effect_2" || otherCollider.node.name == "wizard_effect_1" ||otherCollider.node.name == "slime_attack_2_effect_1_0" || otherCollider.node.name == "bat" || otherCollider.node.name == "sworder" || otherCollider.node.name == "spike" || otherCollider.node.name == "slime" || otherCollider.node.name == "shooter" ||
+        else if((otherCollider.node.name == "enemyFireBall" ||otherCollider.node.name == "effect_2" || otherCollider.node.name == "wizard_effect_1" ||otherCollider.node.name == "slime_attack_2_effect_1_0" || otherCollider.node.name == "bat" || otherCollider.node.name == "sworder" || otherCollider.node.name == "spike" || otherCollider.node.name == "slime" || otherCollider.node.name == "shooter" ||
         otherCollider.node.name == "the_shot") && this.node.group != "Invincible")
         {
             //if(!this.isDashing) cc.log('deadStatus'); else cc.log('undeadStatus');
