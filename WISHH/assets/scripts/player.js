@@ -40,7 +40,7 @@ cc.Class({
         this.red = false;
         this.blue = false;
         this.yellow = false;
-        this._speed = 450;
+        this._speed = 350;
         this.sp = cc.v2(0,0);//current speed
         this.rb = this.node.getComponent(cc.RigidBody);
         this.anima = 'idle';
@@ -274,16 +274,16 @@ cc.Class({
             this.lv = this.rb.linearVelocity;
             if(this.node.scaleX < 0)
             { 
-                this.lv.x = -100000;
+                this.lv.x = -5000;
                 light.scaleX *= -1; 
                 //dashDistance = -300;
             }
             else if(this.node.scaleX > 0)
             {
-                this.lv.x = 100000;
+                this.lv.x = 5000;
                 //dashDistance = 300;
             }
-            this.scheduleOnce(function(){ this.lv.x = 0;this.rb.linearVelocity = this.lv;this.isAttacking = false;},0.1);
+            this.scheduleOnce(function(){ this.lv.x = 0;this.rb.linearVelocity = this.lv;this.isAttacking = false;},0.05);
             this.playerShadow.addChild(light);
             this.lv.y = 0;
             this.rb.linearVelocity = this.lv;
@@ -438,7 +438,8 @@ cc.Class({
         {
             if(this.canJump && this.jumpCount!=0)
             {
-                this.jumpForce = (172000000-200000*this.rb.linearVelocity.y)/(830);
+                this.jumpForce = (152000000-200000*this.rb.linearVelocity.y)/(830);
+                cc.log(this.jumpForce);
                 if(this.jumpCount==2) this.rb.applyForceToCenter( cc.v2(0,this.jumpForce) , true );
                 else if(this.jumpCount==1) 
                 {
@@ -489,7 +490,7 @@ cc.Class({
     greenAttack()
     {
         this.greening = true;
-        this.jumpForce = (344000000-200000*this.rb.linearVelocity.y)/(830);
+        this.jumpForce = (172000000-200000*this.rb.linearVelocity.y)/(830);
         this.colorCoolDown(3);
         this.colorCoolDown(2);
         this.rb.applyForceToCenter( cc.v2(0,this.jumpForce) , true );

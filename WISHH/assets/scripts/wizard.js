@@ -28,7 +28,7 @@ cc.Class({
         this.lv = this.rb.linearVelocity;
         this.moveLeft = false;//move to left
         this.moveRight = false;// move to right
-        this.hp = 1;
+        this.hp = 10;
         this.isHit = false;
         this.isAttacking = false;
         this.wizardAni = this.node.getComponent(cc.Animation);
