@@ -202,7 +202,7 @@
       "cc.CircleCollider": {
         "radius": [
           {
-            "frame": 0,
+            "frame": 13,
             "value": 0
           },
           {
@@ -214,7 +214,7 @@
             "value": 25
           },
           {
-            "frame": 30,
+            "frame": 19,
             "value": 0
           }
         ]
