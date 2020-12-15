@@ -116,183 +116,47 @@
         ]
       },
       "cc.BoxCollider": {
-        "offset": [
-          {
-            "frame": 15,
-            "value": {
-              "__type__": "cc.Vec2",
-              "x": 0,
-              "y": -13
-            }
-          },
-          {
-            "frame": 16,
-            "value": {
-              "__type__": "cc.Vec2",
-              "x": 0,
-              "y": -13
-            }
-          },
-          {
-            "frame": 17,
-            "value": {
-              "__type__": "cc.Vec2",
-              "x": 0,
-              "y": -13
-            }
-          },
-          {
-            "frame": 18,
-            "value": {
-              "__type__": "cc.Vec2",
-              "x": -0.1,
-              "y": -13
-            }
-          },
+        "size": [
           {
             "frame": 19,
             "value": {
-              "__type__": "cc.Vec2",
-              "x": 0,
-              "y": -13
+              "__type__": "cc.Size",
+              "width": 0,
+              "height": 0
             }
           },
           {
             "frame": 20,
             "value": {
-              "__type__": "cc.Vec2",
-              "x": 0,
-              "y": -13
+              "__type__": "cc.Size",
+              "width": 17,
+              "height": 37
+            }
+          },
+          {
+            "frame": 25,
+            "value": {
+              "__type__": "cc.Size",
+              "width": 17,
+              "height": 37
             }
           },
           {
             "frame": 26,
             "value": {
-              "__type__": "cc.Vec2",
-              "x": 0,
-              "y": -13
-            }
-          },
-          {
-            "frame": 27,
-            "value": {
-              "__type__": "cc.Vec2",
-              "x": 0,
-              "y": -13
-            }
-          },
-          {
-            "frame": 28,
-            "value": {
-              "__type__": "cc.Vec2",
-              "x": 0,
-              "y": -13
-            }
-          },
-          {
-            "frame": 29,
-            "value": {
-              "__type__": "cc.Vec2",
-              "x": 0,
-              "y": -13
+              "__type__": "cc.Size",
+              "width": 0,
+              "height": 0
             }
           }
         ],
-        "size": [
+        "offset": [
           {
-            "frame": 14,
+            "frame": 0,
             "value": {
-              "__type__": "cc.Size",
-              "width": 0,
-              "height": 0
-            }
-          },
-          {
-            "frame": 15,
-            "value": {
-              "__type__": "cc.Size",
-              "width": 2.1,
-              "height": 37
-            }
-          },
-          {
-            "frame": 16,
-            "value": {
-              "__type__": "cc.Size",
-              "width": 6,
-              "height": 37
-            }
-          },
-          {
-            "frame": 17,
-            "value": {
-              "__type__": "cc.Size",
-              "width": 10,
-              "height": 37
-            }
-          },
-          {
-            "frame": 18,
-            "value": {
-              "__type__": "cc.Size",
-              "width": 13.9,
-              "height": 37
-            }
-          },
-          {
-            "frame": 19,
-            "value": {
-              "__type__": "cc.Size",
-              "width": 17.8,
-              "height": 37
-            }
-          },
-          {
-            "frame": 20,
-            "value": {
-              "__type__": "cc.Size",
-              "width": 19.9,
-              "height": 37
-            }
-          },
-          {
-            "frame": 26,
-            "value": {
-              "__type__": "cc.Size",
-              "width": 14,
-              "height": 37
-            }
-          },
-          {
-            "frame": 27,
-            "value": {
-              "__type__": "cc.Size",
-              "width": 10,
-              "height": 37
-            }
-          },
-          {
-            "frame": 28,
-            "value": {
-              "__type__": "cc.Size",
-              "width": 6,
-              "height": 37
-            }
-          },
-          {
-            "frame": 29,
-            "value": {
-              "__type__": "cc.Size",
-              "width": 2,
-              "height": 37
-            }
-          },
-          {
-            "frame": 31,
-            "value": {
-              "__type__": "cc.Size",
-              "width": 0,
-              "height": 0
+              "__type__": "cc.Vec2",
+              "x": 0,
+              "y": -13
             }
           }
         ]

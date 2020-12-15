@@ -81,8 +81,8 @@ cc.Class({
         .call(() => {
             this.setAni("attack_1");
     
-            var effectPosX = [-744,-450,-152,144,432];
-            for(var i=0; i<5; i++){
+            var effectPosX = [-651,-297,42,387];
+            for(var i=0; i<4; i++){
                 var effect = cc.instantiate(this.effect_1);
                 effect.x = effectPosX[i];
                 effect.y = this.getRandom(-200,200);
@@ -94,8 +94,8 @@ cc.Class({
         .call(() => {
             this.setAni("attack_1");
     
-            var effectPosX = [-744,-450,-152,144,432];
-            for(var i=0; i<5; i++){
+            var effectPosX = [-651,-297,42,387];
+            for(var i=0; i<4; i++){
                 var effect = cc.instantiate(this.effect_1);
                 effect.x = effectPosX[i];
                 effect.y = this.getRandom(-200,200);
