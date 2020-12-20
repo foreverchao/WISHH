@@ -12,6 +12,8 @@ cc.Class({
         map_center: cc.Node,
         effect_1: cc.Prefab,
         effect_2: cc.Prefab,
+        effect_3_Loop: cc.Prefab,
+        effect_3_Laser: cc.Prefab,
         effect_4: cc.Prefab,
     },
 
@@ -94,7 +96,6 @@ cc.Class({
                 console.log(effect.x,effect.y);  
             }
         })
-        .delay(2.58)
         .start();
     },
 
@@ -138,6 +139,246 @@ cc.Class({
 
         })
         .delay(1.75)
+        .start();
+    },
+
+    attack_3()
+    {
+        var where = 0;
+        cc.tween(this.node)
+        .call(() => {this.setAni("flash");}) 
+        .delay(0.33)
+        .call(() => {
+            this.node.getComponent(cc.Sprite).enabled  = false;
+            where = this.getRandom(0,3);
+            cc.log(where);
+            if(where == 0) //出現在畫面左下角
+            {
+                this.node.x = -545;
+                this.node.y = -174;
+                this.node.scaleX = 5;
+            }
+            else if(where == 1) //出現在畫面左上角
+            {
+                this.node.x = -759;
+                this.node.y = 46;
+                this.node.scaleX = 5;
+            }
+            else if(where == 2) //出現在畫面右下角
+            {
+                this.node.x = 217;
+                this.node.y = -174;
+                this.node.scaleX = -5;
+            }
+            else if(where == 3) //出現在畫面右上角
+            {
+                this.node.x = 476;
+                this.node.y = 46;
+                this.node.scaleX = -5;
+            }
+            this.setAni("idle");
+        })
+        .delay(1)
+        .call(() => {
+            this.node.getComponent(cc.Sprite).enabled  = true;
+            this.setAni("flash");
+        }) 
+        .delay(0.33)
+        .call(() => { // attack_3 動畫時間 = 1.00
+            this.setAni("attack_3");
+        }) 
+        .delay(1.00)
+        .call(() => { // Perfab 球球
+            var effect = cc.instantiate(this.effect_3_Loop);
+            if(this.node.x - this.map_center.x < 0) //在畫面左
+            {
+                effect.scaleX = -5;
+                effect.x = this.node.x + 150;
+                effect.y = this.node.y;
+            } 
+            else if(this.node.x - this.map_center.x > 0) //在畫面右
+            {               
+                effect.scaleX = 5;
+                effect.x = this.node.x - 150;
+                effect.y = this.node.y;
+            }
+            this.canvasNode.addChild(effect,20);  
+        })
+        .delay(3.00) // 集氣時間
+        .call(() => { // Prefab 雷射光
+            var effect = cc.instantiate(this.effect_3_Laser);
+            this.effectLoopBall = cc.find("Canvas/wizard_effect_3_Loop");
+            effect.x = this.effectLoopBall.x;
+            effect.y = this.effectLoopBall.y;
+            cc.log(effect.x,effect.y);
+            this.canvasNode.addChild(effect,10);   
+        })
+        .delay(2.00) // 雷射時間
+        .call(() => { // 雷射結束
+            this.effectLoopBall = cc.find("Canvas/wizard_effect_3_Loop");
+            this.effectLaser = cc.find("Canvas/wizard_effect_3_2");
+            this.effectLoopBall.destroy();
+            this.effectLaser.destroy();
+            this.setAni("flash");
+        })
+        .delay(0.33)
+        .call(() => {
+            this.node.getComponent(cc.Sprite).enabled  = false;
+
+            var temp;
+            do{ // 避免出現在同一個地方
+                temp = this.getRandom(0,3);
+            }while(temp == where)
+            where = temp;
+            cc.log(where);
+
+            if(where == 0) //出現在畫面左下角
+            {
+                this.node.x = -545;
+                this.node.y = -174;
+                this.node.scaleX = 5;
+            }
+            else if(where == 1) //出現在畫面左上角
+            {
+                this.node.x = -759;
+                this.node.y = 46;
+                this.node.scaleX = 5;
+            }
+            else if(where == 2) //出現在畫面右下角
+            {
+                this.node.x = 217;
+                this.node.y = -174;
+                this.node.scaleX = -5;
+            }
+            else if(where == 3) //出現在畫面右上角
+            {
+                this.node.x = 476;
+                this.node.y = 46;
+                this.node.scaleX = -5;
+            }
+            this.setAni("idle");
+        })
+        .delay(1)
+        .call(() => {
+            this.node.getComponent(cc.Sprite).enabled  = true;
+            this.setAni("flash");
+        }) 
+        .delay(0.33)
+        .call(() => { // attack_3 動畫時間 = 1.00
+            this.setAni("attack_3");
+        }) 
+        .delay(1.00)
+        .call(() => { // Perfab 球球
+            var effect = cc.instantiate(this.effect_3_Loop);
+            if(this.node.x - this.map_center.x < 0) //在畫面左
+            {
+                effect.scaleX = -5;
+                effect.x = this.node.x + 150;
+                effect.y = this.node.y;
+            } 
+            else if(this.node.x - this.map_center.x > 0) //在畫面右
+            {               
+                effect.scaleX = 5;
+                effect.x = this.node.x - 150;
+                effect.y = this.node.y;
+            }
+            this.canvasNode.addChild(effect,20);  
+        })
+        .delay(0) // 第二次不用集氣
+        .call(() => { // Prefab 雷射光
+            var effect = cc.instantiate(this.effect_3_Laser);
+            this.effectLoopBall = cc.find("Canvas/wizard_effect_3_Loop");
+            effect.x = this.effectLoopBall.x;
+            effect.y = this.effectLoopBall.y;
+            cc.log(effect.x,effect.y);
+            this.canvasNode.addChild(effect,10);     
+        })
+        .delay(2.00) // 雷射時間
+        .call(() => { // 雷射結束
+            this.effectLoopBall = cc.find("Canvas/wizard_effect_3_Loop");
+            this.effectLaser = cc.find("Canvas/wizard_effect_3_2");
+            this.effectLoopBall.destroy();
+            this.effectLaser.destroy();
+            this.setAni("flash");
+        })
+        .delay(0.33)
+        .call(() => {
+            this.node.getComponent(cc.Sprite).enabled  = false;
+
+            var temp;
+            do{ // 避免出現在同一個地方
+                temp = this.getRandom(0,3);
+            }while(temp == where)
+            where = temp;
+
+            if(where == 0) //出現在畫面左下角
+            {
+                this.node.x = -545;
+                this.node.y = -174;
+                this.node.scaleX = 5;
+            }
+            else if(where == 1) //出現在畫面左上角
+            {
+                this.node.x = -759;
+                this.node.y = 46;
+                this.node.scaleX = 5;
+            }
+            else if(where == 2) //出現在畫面右下角
+            {
+                this.node.x = 217;
+                this.node.y = -174;
+                this.node.scaleX = -5;
+            }
+            else if(where == 3) //出現在畫面右上角
+            {
+                this.node.x = 476;
+                this.node.y = 46;
+                this.node.scaleX = -5;
+            }
+            this.setAni("idle");
+        })
+        .delay(1)
+        .call(() => {
+            this.node.getComponent(cc.Sprite).enabled  = true;
+            this.setAni("flash");
+        }) 
+        .delay(0.33)
+        .call(() => { // attack_3 動畫時間 = 1.00
+            this.setAni("attack_3");
+        }) 
+        .delay(1.00)
+        .call(() => { // Perfab 球球
+            var effect = cc.instantiate(this.effect_3_Loop);
+            if(this.node.x - this.map_center.x < 0) //在畫面左
+            {
+                effect.scaleX = -5;
+                effect.x = this.node.x + 150;
+                effect.y = this.node.y;
+            } 
+            else if(this.node.x - this.map_center.x > 0) //在畫面右
+            {               
+                effect.scaleX = 5;
+                effect.x = this.node.x - 150;
+                effect.y = this.node.y;
+            }
+            this.canvasNode.addChild(effect,20);  
+        })
+        .delay(0) // 第三次也不用集氣
+        .call(() => { // Prefab 雷射光
+            var effect = cc.instantiate(this.effect_3_Laser);
+            this.effectLoopBall = cc.find("Canvas/wizard_effect_3_Loop");
+            effect.x = this.effectLoopBall.x;
+            effect.y = this.effectLoopBall.y;
+            cc.log(effect.x,effect.y);
+            this.canvasNode.addChild(effect,10);   
+        })
+        .delay(2.00) // 雷射時間
+        .call(() => { // 雷射結束
+            this.effectLoopBall = cc.find("Canvas/wizard_effect_3_Loop");
+            this.effectLaser = cc.find("Canvas/wizard_effect_3_2");
+            this.effectLoopBall.destroy();
+            this.effectLaser.destroy();
+        })
         .start();
     },
 
@@ -233,22 +474,34 @@ cc.Class({
         //    this.attack_4();}
         //,12.86);
 
+        //attack_0 = 1.96
+        //attack_1 = 3.24
+        //attack_2 = 1.16
+        //attack_3 = 16.89
+        //attack_4 = 2.99
+
         cc.tween(this.node)
         .delay(2)
         .call(() => {this.attack_0();}) 
-        .delay(3)
+        .delay(1.96 + 2)
         .call(() => {this.attack_1();}) 
-        .delay(3)
+        .delay(3.24 + 2)
         .call(() => {this.attack_2();}) 
-        .delay(3)
+        .delay(1.16 + 2)
+        .call(() => {this.attack_3();}) 
+        .delay(16.89 + 2)
         .call(() => {this.attack_4();}) 
-        .delay(3)
-        .call(() => {this.attack_0();}) 
-        .delay(3)
+        .delay(2.99 + 2)
+        .call(() => {this.attack_4();}) 
+        .delay(2.99 + 2)
+        .call(() => {this.attack_3();}) 
+        .delay(16.89 + 2)
         .call(() => {this.attack_2();}) 
-        .delay(3)
+        .delay(1.16 + 2)
         .call(() => {this.attack_4();}) 
-        .delay(2)
+        .delay(2.99 + 2)
+        .call(() => {this.attack_3();}) 
+        .delay(16.89 + 2)
         .call(() => {
             var temp = cc.find("Canvas");
             temp.getComponent("bossScene").wizard=3;

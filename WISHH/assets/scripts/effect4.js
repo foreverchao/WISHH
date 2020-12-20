@@ -23,11 +23,10 @@ cc.Class({
         this.canvasNode = cc.find("Canvas");
         this.map_center = this.canvasNode.getChildByName("Center"); 
 
-        if(this.node.x - this.map_center.x < 0 && this.node.y - this.map_center.y > 0) //在畫面左上角
+        if(this.node.x - this.map_center.x < 0) //在畫面左
             this.node.scaleX = -5;
-        else if(this.node.x - this.map_center.x < 0 && this.node.y - this.map_center.y < 0) //在畫面左下角
-            this.node.scaleX = -5;
-
+        else if(this.node.x - this.map_center.x > 0) //在畫面右
+            this.node.scaleX = 5;
         this.schedule(function(){
             this.shoot();}
         ,4 ,100 ,2);
