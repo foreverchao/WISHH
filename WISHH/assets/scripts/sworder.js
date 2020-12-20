@@ -19,7 +19,7 @@ cc.Class({
     onLoad () 
     {
         this.sp = cc.v2(0,0);//current speed
-        this._speed = 400;
+        this._speed = 350;
         this.rb = this.node.getComponent(cc.RigidBody);
         this.lv = this.rb.linearVelocity;
         this.moveLeft = false;//move to left
@@ -30,6 +30,7 @@ cc.Class({
         this.sworderAni = this.node.getComponent(cc.Animation);
         this.setAni("idle");
         this.sworderAni.on('finished', this.onAnimaFinished, this);
+        this.rest = 0;
     },
     onAnimaFinished(e, data)
     {
@@ -52,18 +53,18 @@ cc.Class({
         {           
             /*if(other.node.name == "orangeEffect")
                 this.scheduleOnce(function(){ this.hurt();;},0.5);
-            //this.isHit = true;
+            this.isHit = true;
             else*/
-                this.hurt();
+            this.hurt();
         }
     },
     detectPlayer()
     {
         if(Math.abs(this.player.y - this.node.y) > 100)
             return;
-        if(this.isHit)
+        if(this.rest > 0)
             return;
-        if(this.player.x > this.rangeL.x && this.player.x < this.rangeR.x)
+        if(this.player.x > this.rangeL.x && this.player.x < this.rangeR.x && this.rest == 0)
         {
             let scaleX = Math.abs(this.node.scaleX);
             if((this.player.x - this.node.x) < 100 && (this.player.x - this.node.x) > 0 )
@@ -135,13 +136,44 @@ cc.Class({
         }
         this.rb.linearVelocity = this.lv;
     },
+
+    localConvertWorldPoint(node) {
+        if (node) {
+            return node.convertToWorldSpace(cc.v2(0, 0));
+        }
+        return null;
+    },
+
     hurt()
     {
-        if(this.anima == 'hurt')
-            return;
-        this.hp--;
-        if(this.hp <=0)
-            this.node.destroy();
+        this.lv.x = 0;
+        this.rb.linearVelocity = this.lv;
+        this.rest = 50;
+
+        this.playerNode = cc.find("Canvas/player");
+        this.nodeWorld = this.localConvertWorldPoint(this.node);
+        this.playerWorld = this.localConvertWorldPoint(this.playerNode);
+
+        var back = 0;
+        if(this.playerWorld.x - this.nodeWorld.x > 0) // 往左邊退
+            back = -120;
+        else if(this.playerWorld.x - this.nodeWorld.x < 0) // 往右邊退
+            back = 120;
+
+        this.node.runAction(cc.moveBy(0.2, cc.v2(back, 0)),);
+
+
+        cc.tween(this.node)
+        .blink(0.5, 3)
+        .call(() => {
+            this.hp--;
+            if(this.hp <=0)
+                this.node.destroy();
+        }) 
+        .start();
+
+        //if(this.anima == 'hurt')
+        //    return;
         //this.setAni("hurt");
     },
     
@@ -150,6 +182,7 @@ cc.Class({
     },
 
     update (dt) {
+        if(this.rest > 0) this.rest--;
         this.detectPlayer();
      },
 });

@@ -284,7 +284,7 @@ cc.Class({
                 this.lv.x = 5000;
                 //dashDistance = 300;
             }
-            this.scheduleOnce(function(){ this.lv.x = 0;this.rb.linearVelocity = this.lv;this.isAttacking = false;},0.05);
+            this.scheduleOnce(function(){ this.shakeEffect(0.2);this.lv.x = 0;this.rb.linearVelocity = this.lv;this.isAttacking = false;},0.05);
             this.playerShadow.addChild(light);
             this.lv.y = 0;
             this.rb.linearVelocity = this.lv;
@@ -605,6 +605,73 @@ cc.Class({
             yellow.y = -7;
             this.colorBar.addChild(yellow);
         }
+    },
+
+    localConvertWorldPoint(node) {
+        if (node) {
+            return node.convertToWorldSpace(cc.v2(0, 0));
+        }
+        return null;
+    },
+
+    addShakerEffect( node , time ){
+        if (time === null &&  node === null){
+            return;
+        }
+        let actionName = 'ShakerActionName';
+
+        let shaker = {}
+        shaker.init_x = 0       //[[初始位置x]]
+        shaker.init_y = 0       //[[初始位置y]]
+        shaker.diff_x = 0       //[[偏移量x]]
+        shaker.diff_y = 0       //[[偏移量y]]
+        shaker.diff_max = 10     //[[最大偏移量]]
+        shaker.interval = 0.01  //[[震动频率]]
+        shaker.totalTime = 0    //[[震动时间]]
+        shaker.time = 0         //[[计时器]]
+
+        shaker.target = node
+        var temp = this.localConvertWorldPoint(node)
+        shaker.init_x = temp.x
+        shaker.init_y = temp.y
+        shaker.totalTime = time
+
+        shaker.target[actionName] = this.schedule(function (){
+            if (shaker.time >= shaker.totalTime){
+                shaker.target.stopAction(shaker.target[actionName]);
+                shaker.target[actionName] = null;
+                shaker.target.setPosition(shaker.init_x, shaker.init_y);
+                return;
+            }
+            shaker.time = shaker.time + shaker.interval
+            shaker.diff_x = Math.random()*(shaker.diff_max + shaker.diff_max+1)-shaker.diff_max;
+            shaker.diff_y = Math.random()*(shaker.diff_max + shaker.diff_max+1)-shaker.diff_max;
+            shaker.target.setPosition(shaker.init_x+shaker.diff_x, shaker.init_y+shaker.diff_y);
+        },shaker.interval);
+    },
+
+    shakeEffect(duration) {
+        this.camera = cc.find("Canvas/Main Camera")
+        this.camera.runAction(
+            cc.repeatForever(
+                cc.sequence(
+                    cc.moveBy(0.02, cc.v2(5, 7)),
+                    cc.moveBy(0.02, cc.v2(-6, 7)),
+                    cc.moveBy(0.02, cc.v2(-13, 3)),
+                    cc.moveBy(0.02, cc.v2(3, -6)),
+                    cc.moveBy(0.02, cc.v2(-5, 5)),
+                    cc.moveBy(0.02, cc.v2(2, -8)),
+                    cc.moveBy(0.02, cc.v2(-8, -10)),
+                    cc.moveBy(0.02, cc.v2(3, 10)),
+                    cc.moveBy(0.02, cc.v2(0, 0))
+                )
+            )
+        );
+
+        setTimeout(() => {
+            this.camera.stopAllActions();
+            //this.camera.setPosition(0,0);
+        }, duration*1000);
     },
 
     update (dt) 
