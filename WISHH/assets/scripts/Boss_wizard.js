@@ -26,7 +26,7 @@ cc.Class({
         this.playerNode = this.node.getParent().getParent().getChildByName("player");
         this.canvasNode = this.node.getParent().getParent();
         this.hurtMeNow = false; // true 時可以被攻擊
-        this.hp = 8;
+        this.hp = 2;
         this.bossCollider = this.node.getComponent(cc.PolygonCollider);
         this.circleCollider = this.node.getComponent(cc.CircleCollider);
         this.bossCollider.enabled = false;

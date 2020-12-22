@@ -144,12 +144,36 @@ cc.Class({
         return null;
     },
 
+    shakeEffect(duration) {
+        this.camera = cc.find("Canvas/Main Camera")
+        this.camera.runAction(
+            cc.repeatForever(
+                cc.sequence(
+                    cc.moveBy(0.02, cc.v2(5, 7)),
+                    cc.moveBy(0.02, cc.v2(-6, 7)),
+                    cc.moveBy(0.02, cc.v2(-13, 3)),
+                    cc.moveBy(0.02, cc.v2(3, -6)),
+                    cc.moveBy(0.02, cc.v2(-5, 5)),
+                    cc.moveBy(0.02, cc.v2(2, -8)),
+                    cc.moveBy(0.02, cc.v2(-8, -10)),
+                    cc.moveBy(0.02, cc.v2(3, 10)),
+                    cc.moveBy(0.02, cc.v2(0, 0))
+                )
+            )
+        );
+
+        setTimeout(() => {
+            this.camera.stopAllActions();
+            //this.camera.setPosition(0,0);
+        }, duration*1000);
+    },
+
     hurt()
     {
         this.lv.x = 0;
         this.rb.linearVelocity = this.lv;
         this.rest = 50;
-
+        this.shakeEffect(0.3);
         this.playerNode = cc.find("Canvas/player");
         this.nodeWorld = this.localConvertWorldPoint(this.node);
         this.playerWorld = this.localConvertWorldPoint(this.playerNode);
