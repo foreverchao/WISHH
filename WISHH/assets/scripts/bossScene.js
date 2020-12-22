@@ -15,10 +15,13 @@ cc.Class({
         },
         player: cc.Node,
         wizard: cc.number,
+        flag: cc.Boolean,
+        stop: cc.Boolean,
     },
    
     onLoad () {
         this.flag = false;
+        this.stop = false;
     },
 
     start () {
@@ -170,8 +173,12 @@ cc.Class({
 
 
     update (dt) {
-       if(this.wizard <=5 && this.flag == false){
+       if(this.wizard <=4 && this.flag == false){
            this.laserOpen();
+       }
+       if(this.stop == true)
+       {
+           this.node.stopAllActions();
        }
     },
 });

@@ -1,0 +1,25 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "blueButton_up",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 1,
+  "sample": 1,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "a31a701a-a108-4318-b903-ce87d7f4c359"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

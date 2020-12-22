@@ -26,7 +26,7 @@ cc.Class({
         this.playerNode = this.node.getParent().getParent().getChildByName("player");
         this.canvasNode = this.node.getParent().getParent();
         this.hurtMeNow = false; // true 時可以被攻擊
-        this.hp = 5;
+        this.hp = 8;
         this.bossCollider = this.node.getComponent(cc.PolygonCollider);
         this.circleCollider = this.node.getComponent(cc.CircleCollider);
         this.bossCollider.enabled = false;
@@ -495,6 +495,8 @@ cc.Class({
 
     die()
     {
+        var temp = cc.find("Canvas");
+        temp.getComponent("bossScene").stop = true;
         this.effectLoopBall = cc.find("Canvas/wizard_effect_3_Loop");
         this.effectLaser = cc.find("Canvas/wizard_effect_3_2");
         if(this.effectLoopBall != null) this.effectLoopBall.destroy();
@@ -540,6 +542,8 @@ cc.Class({
         .blink(0.5, 3)
         .call(() => {
             this.hp--;
+            var temp = cc.find("Canvas");
+            temp.getComponent("bossScene").wizard=this.hp;
         }) 
         .start();
         this.scheduleOnce(function(){this.hurtMeNow = true;},1.00);
@@ -652,7 +656,7 @@ cc.Class({
     },
 
     update (dt) {
-        cc.log(this.hp);
+        //cc.log(this.hp);
         if(this.hp <= 0 && this.alive == true)
         {
             this.alive = false;

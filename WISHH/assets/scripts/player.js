@@ -22,6 +22,13 @@ cc.Class({
         orangeEffect: cc.Prefab,
         purpleEffect: cc.Prefab,
         respawnPoint: cc.Vec2, //復活座標
+
+        new_redBar: cc.Node,
+        new_blueBar: cc.Node,
+        new_yellowBar: cc.Node,
+        new_redButton: cc.Node,
+        new_blueButton: cc.Node,
+        new_yellowButton: cc.Node,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -69,6 +76,8 @@ cc.Class({
     {
         if(color == 1) //Red
         {
+            this.nodeSetAni(this.new_redBar,'redBar_refill');
+            this.scheduleOnce(function(){this.nodeSetAni(this.new_redButton,'redButton_up');},2);
             this.redMagicPoint = 0;
             this.setMP();
             this.schedule(function() {
@@ -78,6 +87,8 @@ cc.Class({
         }
         else if(color == 2) //Blue
         {
+            this.nodeSetAni(this.new_blueBar,'blueBar_refill');
+            this.scheduleOnce(function(){this.nodeSetAni(this.new_blueButton,'blueButton_up');},2);
             this.blueMagicPoint = 0;
             this.setMP();
             this.schedule(function() {
@@ -87,6 +98,8 @@ cc.Class({
         }
         else if(color == 3) //Yellow
         {
+            this.nodeSetAni(this.new_yellowBar,'yellowBar_refill');
+            this.scheduleOnce(function(){this.nodeSetAni(this.new_yellowButton,'yellowButton_up');},2);
             this.yellowMagicPoint = 0;
             this.setMP();
             this.schedule(function() {
@@ -137,6 +150,7 @@ cc.Class({
             this.setAni('idle');
         }
     },
+
     setAni(anima)
     {
         if(this.anima == anima)
@@ -145,6 +159,13 @@ cc.Class({
         this.anima = anima;
         this.playerAni.play(anima);
     },
+
+    nodeSetAni(otherNode,anima)
+    {
+        otherNode.getComponent(cc.Animation).stop();
+        otherNode.getComponent(cc.Animation).play(anima);
+    },
+
     onKeydown(e)
     {
         Input[e.keyCode] = 1;
@@ -152,18 +173,24 @@ cc.Class({
             case cc.macro.KEY.k:
                 if(this.yellowMagicPoint >= 10)
                 {
+                    this.nodeSetAni(this.new_yellowButton,'yellowButton_down');
+                    if(!this.yellow) this.nodeSetAni(this.new_yellowBar,'yellowBar_use');
                     this.yellow = true;
                 }
                 break;
             case cc.macro.KEY.j:
                 if(this.redMagicPoint >= 10)
                 {
+                    this.nodeSetAni(this.new_redButton,'redButton_down');
+                    if(!this.red) this.nodeSetAni(this.new_redBar,'redBar_use');
                     this.red = true;
                 }
                 break;
             case cc.macro.KEY.l:
                 if(this.blueMagicPoint >= 10)
                 {
+                    this.nodeSetAni(this.new_blueButton,'blueButton_down');
+                    if(!this.blue) this.nodeSetAni(this.new_blueBar,'blueBar_use');
                     this.blue = true;
                 }
                 break;
@@ -503,7 +530,7 @@ cc.Class({
         this.colorCoolDown(2);
         this.rb.applyForceToCenter( cc.v2(0,this.jumpForce) , true );
         this.isAttacking = false;
-
+        this.scheduleOnce(function(){this.greening = false},0.67);
     },
 
     purpleAttack()

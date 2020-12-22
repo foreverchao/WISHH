@@ -1,0 +1,25 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "yellowButton_down",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 1,
+  "sample": 1,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "112f77a7-f3a1-43ef-a0b9-6831aec86fe2"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}
