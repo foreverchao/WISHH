@@ -25,6 +25,13 @@ cc.Class({
         this.wizardAni.on('finished', this.onAnimaFinished, this);
         this.playerNode = this.node.getParent().getParent().getChildByName("player");
         this.canvasNode = this.node.getParent().getParent();
+        this.hurtMeNow = false; // true 時可以被攻擊
+        this.hp = 5;
+        this.bossCollider = this.node.getComponent(cc.PolygonCollider);
+        this.circleCollider = this.node.getComponent(cc.CircleCollider);
+        this.bossCollider.enabled = false;
+        this.circleCollider.enabled = false;
+        this.alive = true;
     },
 
     setAni(anima)
@@ -41,6 +48,9 @@ cc.Class({
 
     attack_0()
     {
+        this.circleCollider.enabled = true;
+        this.bossCollider.enabled = false;
+        this.hurtMeNow = false;
         cc.tween(this.node)
         // flash 動畫時間 = 0.33 
         .call(() => {this.setAni("flash");}) // wizard 消失
@@ -62,14 +72,23 @@ cc.Class({
         })
         .delay(0.33)
         .call(() => { // attack_0 動畫時間 = 1.30
+            this.bossCollider.enabled = true;
+            this.hurtMeNow = true;
             this.setAni("attack_0");
         })
         .delay(1.3)
+        .call(() => {
+            this.circleCollider.radius = 0;
+            this.circleCollider.enabled = false;
+            this.hurtMeNow = true;
+        })
         .start();
     },
 
     attack_1()
     {
+        this.bossCollider.enabled = false;
+        this.hurtMeNow = false;
         cc.tween(this.node)
         .call(() => {this.setAni("flash");}) // wizard 消失
         .delay(0.33)
@@ -86,14 +105,15 @@ cc.Class({
         // effect_1 圓圈圈 動畫時間 = 2.58
         .call(() => { // 
             this.setAni("attack_1");
-    
+            this.bossCollider.enabled = true;
+            this.hurtMeNow = true;
             var effectPosX = [-651,-297,42,387]; //圓圈圈 x 軸位置
             for(var i=0; i<4; i++){
                 var effect = cc.instantiate(this.effect_1);
                 effect.x = effectPosX[i];
                 effect.y = this.getRandom(-200,200); //圓圈圈 y 軸取亂數
                 this.canvasNode.addChild(effect);
-                console.log(effect.x,effect.y);  
+                //console.log(effect.x,effect.y);  
             }
         })
         .start();
@@ -101,6 +121,8 @@ cc.Class({
 
     attack_2()
     {
+        this.bossCollider.enabled = false;
+        this.hurtMeNow = false;
         cc.tween(this.node)
         .call(() => {this.setAni("flash");}) 
         .delay(0.33)
@@ -108,13 +130,11 @@ cc.Class({
             this.node.getComponent(cc.Sprite).enabled = false;
             if(this.map_center.x - this.playerNode.x > 0) // 玩家在地圖左半邊
             {
-                cc.log("player at left")
                 this.node.x = -410;
                 this.node.y = 91;
             }
             else // 玩家在地圖右半邊
             {
-                cc.log("player at right")
                 this.node.x = 150;
                 this.node.y = 91;
             }
@@ -130,6 +150,8 @@ cc.Class({
         .delay(0.33)
         .call(() => { // attack_0 動畫時間 = 1.75
             this.setAni("attack_2");
+            this.bossCollider.enabled = true;
+            this.hurtMeNow = true;
             var effect = cc.instantiate(this.effect_2);
             effect.x = this.playerNode.x;
             effect.y = this.playerNode.y;
@@ -144,6 +166,8 @@ cc.Class({
 
     attack_3()
     {
+        this.bossCollider.enabled = false;
+        this.hurtMeNow = false;
         var where = 0;
         cc.tween(this.node)
         .call(() => {this.setAni("flash");}) 
@@ -151,7 +175,6 @@ cc.Class({
         .call(() => {
             this.node.getComponent(cc.Sprite).enabled  = false;
             where = this.getRandom(0,3);
-            cc.log(where);
             if(where == 0) //出現在畫面左下角
             {
                 this.node.x = -545;
@@ -186,6 +209,8 @@ cc.Class({
         .delay(0.33)
         .call(() => { // attack_3 動畫時間 = 1.00
             this.setAni("attack_3");
+            this.bossCollider.enabled = true;
+            this.hurtMeNow = true;
         }) 
         .delay(1.00)
         .call(() => { // Perfab 球球
@@ -210,7 +235,7 @@ cc.Class({
             this.effectLoopBall = cc.find("Canvas/wizard_effect_3_Loop");
             effect.x = this.effectLoopBall.x;
             effect.y = this.effectLoopBall.y;
-            cc.log(effect.x,effect.y);
+            //cc.log(effect.x,effect.y);
             this.canvasNode.addChild(effect,10);   
         })
         .delay(2.00) // 雷射時間
@@ -220,17 +245,17 @@ cc.Class({
             this.effectLoopBall.destroy();
             this.effectLaser.destroy();
             this.setAni("flash");
+            this.bossCollider.enabled = false;
+            this.hurtMeNow = false;
         })
         .delay(0.33)
         .call(() => {
             this.node.getComponent(cc.Sprite).enabled  = false;
-
             var temp;
             do{ // 避免出現在同一個地方
                 temp = this.getRandom(0,3);
             }while(temp == where)
             where = temp;
-            cc.log(where);
 
             if(where == 0) //出現在畫面左下角
             {
@@ -266,6 +291,8 @@ cc.Class({
         .delay(0.33)
         .call(() => { // attack_3 動畫時間 = 1.00
             this.setAni("attack_3");
+            this.bossCollider.enabled = true;
+            this.hurtMeNow = true;
         }) 
         .delay(1.00)
         .call(() => { // Perfab 球球
@@ -290,7 +317,7 @@ cc.Class({
             this.effectLoopBall = cc.find("Canvas/wizard_effect_3_Loop");
             effect.x = this.effectLoopBall.x;
             effect.y = this.effectLoopBall.y;
-            cc.log(effect.x,effect.y);
+            //cc.log(effect.x,effect.y);
             this.canvasNode.addChild(effect,10);     
         })
         .delay(2.00) // 雷射時間
@@ -300,6 +327,8 @@ cc.Class({
             this.effectLoopBall.destroy();
             this.effectLaser.destroy();
             this.setAni("flash");
+            this.bossCollider.enabled = false;
+            this.hurtMeNow = false;
         })
         .delay(0.33)
         .call(() => {
@@ -345,6 +374,8 @@ cc.Class({
         .delay(0.33)
         .call(() => { // attack_3 動畫時間 = 1.00
             this.setAni("attack_3");
+            this.bossCollider.enabled = true;
+            this.hurtMeNow = true;
         }) 
         .delay(1.00)
         .call(() => { // Perfab 球球
@@ -369,7 +400,7 @@ cc.Class({
             this.effectLoopBall = cc.find("Canvas/wizard_effect_3_Loop");
             effect.x = this.effectLoopBall.x;
             effect.y = this.effectLoopBall.y;
-            cc.log(effect.x,effect.y);
+            //cc.log(effect.x,effect.y);
             this.canvasNode.addChild(effect,10);   
         })
         .delay(2.00) // 雷射時間
@@ -384,6 +415,8 @@ cc.Class({
 
     attack_4()
     {
+        this.bossCollider.enabled = false;
+        this.hurtMeNow = false;
         cc.tween(this.node)
         .call(() => {this.setAni("flash");}) 
         .delay(0.33)
@@ -423,6 +456,8 @@ cc.Class({
         .delay(0.33)
         .call(() => {
             this.setAni("attack_4");
+            this.bossCollider.enabled = true;
+            this.hurtMeNow = true;
             this.OrangeInteractItem = cc.find("Canvas/OrangeInteractItem");
             var effect = cc.instantiate(this.effect_4);
             if(this.node.x - this.map_center.x > 0 && this.node.y - this.map_center.y > 0) //在畫面右上角
@@ -451,6 +486,96 @@ cc.Class({
         .start();
     },
 
+    air_idle()
+    {
+        this.hurtMeNow = true;
+        this.setAni("idle2");
+        this.bossCollider.enabled = true;
+    },
+
+    die()
+    {
+        this.effectLoopBall = cc.find("Canvas/wizard_effect_3_Loop");
+        this.effectLaser = cc.find("Canvas/wizard_effect_3_2");
+        if(this.effectLoopBall != null) this.effectLoopBall.destroy();
+        if(this.effectLaser != null) this.effectLaser.destroy();
+        this.OrangeInteractItem = cc.find("Canvas/OrangeInteractItem");
+        this.OrangeInteractItem.removeAllChildren();
+
+        let blinking = cc.tween().blink(5,18);
+        let moveToGround = cc.tween().to(5,{position: cc.v2(-121.5, -191)});
+        let shaking = cc.tween().call(() => {this.shakeEffect(5)});
+
+        this.node.getComponent(cc.Sprite).enabled = true;
+        cc.tween(this.node)
+        // flash 動畫時間 = 0.33 
+        .call(() => {this.setAni("flash");}) // wizard 消失
+        .delay(0.33)
+        .call(() => {
+            this.node.getComponent(cc.Sprite).enabled = false;
+            this.setAni("idle");
+        })
+        .to(0.2,{position: cc.v2(-121.5, 74)}) // wizard 移動位置
+        .call(() => { // wizard 出現
+            this.node.getComponent(cc.Sprite).enabled  = true;
+            this.setAni("flash");
+        })
+        .delay(0.33)
+        .call(() => {
+            this.setAni("idle2");
+        })
+        .parallel(blinking, moveToGround, shaking)
+        .call(() => {
+            this.node.y = -91;
+            this.setAni("die");
+        })
+        .start();
+    },
+
+    hurt()
+    {
+        this.hurtMeNow = false;
+        this.shakeEffect(0.5);
+        cc.tween(this.node)
+        .blink(0.5, 3)
+        .call(() => {
+            this.hp--;
+        }) 
+        .start();
+        this.scheduleOnce(function(){this.hurtMeNow = true;},1.00);
+    },
+
+    onCollisionEnter(other, self)
+    {
+        if(other.node.group == 'Player' && other.node.name != "player" && this.hurtMeNow == true)
+        {           
+            this.hurt();
+        }
+    },
+
+    shakeEffect(duration) {
+        this.camera = cc.find("Canvas/Main Camera")
+        this.camera.runAction(
+            cc.repeatForever(
+                cc.sequence(
+                    cc.moveBy(0.02, cc.v2(5, 7)),
+                    cc.moveBy(0.02, cc.v2(-6, 7)),
+                    cc.moveBy(0.02, cc.v2(-13, 3)),
+                    cc.moveBy(0.02, cc.v2(3, -6)),
+                    cc.moveBy(0.02, cc.v2(-5, 5)),
+                    cc.moveBy(0.02, cc.v2(2, -8)),
+                    cc.moveBy(0.02, cc.v2(-8, -10)),
+                    cc.moveBy(0.02, cc.v2(3, 10)),
+                    cc.moveBy(0.02, cc.v2(0, 0))
+                )
+            )
+        );
+
+        setTimeout(() => {
+            this.camera.stopAllActions();
+            //this.camera.setPosition(0,0);
+        }, duration*1000);
+    },
 
     start () {
         //this.scheduleOnce(function(){
@@ -483,34 +608,58 @@ cc.Class({
         cc.tween(this.node)
         .delay(2)
         .call(() => {this.attack_0();}) 
-        .delay(1.96 + 2)
+        .delay(1.96)
+        .call(() => {this.air_idle();}) 
+        .delay(2)
         .call(() => {this.attack_1();}) 
-        .delay(3.24 + 2)
+        .delay(3.24)
+        .call(() => {this.air_idle();}) 
+        .delay(2)
         .call(() => {this.attack_2();}) 
-        .delay(1.16 + 2)
+        .delay(1.16)
+        .call(() => {this.air_idle();}) 
+        .delay(2)
         .call(() => {this.attack_3();}) 
-        .delay(16.89 + 2)
+        .delay(16.89)
+        .call(() => {this.air_idle();}) 
+        .delay(2)
         .call(() => {this.attack_4();}) 
-        .delay(2.99 + 2)
+        .delay(2.99)
+        .call(() => {this.air_idle();}) 
+        .delay(2)
         .call(() => {this.attack_4();}) 
-        .delay(2.99 + 2)
+        .delay(2.99)
+        .call(() => {this.air_idle();}) 
+        .delay(2)
         .call(() => {this.attack_3();}) 
-        .delay(16.89 + 2)
+        .delay(16.89)
+        .call(() => {this.air_idle();}) 
+        .delay(2)
         .call(() => {this.attack_2();}) 
-        .delay(1.16 + 2)
+        .delay(1.16)
+        .call(() => {this.air_idle();}) 
+        .delay(2)
         .call(() => {this.attack_4();}) 
-        .delay(2.99 + 2)
+        .delay(2.99)
+        .call(() => {this.air_idle();}) 
+        .delay(2)
         .call(() => {this.attack_3();}) 
-        .delay(16.89 + 2)
-        .call(() => {
-            var temp = cc.find("Canvas");
-            temp.getComponent("bossScene").wizard=3;
-        }) 
+        .delay(16.89)
+        .call(() => {this.air_idle();}) 
+        .delay(2)
         .start();
 
     },
 
     update (dt) {
+        cc.log(this.hp);
+        if(this.hp <= 0 && this.alive == true)
+        {
+            this.alive = false;
+            this.node.stopAllActions();
+            this.bossCollider.enabled = false;
+            this.die();
+        }
 
     },
 });

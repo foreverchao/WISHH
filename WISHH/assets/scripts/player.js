@@ -176,6 +176,9 @@ cc.Class({
                     this.setAni('idle');
                     this.isAttacking = false;
                     this.isOnGround = true;
+                    this.yellow = false;
+                    this.red = false;
+                    this.blue = false;
                 }
                 break;
         }  
@@ -350,6 +353,8 @@ cc.Class({
     //attack
     attack()
     {
+        if(this.canMove) {
+
         if(this.red && this.yellow)
         {
             this.isAttacking = true;
@@ -393,6 +398,8 @@ cc.Class({
             this.isAttacking = true;
             this.setAni('ice');
             this.blue = false;
+        }
+    
         }
         //cc.log(this.anima)
     },

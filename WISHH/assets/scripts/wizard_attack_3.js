@@ -67,7 +67,7 @@ cc.Class({
             //相交点在射线上的分数。
             var fraction = result.fraction;
 
-            cc.log(p2.x,p2.y);
+            //cc.log(p2.x,p2.y);
             var worldNode = this.localConvertWorldPoint(this.node);
             this.node.width = Math.abs(point.x - worldNode.x)/5;
             //cc.log(this.node.width);
