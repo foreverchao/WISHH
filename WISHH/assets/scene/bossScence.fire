@@ -6374,6 +6374,8 @@
       "__id__": 6
     },
     "wizard": 10,
+    "flag": false,
+    "stop": false,
     "_id": "f5Xp1b2p9L8pLdNAQvI1f/"
   },
   {
