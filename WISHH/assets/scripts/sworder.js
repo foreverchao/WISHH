@@ -9,6 +9,10 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+        audio: {
+            default: [],
+            type: cc.AudioClip
+        },
         player: cc.Node,
         rangeR: cc.Node,
         rangeL: cc.Node,
@@ -103,6 +107,7 @@ cc.Class({
         this.rb.linearVelocity = this.lv;
         if(this.isAttacking)
             return;
+        this.sworderSound = cc.audioEngine.play(this.audio[0], false, 1);
         this.setAni("attack");
     },
     move()

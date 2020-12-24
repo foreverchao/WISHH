@@ -9,6 +9,10 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+        audio: {
+            default: [],
+            type: cc.AudioClip
+        },
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -32,6 +36,7 @@ cc.Class({
 
     shoot()
     {
+        this.shootSound = cc.audioEngine.play(this.audio[0], false, 1);
         if(this.node.name == 'laserHalf')
         {
             this.laserAni.play("laser2");

@@ -4,6 +4,10 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+        audio: {
+            default: [],
+            type: cc.AudioClip
+        },
         lightPrefab: cc.Prefab,
         ghostPrefab: cc.Prefab,
         snowBallPerfab: cc.Prefab,
@@ -387,6 +391,7 @@ cc.Class({
             this.isAttacking = true;
             this.orangeAttack();
             this.setAni('orange');
+            this.purpleSound = cc.audioEngine.play(this.audio[1], false, 1);
             this.red = false;
             this.yellow = false;
         }
@@ -403,6 +408,7 @@ cc.Class({
             this.isAttacking = true;
             this.purpleAttack();
             this.setAni('purple');
+            this.purpleSound = cc.audioEngine.play(this.audio[0], false, 1);
             this.blue = false;
             this.red = false;
         }
@@ -416,6 +422,7 @@ cc.Class({
         {
             this.isAttacking = true;
             this.dash();
+            this.dashSound = cc.audioEngine.play(this.audio[2], false, 1);
             this.setAni('idle');
             this.yellow = false;
             

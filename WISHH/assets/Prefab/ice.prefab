@@ -39,10 +39,13 @@
       },
       {
         "__id__": 8
+      },
+      {
+        "__id__": 9
       }
     ],
     "_prefab": {
-      "__id__": 9
+      "__id__": 10
     },
     "_opacity": 255,
     "_color": {
@@ -200,6 +203,7 @@
       "__id__": 1
     },
     "_enabled": true,
+    "audio": [],
     "_id": ""
   },
   {
@@ -231,6 +235,21 @@
       "__id__": 1
     },
     "_enabled": true,
+    "_id": "c4izOAcztAw55rRE8T31bC"
+  },
+  {
+    "__type__": "d04eeHAcnpBOZkmyRclx6Xj",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "audio": [
+      {
+        "__uuid__": "bf839245-34f7-42f1-aa1d-151a92ac7075"
+      }
+    ],
     "_id": ""
   },
   {

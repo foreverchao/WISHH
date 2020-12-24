@@ -252,7 +252,7 @@
       "array": [
         0,
         0,
-        340.4370018497153,
+        266.6288680821115,
         0,
         0,
         0,
@@ -392,8 +392,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -2710.634,
-        -2854.25,
+        -3849.502,
+        -1992.643,
         0,
         0,
         0,
@@ -564,6 +564,17 @@
       "__id__": 6
     },
     "_enabled": true,
+    "audio": [
+      {
+        "__uuid__": "fd512c5e-b448-4e08-9a05-9c53eec97641"
+      },
+      {
+        "__uuid__": "b2e5e5c7-9d7d-4a01-9201-69b5fccdbbcb"
+      },
+      {
+        "__uuid__": "47204515-b185-4c88-b34c-4e9f9e10384c"
+      }
+    ],
     "lightPrefab": {
       "__uuid__": "c3bf4da5-b8cb-49a1-b1bf-255adff837b7"
     },
@@ -9531,8 +9542,16 @@
       "__id__": 230
     },
     "_enabled": true,
+    "audio": [
+      {
+        "__uuid__": "e49a33a7-cfb3-410f-b241-b490443ae176"
+      }
+    ],
     "the_shot": {
       "__uuid__": "c78b6220-188b-48ea-af26-6c77cec73db9"
+    },
+    "player": {
+      "__id__": 6
     },
     "_id": "03gpkeuaNNQYR38UkkiX44"
   },
@@ -9742,8 +9761,16 @@
       "__id__": 237
     },
     "_enabled": true,
+    "audio": [
+      {
+        "__uuid__": "e49a33a7-cfb3-410f-b241-b490443ae176"
+      }
+    ],
     "the_shot": {
       "__uuid__": "c78b6220-188b-48ea-af26-6c77cec73db9"
+    },
+    "player": {
+      "__id__": 6
     },
     "_id": "30s3q2ZURCILVtgJQJ2XAG"
   },
@@ -9953,8 +9980,16 @@
       "__id__": 244
     },
     "_enabled": true,
+    "audio": [
+      {
+        "__uuid__": "e49a33a7-cfb3-410f-b241-b490443ae176"
+      }
+    ],
     "the_shot": {
       "__uuid__": "c78b6220-188b-48ea-af26-6c77cec73db9"
+    },
+    "player": {
+      "__id__": 6
     },
     "_id": "85vT+HF2lIBrEQ/MhbFPvA"
   },
@@ -10164,8 +10199,16 @@
       "__id__": 251
     },
     "_enabled": true,
+    "audio": [
+      {
+        "__uuid__": "e49a33a7-cfb3-410f-b241-b490443ae176"
+      }
+    ],
     "the_shot": {
       "__uuid__": "c78b6220-188b-48ea-af26-6c77cec73db9"
+    },
+    "player": {
+      "__id__": 6
     },
     "_id": "71sqHXVnZDKLxKoDxWd4UG"
   },
@@ -10375,8 +10418,16 @@
       "__id__": 258
     },
     "_enabled": true,
+    "audio": [
+      {
+        "__uuid__": "e49a33a7-cfb3-410f-b241-b490443ae176"
+      }
+    ],
     "the_shot": {
       "__uuid__": "c2463acb-d9b0-4132-b936-b521e292ec5d"
+    },
+    "player": {
+      "__id__": 6
     },
     "_id": "e4zExDcORDkYs0o3Poimg0"
   },
@@ -10586,8 +10637,16 @@
       "__id__": 265
     },
     "_enabled": true,
+    "audio": [
+      {
+        "__uuid__": "e49a33a7-cfb3-410f-b241-b490443ae176"
+      }
+    ],
     "the_shot": {
       "__uuid__": "c2463acb-d9b0-4132-b936-b521e292ec5d"
+    },
+    "player": {
+      "__id__": 6
     },
     "_id": "85LyQONuRN9JPfm5k7yP0Q"
   },
@@ -10860,6 +10919,11 @@
       "__id__": 272
     },
     "_enabled": true,
+    "audio": [
+      {
+        "__uuid__": "923cf215-b9b1-4e5e-9d84-a6929d32e794"
+      }
+    ],
     "player": {
       "__id__": 6
     },
@@ -11342,6 +11406,7 @@
       "__id__": 286
     },
     "_enabled": true,
+    "audio": [],
     "player": {
       "__id__": 6
     },
@@ -11824,6 +11889,7 @@
       "__id__": 300
     },
     "_enabled": true,
+    "audio": [],
     "player": {
       "__id__": 6
     },
@@ -12306,6 +12372,7 @@
       "__id__": 314
     },
     "_enabled": true,
+    "audio": [],
     "player": {
       "__id__": 6
     },
@@ -12788,6 +12855,7 @@
       "__id__": 328
     },
     "_enabled": true,
+    "audio": [],
     "player": {
       "__id__": 6
     },
@@ -13270,6 +13338,7 @@
       "__id__": 342
     },
     "_enabled": true,
+    "audio": [],
     "player": {
       "__id__": 6
     },
@@ -13752,6 +13821,7 @@
       "__id__": 356
     },
     "_enabled": true,
+    "audio": [],
     "player": {
       "__id__": 6
     },
@@ -14002,6 +14072,7 @@
       "__id__": 364
     },
     "_enabled": true,
+    "audio": [],
     "player": {
       "__id__": 6
     },
@@ -14252,6 +14323,7 @@
       "__id__": 372
     },
     "_enabled": true,
+    "audio": [],
     "player": {
       "__id__": 6
     },
@@ -14734,6 +14806,7 @@
       "__id__": 386
     },
     "_enabled": true,
+    "audio": [],
     "player": {
       "__id__": 6
     },
@@ -15998,6 +16071,11 @@
     "arrowPrefab": {
       "__uuid__": "9037cccd-0d8b-4c37-9b39-6c76edd1dff3"
     },
+    "audio": [
+      {
+        "__uuid__": "ed22d1cb-d041-4ed3-968a-2a6745e6d614"
+      }
+    ],
     "_id": "e1Tw5qJgBMHI12cosKxXgy"
   },
   {

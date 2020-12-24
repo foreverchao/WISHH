@@ -11,6 +11,10 @@ cc.Class({
     properties: {
         player: cc.Node,
         arrowPrefab: cc.Prefab,
+        audio: {
+            default: [],
+            type: cc.AudioClip
+        },
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -78,6 +82,10 @@ cc.Class({
     {
         if(this.isAttacking)
             return;
+        this.scheduleOnce(
+            function(){
+                this.arrowSound = cc.audioEngine.play(this.audio[0], false, 1);
+            },0.5);
         this.setAni("attack");
     },
     shoot()

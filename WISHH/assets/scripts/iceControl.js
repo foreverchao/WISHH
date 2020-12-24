@@ -9,6 +9,10 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+        audio: {
+            default: [],
+            type: cc.AudioClip
+        },
         // foo: {
         //     // ATTRIBUTES:
         //     default: null,        // The default value will be used only when the component attaching
@@ -32,6 +36,7 @@ cc.Class({
         var physicsBox = this.node.getComponent(cc.PhysicsBoxCollider);
         var anim = this.node.getComponent(cc.Animation);
         cc.log("iceControl");
+        this.iceSound = cc.audioEngine.play(this.audio[0], false, 1);
         this.scheduleOnce(
             function(){
                 physicsBox.enabled = false;

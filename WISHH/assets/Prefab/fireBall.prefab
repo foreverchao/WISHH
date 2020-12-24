@@ -122,6 +122,16 @@
       "__id__": 1
     },
     "_enabled": true,
+    "audio": [
+      {
+        "__uuid__": "cae7ef90-a535-4a06-bf11-8b8153344fb3"
+      },
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
     "_id": ""
   },
   {
