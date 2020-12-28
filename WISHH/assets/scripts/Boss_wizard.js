@@ -613,13 +613,52 @@ cc.Class({
         //    this.attack_4();}
         //,12.86);
 
+        let attack_0_anima = cc.tween().call(() => {this.attack_0();}).delay(1.96);
+        let attack_1_anima = cc.tween().call(() => {this.attack_1();}).delay(3.24);
+        let attack_2_anima = cc.tween().call(() => {this.attack_2();}).delay(1.16);
+        let attack_3_anima = cc.tween().call(() => {this.attack_3();}).delay(16.89);
+        let attack_4_anima = cc.tween().call(() => {this.attack_4();}).delay(2.99);
+        let idle_anima = cc.tween().call(() => {this.air_idle();}).delay(2);
+        
+        cc.tween(this.node)
+        .delay(2)
+        .then(attack_0_anima)
+        .then(idle_anima)
+        .then(attack_1_anima)
+        .then(idle_anima)
+        .then(attack_2_anima)
+        .then(idle_anima)
+        .then(attack_3_anima)
+        .then(idle_anima)
+        .then(attack_4_anima)
+        .then(idle_anima)
+        .then(attack_4_anima)
+        .then(idle_anima)
+        .then(attack_3_anima)
+        .then(idle_anima)
+        .then(attack_2_anima)
+        .then(idle_anima)
+        .then(attack_1_anima)
+        .then(idle_anima)
+        .then(attack_0_anima)
+        .then(idle_anima)
+        .then(attack_2_anima)
+        .then(idle_anima)
+        .then(attack_1_anima)
+        .then(idle_anima)
+        .then(attack_4_anima)
+        .then(idle_anima)
+        .then(attack_3_anima)
+        .then(idle_anima)
+        .start();
+
         //attack_0 = 1.96
         //attack_1 = 3.24
         //attack_2 = 1.16
         //attack_3 = 16.89
         //attack_4 = 2.99
-
-        cc.tween(this.node)
+     
+        /*cc.tween(this.node)
         .delay(2)
         .call(() => {this.attack_0();}) 
         .delay(1.96)
@@ -661,7 +700,7 @@ cc.Class({
         .delay(16.89)
         .call(() => {this.air_idle();}) 
         .delay(2)
-        .start();
+        .start();*/
 
     },
 
