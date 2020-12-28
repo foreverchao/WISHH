@@ -579,6 +579,7 @@ cc.Class({
             }
         }
         if(attackedEnemy != null) {
+            this.shakeEffect(0.2);
         let tempNode = cc.instantiate(this.orangeEffect);
         attackedEnemy.addChild(tempNode);
         if(attackedEnemy.name == 'slim')

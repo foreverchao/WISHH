@@ -29,6 +29,7 @@ cc.Class({
         this.wizardAni.on('finished', this.onAnimaFinished, this);
         this.playerNode = this.node.getParent().getParent().getChildByName("player");
         this.canvasNode = this.node.getParent().getParent();
+        this.bossEffectNode = cc.find("Canvas/bossEffect");
         this.hurtMeNow = false; // true 時可以被攻擊
         this.hp = 2;
         this.bossCollider = this.node.getComponent(cc.PolygonCollider);
@@ -118,7 +119,7 @@ cc.Class({
                 var effect = cc.instantiate(this.effect_1);
                 effect.x = effectPosX[i];
                 effect.y = this.getRandom(-200,200); //圓圈圈 y 軸取亂數
-                this.canvasNode.addChild(effect);
+                this.bossEffectNode.addChild(effect);
                 //console.log(effect.x,effect.y);  
             }
         })
@@ -161,7 +162,7 @@ cc.Class({
             var effect = cc.instantiate(this.effect_2);
             effect.x = this.playerNode.x;
             effect.y = this.playerNode.y;
-            this.canvasNode.addChild(effect);
+            this.bossEffectNode.addChild(effect);
             this.scheduleOnce(function(){effect.group = "enemy";},1.08);
             this.scheduleOnce(function(){effect.group = "defult";},1.25);
 
@@ -233,22 +234,22 @@ cc.Class({
                 effect.x = this.node.x - 150;
                 effect.y = this.node.y;
             }
-            this.canvasNode.addChild(effect,20);
+            this.bossEffectNode.addChild(effect,20);
             this.attack_3_1Sound = cc.audioEngine.play(this.audio[2], false, 1);
         })
         .delay(3.00) // 集氣時間
         .call(() => { // Prefab 雷射光
             var effect = cc.instantiate(this.effect_3_Laser);
-            this.effectLoopBall = cc.find("Canvas/wizard_effect_3_Loop");
+            this.effectLoopBall = cc.find("Canvas/bossEffect/wizard_effect_3_Loop");
             effect.x = this.effectLoopBall.x;
             effect.y = this.effectLoopBall.y;
             //cc.log(effect.x,effect.y);
-            this.canvasNode.addChild(effect,10);   
+            this.bossEffectNode.addChild(effect,10);   
         })
         .delay(2.00) // 雷射時間
         .call(() => { // 雷射結束
-            this.effectLoopBall = cc.find("Canvas/wizard_effect_3_Loop");
-            this.effectLaser = cc.find("Canvas/wizard_effect_3_2");
+            this.effectLoopBall = cc.find("Canvas/bossEffect/wizard_effect_3_Loop");
+            this.effectLaser = cc.find("Canvas/bossEffect/wizard_effect_3_2");
             this.effectLoopBall.destroy();
             this.effectLaser.destroy();
             this.setAni("flash");
@@ -316,22 +317,22 @@ cc.Class({
                 effect.x = this.node.x - 150;
                 effect.y = this.node.y;
             }
-            this.canvasNode.addChild(effect,20);  
+            this.bossEffectNode.addChild(effect,20);  
             this.attack_3_2Sound = cc.audioEngine.play(this.audio[3], false, 1);
         })
         .delay(0) // 第二次不用集氣
         .call(() => { // Prefab 雷射光
             var effect = cc.instantiate(this.effect_3_Laser);
-            this.effectLoopBall = cc.find("Canvas/wizard_effect_3_Loop");
+            this.effectLoopBall = cc.find("Canvas/bossEffect/wizard_effect_3_Loop");
             effect.x = this.effectLoopBall.x;
             effect.y = this.effectLoopBall.y;
             //cc.log(effect.x,effect.y);
-            this.canvasNode.addChild(effect,10);     
+            this.bossEffectNode.addChild(effect,10);     
         })
         .delay(2.00) // 雷射時間
         .call(() => { // 雷射結束
-            this.effectLoopBall = cc.find("Canvas/wizard_effect_3_Loop");
-            this.effectLaser = cc.find("Canvas/wizard_effect_3_2");
+            this.effectLoopBall = cc.find("Canvas/bossEffect/wizard_effect_3_Loop");
+            this.effectLaser = cc.find("Canvas/bossEffect/wizard_effect_3_2");
             this.effectLoopBall.destroy();
             this.effectLaser.destroy();
             this.setAni("flash");
@@ -400,22 +401,22 @@ cc.Class({
                 effect.x = this.node.x - 150;
                 effect.y = this.node.y;
             }
-            this.canvasNode.addChild(effect,20);  
+            this.bossEffectNode.addChild(effect,20);  
             this.attack_3_2Sound = cc.audioEngine.play(this.audio[3], false, 1);
         })
         .delay(0) // 第三次也不用集氣
         .call(() => { // Prefab 雷射光
             var effect = cc.instantiate(this.effect_3_Laser);
-            this.effectLoopBall = cc.find("Canvas/wizard_effect_3_Loop");
+            this.effectLoopBall = cc.find("Canvas/bossEffect/wizard_effect_3_Loop");
             effect.x = this.effectLoopBall.x;
             effect.y = this.effectLoopBall.y;
             //cc.log(effect.x,effect.y);
-            this.canvasNode.addChild(effect,10);   
+            this.bossEffectNode.addChild(effect,10);   
         })
         .delay(2.00) // 雷射時間
         .call(() => { // 雷射結束
-            this.effectLoopBall = cc.find("Canvas/wizard_effect_3_Loop");
-            this.effectLaser = cc.find("Canvas/wizard_effect_3_2");
+            this.effectLoopBall = cc.find("Canvas/bossEffect/wizard_effect_3_Loop");
+            this.effectLaser = cc.find("Canvas/bossEffect/wizard_effect_3_2");
             this.effectLoopBall.destroy();
             this.effectLaser.destroy();
         })
@@ -506,8 +507,8 @@ cc.Class({
     {
         var temp = cc.find("Canvas");
         temp.getComponent("bossScene").stop = true;
-        this.effectLoopBall = cc.find("Canvas/wizard_effect_3_Loop");
-        this.effectLaser = cc.find("Canvas/wizard_effect_3_2");
+        this.effectLoopBall = cc.find("Canvas/bossEffect/wizard_effect_3_Loop");
+        this.effectLaser = cc.find("Canvas/bossEffect/wizard_effect_3_2");
         if(this.effectLoopBall != null) this.effectLoopBall.destroy();
         if(this.effectLaser != null) this.effectLaser.destroy();
         this.OrangeInteractItem = cc.find("Canvas/OrangeInteractItem");

@@ -21,6 +21,7 @@ cc.Class({
         this.effect_4.on('finished', this.onAnimaFinished, this);
         this.playerNode = this.node.getParent().getParent().getChildByName("player");
         this.canvasNode = cc.find("Canvas");
+        this.bossEffectNode = cc.find("Canvas/bossEffect");
         this.map_center = this.canvasNode.getChildByName("Center"); 
 
         if(this.node.x - this.map_center.x < 0) //在畫面左
@@ -58,7 +59,7 @@ cc.Class({
         this.newFireBall = cc.instantiate(this.FireBall);
         this.newFireBall.x = this.node.x;
         this.newFireBall.y = this.node.y;
-        this.canvasNode.addChild(this.newFireBall);
+        this.bossEffectNode.addChild(this.newFireBall);
         cc.log("shoot")
     },
 
