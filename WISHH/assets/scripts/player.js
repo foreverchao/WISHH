@@ -391,7 +391,7 @@ cc.Class({
             this.isAttacking = true;
             this.orangeAttack();
             this.setAni('orange');
-            this.purpleSound = cc.audioEngine.play(this.audio[1], false, 1);
+            this.orangeSound = cc.audioEngine.play(this.audio[1], false, 1);
             this.red = false;
             this.yellow = false;
         }
@@ -400,6 +400,7 @@ cc.Class({
             this.isAttacking = true;
             this.greenAttack();
             this.setAni('green');
+            this.greenSound = cc.audioEngine.play(this.audio[3], false, 1);
             this.blue = false;
             this.yellow = false;
         }
@@ -416,6 +417,7 @@ cc.Class({
         {
             this.isAttacking = true;
             this.setAni('fire');
+            this.redSound = cc.audioEngine.play(this.audio[4], false, 1);
             this.red = false;
         }
         else if(this.yellow)

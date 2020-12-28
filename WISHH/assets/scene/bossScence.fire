@@ -515,15 +515,20 @@
     "_enabled": true,
     "audio": [
       {
-        "__uuid__": "fd512c5e-b448-4e08-9a05-9c53eec97641"
+        "__uuid__": "278f5546-f878-4ec0-922c-908ed7cf8d54"
       },
       {
-        "__uuid__": "b2e5e5c7-9d7d-4a01-9201-69b5fccdbbcb"
+        "__uuid__": "9fbba14c-e96e-4c59-b92c-69cb0aa37de7"
       },
       {
-        "__uuid__": "47204515-b185-4c88-b34c-4e9f9e10384c"
+        "__uuid__": "60b71457-187b-4df8-b8f8-1611a284a35b"
       },
-      null
+      {
+        "__uuid__": "524220aa-5988-46e1-b010-51a71240baa7"
+      },
+      {
+        "__uuid__": "9d889aa0-60ef-4d78-8076-ef6f4bb6b0c7"
+      }
     ],
     "lightPrefab": {
       "__uuid__": "c3bf4da5-b8cb-49a1-b1bf-255adff837b7"
@@ -2344,8 +2349,15 @@
       {
         "__uuid__": "8af642c6-b3f6-4ca5-b3f3-ce8a359f9043"
       },
-      null,
-      null
+      {
+        "__uuid__": "02983035-f7b1-49bf-ab5a-6be11af3facd"
+      },
+      {
+        "__uuid__": "254460bc-5c5e-4978-900e-bc52c41fcb1f"
+      },
+      {
+        "__uuid__": "dff1a510-0ef4-40c1-a6fd-fae2be60905c"
+      }
     ],
     "_id": "26+XYBZHNFob8De65Xp4SG"
   },

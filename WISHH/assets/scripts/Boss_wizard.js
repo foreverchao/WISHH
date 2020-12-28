@@ -109,6 +109,7 @@ cc.Class({
         .delay(0.33)
         // effect_1 圓圈圈 動畫時間 = 2.58
         .call(() => { // 
+            this.attack_1Sound = cc.audioEngine.play(this.audio[1], false, 1);
             this.setAni("attack_1");
             this.bossCollider.enabled = true;
             this.hurtMeNow = true;
@@ -232,7 +233,8 @@ cc.Class({
                 effect.x = this.node.x - 150;
                 effect.y = this.node.y;
             }
-            this.canvasNode.addChild(effect,20);  
+            this.canvasNode.addChild(effect,20);
+            this.attack_3_1Sound = cc.audioEngine.play(this.audio[2], false, 1);
         })
         .delay(3.00) // 集氣時間
         .call(() => { // Prefab 雷射光
@@ -315,6 +317,7 @@ cc.Class({
                 effect.y = this.node.y;
             }
             this.canvasNode.addChild(effect,20);  
+            this.attack_3_2Sound = cc.audioEngine.play(this.audio[3], false, 1);
         })
         .delay(0) // 第二次不用集氣
         .call(() => { // Prefab 雷射光
@@ -398,6 +401,7 @@ cc.Class({
                 effect.y = this.node.y;
             }
             this.canvasNode.addChild(effect,20);  
+            this.attack_3_2Sound = cc.audioEngine.play(this.audio[3], false, 1);
         })
         .delay(0) // 第三次也不用集氣
         .call(() => { // Prefab 雷射光
