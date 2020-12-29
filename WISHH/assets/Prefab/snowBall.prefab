@@ -175,6 +175,11 @@
     "icePrefab": {
       "__uuid__": "bf6bc5ab-a686-473c-b9ee-23ad137f1dae"
     },
+    "audio": [
+      {
+        "__uuid__": "3011757c-237d-45ff-ac1c-9742ceaa7816"
+      }
+    ],
     "_id": ""
   },
   {

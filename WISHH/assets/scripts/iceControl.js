@@ -45,7 +45,6 @@ cc.Class({
         this.scheduleOnce(
             function(){
                 this.node.destroy();
-                cc.log("iceBreak")
             },3.42);
     },
 

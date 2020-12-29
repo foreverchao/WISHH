@@ -42,6 +42,18 @@
             }
           }
         ]
+      },
+      "cc.PhysicsBoxCollider": {
+        "size": [
+          {
+            "frame": 0,
+            "value": {
+              "__type__": "cc.Size",
+              "width": 0,
+              "height": 0
+            }
+          }
+        ]
       }
     }
   },

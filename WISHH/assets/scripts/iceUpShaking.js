@@ -8,14 +8,8 @@
 cc.Class({
     extends: cc.Component,
 
-    
-
-    },
-
-    // LIFE-CYCLE CALLBACKS:
-
     shakeEffect(duration) {
-        this.camera = cc.find("Canvas/Main Camera")
+        this.camera = cc.find("Canvas/Main Camera");
         this.camera.runAction(
             cc.repeatForever(
                 cc.sequence(
@@ -37,6 +31,9 @@ cc.Class({
             //this.camera.setPosition(0,0);
         }, duration*1000);
     },
+
+
+    // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
         this.shakeEffect(0.2);

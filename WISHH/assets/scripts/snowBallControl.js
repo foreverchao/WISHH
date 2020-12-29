@@ -10,11 +10,17 @@ cc.Class({
 
     properties: {
         icePrefab: cc.Prefab,
+        audio: {
+            default: [],
+            type: cc.AudioClip
+        },
     },
 
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {},
+    onLoad () {
+        this.touch = false;
+    },
 
     start () {
         
@@ -24,14 +30,17 @@ cc.Class({
         if(selfCollider.tag === 0)
         {
             cc.log(this.node.y)
-            this.ice();
-            this.node.destroy();
+            if(!this.touch) {
+                this.ice();
+                this.touch = true;
+                this.node.getComponent(cc.Sprite).enabled = false;
+            }
         }
     },
 
     ice()
     {
-        var canvas = this.node.getParent();
+        var canvas = cc.find("Canvas");
         var ice = cc.instantiate(this.icePrefab);
         ice.x = this.node.x;
         ice.y = this.node.y-30;
@@ -39,6 +48,16 @@ cc.Class({
         iceRb = ice.getComponent(cc.RigidBody);
         var anim = ice.getComponent(cc.Animation);
         anim.play("ice_up");
+        this.iceSound = cc.audioEngine.play(this.audio[0], false, 1);
+        this.scheduleOnce(
+            function(){
+                anim.play("ice_down");
+            },3);
+        this.scheduleOnce(
+            function(){
+                this.node.destroy();
+                ice.destroy();
+            },3.42);
     },
 
     // update (dt) {},

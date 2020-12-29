@@ -207,6 +207,18 @@ cc.Class({
                     this.setAni('idle');
                     this.isAttacking = false;
                     this.isOnGround = true;
+                    if(this.yellow) {
+                        this.nodeSetAni(this.new_yellowBar,'yellowBar_refill');
+                        this.scheduleOnce(function(){this.nodeSetAni(this.new_yellowButton,'yellowButton_up');},2);
+                    }
+                    if(this.red) {
+                        this.nodeSetAni(this.new_redBar,'redBar_refill');
+                        this.scheduleOnce(function(){this.nodeSetAni(this.new_redButton,'redButton_up');},2);
+                    }
+                    if(this.blue) {
+                        this.nodeSetAni(this.new_blueBar,'blueBar_refill');
+                        this.scheduleOnce(function(){this.nodeSetAni(this.new_blueButton,'blueButton_up');},2);
+                    }
                     this.yellow = false;
                     this.red = false;
                     this.blue = false;
