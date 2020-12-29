@@ -622,11 +622,12 @@ cc.Class({
     snow()
     {
         this.colorCoolDown(2);
+        this.canvasNode = cc.find("Canvas");
         var snowBall = cc.instantiate(this.snowBallPerfab);
         snowBall.x = this.node.x;
         snowBall.y = this.node.y;
-        this.playerShadow.addChild(snowBall);
-        snowRb = snowBall.getComponent(cc.RigidBody);
+        this.canvasNode.addChild(snowBall);
+        var snowRb = snowBall.getComponent(cc.RigidBody);
         if(this.node.scaleX < 0)
         {
             snowRb.applyForceToCenter( cc.v2(-40000,12000));

@@ -45,7 +45,6 @@ cc.Class({
         ice.x = this.node.x;
         ice.y = this.node.y-30;
         canvas.addChild(ice);
-        iceRb = ice.getComponent(cc.RigidBody);
         var anim = ice.getComponent(cc.Animation);
         anim.play("ice_up");
         this.iceSound = cc.audioEngine.play(this.audio[0], false, 1);
