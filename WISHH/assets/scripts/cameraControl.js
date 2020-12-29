@@ -11,6 +11,7 @@ cc.Class({
     properties: {
         player: cc.Node,
         UI: cc.Node,
+        BG_Layer_back: cc.Node,
         // foo: {
         //     // ATTRIBUTES:
         //     default: null,        // The default value will be used only when the component attaching
@@ -45,5 +46,6 @@ cc.Class({
         currentPosition.lerp(targerPosition, 0.1, currentPosition);
         this.node.setPosition(currentPosition);
         this.UI.setPosition(currentPosition.x-200,currentPosition.y+200);
+        this.BG_Layer_back.setPosition(currentPosition.x/2,currentPosition.y/2)
     },
 });
