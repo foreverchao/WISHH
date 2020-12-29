@@ -33,6 +33,13 @@ cc.Class({
         new_redButton: cc.Node,
         new_blueButton: cc.Node,
         new_yellowButton: cc.Node,
+
+        UI_blue: cc.Node,
+        UI_red: cc.Node,
+        UI_yellow: cc.Node,
+        UI_orange: cc.Node,
+        UI_green: cc.Node,
+        UI_purple: cc.Node,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -383,14 +390,78 @@ cc.Class({
     color_detect()
     {
         //cc.log(this.red,this.blue,this.yellow);
-        if(this.red && this.blue && this.yellow)  this.colorShow.color = cc.Color.WHITE;
-        else if(this.red && !this.blue && !this.yellow) this.colorShow.color = cc.Color.RED;
-        else if(!this.red && this.blue && !this.yellow) this.colorShow.color = cc.Color.BLUE;
-        else if(!this.red && !this.blue && this.yellow) this.colorShow.color = cc.Color.YELLOW;
-        else if(this.red && this.blue && !this.yellow) this.colorShow.color = new cc.Color(130,0,255);
-        else if(this.red && !this.blue && this.yellow) this.colorShow.color = cc.Color.ORANGE;
-        else if(!this.red && this.blue && this.yellow) this.colorShow.color = cc.Color.GREEN;
-        else this.colorShow.color = cc.Color.BLACK;
+        if(this.red && this.blue && this.yellow) {
+            this.colorShow.color = cc.Color.WHITE;
+            this.UI_blue.active = false;
+            this.UI_red.active = false;
+            this.UI_yellow.active = false;
+            this.UI_orange.active = false;
+            this.UI_green.active = false;
+            this.UI_purple.active = false;
+        }
+        else if(this.red && !this.blue && !this.yellow) {
+            this.colorShow.color = cc.Color.RED;
+            this.UI_blue.active = false;
+            this.UI_red.active = true;
+            this.UI_yellow.active = false;
+            this.UI_orange.active = false;
+            this.UI_green.active = false;
+            this.UI_purple.active = false;
+        }
+        else if(!this.red && this.blue && !this.yellow) {
+            this.colorShow.color = cc.Color.BLUE;
+            this.UI_blue.active = true;
+            this.UI_red.active = false;
+            this.UI_yellow.active = false;
+            this.UI_orange.active = false;
+            this.UI_green.active = false;
+            this.UI_purple.active = false;
+        }
+        else if(!this.red && !this.blue && this.yellow) {
+            this.colorShow.color = cc.Color.YELLOW;
+            this.UI_blue.active = false;
+            this.UI_red.active = false;
+            this.UI_yellow.active = true;
+            this.UI_orange.active = false;
+            this.UI_green.active = false;
+            this.UI_purple.active = false;
+        }
+        else if(this.red && this.blue && !this.yellow) {
+            this.colorShow.color = new cc.Color(130,0,255);
+            this.UI_blue.active = false;
+            this.UI_red.active = false;
+            this.UI_yellow.active = false;
+            this.UI_orange.active = false;
+            this.UI_green.active = false;
+            this.UI_purple.active = true;
+        }
+        else if(this.red && !this.blue && this.yellow) {
+            this.colorShow.color = cc.Color.ORANGE;
+            this.UI_blue.active = false;
+            this.UI_red.active = false;
+            this.UI_yellow.active = false;
+            this.UI_orange.active = true;
+            this.UI_green.active = false;
+            this.UI_purple.active = false;
+        }
+        else if(!this.red && this.blue && this.yellow) {
+            this.colorShow.color = cc.Color.GREEN;
+            this.UI_blue.active = false;
+            this.UI_red.active = false;
+            this.UI_yellow.active = false;
+            this.UI_orange.active = false;
+            this.UI_green.active = true;
+            this.UI_purple.active = false;
+        }
+        else {
+            this.colorShow.color = cc.Color.BLACK;
+            this.UI_blue.active = false;
+            this.UI_red.active = false;
+            this.UI_yellow.active = false;
+            this.UI_orange.active = false;
+            this.UI_green.active = false;
+            this.UI_purple.active = false;
+        }
     },
 
     //attack
