@@ -10,7 +10,8 @@ cc.Class({
 
     properties: {
         player: cc.Node,
-        UI: cc.Node,
+        bar_UI: cc.Node,
+        icon_UI: cc.Node,
         BG_Layer_back: cc.Node,
         // foo: {
         //     // ATTRIBUTES:
@@ -40,12 +41,27 @@ cc.Class({
     update (dt) 
     {
         let targerPosition = this.player.getPosition();
-        targerPosition.y = cc.misc.clampf(targerPosition.y, -4000, 650);
-        //targerPosition.x = cc.misc.clampf(targerPosition.x, -225, 1000);
         let currentPosition = this.node.getPosition();
-        currentPosition.lerp(targerPosition, 0.1, currentPosition);
-        this.node.setPosition(currentPosition);
-        this.UI.setPosition(currentPosition.x-200,currentPosition.y+200);
-        this.BG_Layer_back.setPosition(currentPosition.x/2,currentPosition.y/2)
+        if(cc.director.getScene().name == "bossScence") {
+            targerPosition.x = cc.misc.clampf(targerPosition.x, -300, 0);
+            targerPosition.y = cc.misc.clampf(targerPosition.y, 0, 0);
+            this.node.getComponent(cc.Camera).zoomRatio = 0.8;
+            this.bar_UI.setPosition(currentPosition.x-350,currentPosition.y+300);
+            this.icon_UI.setPosition(currentPosition.x-50,currentPosition.y+100);
+            currentPosition.lerp(targerPosition, 0.1, currentPosition);
+            this.node.setPosition(currentPosition);
+            this.BG_Layer_back.setPosition(currentPosition.x/2,currentPosition.y/2)
+        }
+        else if(cc.director.getScene().name == "mainScence")
+        {
+            currentPosition.lerp(targerPosition, 0.1, currentPosition);
+            this.node.setPosition(currentPosition);
+            this.BG_Layer_back.setPosition(currentPosition.x/2,currentPosition.y/2)
+            targerPosition.y = cc.misc.clampf(targerPosition.y, -4000, 650);
+            this.node.getComponent(cc.Camera).zoomRatio = 1;
+            this.bar_UI.setPosition(currentPosition.x-250,currentPosition.y+200);
+            this.icon_UI.setPosition(currentPosition.x-200,currentPosition.y+200);
+        }
+
     },
 });

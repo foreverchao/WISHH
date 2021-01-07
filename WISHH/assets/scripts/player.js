@@ -300,7 +300,7 @@ cc.Class({
 
     wallSlide()
     {
-        this.lv = this.rb.linearVelocity;
+        /*this.lv = this.rb.linearVelocity;
         this.pushingWall = false;
         if((this.rb.linearVelocity.x>0 && this.wallSide==-1) || (this.rb.linearVelocity.x<0 && this.wallSide==1))
             this.pushingWall = true;
@@ -310,7 +310,7 @@ cc.Class({
         this.lv.y = -this.slideSpeed;
         this.rb.linearVelocity = this.lv;
         }
-        else this.onWall = false;
+        else this.onWall = false;*/
     },
 
     dash()
@@ -804,6 +804,7 @@ cc.Class({
 
     update (dt) 
     {    
+        cc.log(this.isOnGround);
         //cc.log("isDashing " + this.isDashing);
         //cc.log(this.node.group)
         if(this.canMove){

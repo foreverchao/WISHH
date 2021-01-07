@@ -37,7 +37,7 @@ cc.Class({
         this.bossCollider.enabled = false;
         this.circleCollider.enabled = false;
         this.alive = true;
-        this.bossBgm = cc.audioEngine.play(this.audio[0], true, 0.1);
+        this.bossBgm = cc.audioEngine.play(this.audio[0], true, 1);
     },
 
     setAni(anima)
