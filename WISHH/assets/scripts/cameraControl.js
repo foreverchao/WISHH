@@ -12,6 +12,7 @@ cc.Class({
         player: cc.Node,
         bar_UI: cc.Node,
         icon_UI: cc.Node,
+        score_UI: cc.Node,
         BG_Layer_back: cc.Node,
         // foo: {
         //     // ATTRIBUTES:
@@ -46,8 +47,9 @@ cc.Class({
             targerPosition.x = cc.misc.clampf(targerPosition.x, -300, 0);
             targerPosition.y = cc.misc.clampf(targerPosition.y, 0, 0);
             this.node.getComponent(cc.Camera).zoomRatio = 0.8;
-            this.bar_UI.setPosition(currentPosition.x-350,currentPosition.y+300);
-            this.icon_UI.setPosition(currentPosition.x-50,currentPosition.y+100);
+            this.bar_UI.setPosition(currentPosition.x,currentPosition.y);
+            this.icon_UI.setPosition(currentPosition.x,currentPosition.y);
+            this.score_UI.setPosition(currentPosition.x,currentPosition.y);
             currentPosition.lerp(targerPosition, 0.1, currentPosition);
             this.node.setPosition(currentPosition);
             this.BG_Layer_back.setPosition(currentPosition.x/2,currentPosition.y/2)
@@ -59,8 +61,9 @@ cc.Class({
             this.BG_Layer_back.setPosition(currentPosition.x/2,currentPosition.y/2)
             targerPosition.y = cc.misc.clampf(targerPosition.y, -4000, 650);
             this.node.getComponent(cc.Camera).zoomRatio = 1;
-            this.bar_UI.setPosition(currentPosition.x-250,currentPosition.y+200);
-            this.icon_UI.setPosition(currentPosition.x-200,currentPosition.y+200);
+            this.bar_UI.setPosition(currentPosition.x,currentPosition.y);
+            this.score_UI.setPosition(currentPosition.x,currentPosition.y);
+            this.icon_UI.setPosition(currentPosition.x,currentPosition.y);
         }
 
     },
