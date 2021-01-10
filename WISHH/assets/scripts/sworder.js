@@ -5,6 +5,8 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
+let Variables = require("./gameGlobalVariable");
+
 cc.Class({
     extends: cc.Component,
 
@@ -196,8 +198,11 @@ cc.Class({
         .blink(0.5, 3)
         .call(() => {
             this.hp--;
-            if(this.hp <=0)
+            if(this.hp <=0) {
+                Variables.score += 350;
+                Variables.scoreChange = true;
                 this.node.destroy();
+            }
         }) 
         .start();
 

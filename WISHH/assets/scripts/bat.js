@@ -5,6 +5,8 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
+let Variables = require("./gameGlobalVariable");
+
 cc.Class({
     extends: cc.Component,
 
@@ -95,9 +97,43 @@ cc.Class({
                 this.scheduleOnce(function(){ this.node.destroy();},0.5);
             //this.isHit = true;
             else*/
+
+            this.shakeEffect(0.3);
+            cc.tween(this.node)
+            .blink(0.5, 3)
+            .call(() => {
+                Variables.score += 200;
+                Variables.scoreChange = true;
                 this.node.destroy();
+            }) 
+            .start();
         }
     },
+
+    shakeEffect(duration) {
+        this.camera = cc.find("Canvas/Main Camera")
+        this.camera.runAction(
+            cc.repeatForever(
+                cc.sequence(
+                    cc.moveBy(0.02, cc.v2(5, 7)),
+                    cc.moveBy(0.02, cc.v2(-6, 7)),
+                    cc.moveBy(0.02, cc.v2(-13, 3)),
+                    cc.moveBy(0.02, cc.v2(3, -6)),
+                    cc.moveBy(0.02, cc.v2(-5, 5)),
+                    cc.moveBy(0.02, cc.v2(2, -8)),
+                    cc.moveBy(0.02, cc.v2(-8, -10)),
+                    cc.moveBy(0.02, cc.v2(3, 10)),
+                    cc.moveBy(0.02, cc.v2(0, 0))
+                )
+            )
+        );
+
+        setTimeout(() => {
+            this.camera.stopAllActions();
+            //this.camera.setPosition(0,0);
+        }, duration*1000);
+    },
+
 
      update (dt) 
      {

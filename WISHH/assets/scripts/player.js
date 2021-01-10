@@ -345,7 +345,7 @@ cc.Class({
             this.scheduleOnce(function(){ light.destroy();this.isDashing = false;cc.log("destroy");},0.83);
             this.scheduleOnce(function(){this.node.group = "Player";cc.log("I'm Player")},0.83);//this.node.color.fromHEX('#FFFFFF');
             this.scheduleOnce(function(){ this.isDashing = false;cc.log("stop");this.rb.gravityScale = 1;},0.1);
-            cc.log(this.lv.x)
+            //cc.log(this.lv.x)
             //this.rb.applyForceToCenter( cc.v2(this.dashForce,0) , true );
             //this.node.x += dashDistance;
             //cc.director.getPhysicsManager().gravity = cc.v2(0, -1000);   
@@ -357,6 +357,7 @@ cc.Class({
 
     dead()
     {
+        this.canMove = false;
         this.rb.linearVelocity.x = 0;
         this.rb.linearVelocity.y = 0;
         this.setAni('player_die');
@@ -566,7 +567,7 @@ cc.Class({
             if(this.canJump && this.jumpCount!=0)
             {
                 this.jumpForce = (152000000-200000*this.rb.linearVelocity.y)/(830);
-                cc.log(this.jumpForce);
+                //cc.log(this.jumpForce);
                 if(this.jumpCount==2) this.rb.applyForceToCenter( cc.v2(0,this.jumpForce) , true );
                 else if(this.jumpCount==1) 
                 {
@@ -804,7 +805,7 @@ cc.Class({
 
     update (dt) 
     {    
-        cc.log(this.isOnGround);
+        //cc.log(this.isOnGround);
         //cc.log("isDashing " + this.isDashing);
         //cc.log(this.node.group)
         if(this.canMove){
@@ -812,6 +813,12 @@ cc.Class({
             if(/*this.playerState == State.stand && */!this.isDashing && !this.isAttacking)
             {
                 this.move();
+            }
+        }
+        else {
+            if(this.isOnGround) {
+                this.lv.x = 0;
+                this.rb.linearVelocity = this.lv; 
             }
         }
         var fallMultiplier = 2.5;    //控制下墜時的重力
