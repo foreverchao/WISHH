@@ -39,8 +39,8 @@ cc.Class({
         this.node.getComponent(cc.Animation).play("final");
         var playerNode = cc.find('Canvas/player');
         var point = playerNode.getComponent('player').respawnPoint;
-        point.x = this.node.x;
-        point.y = this.node.y;
+        point.x = this.node.x - 97;
+        point.y = this.node.y - 14;
         playerNode.getComponent('player').respawnPoint = point;
 
         //cc.director.loadScene("bossScence");

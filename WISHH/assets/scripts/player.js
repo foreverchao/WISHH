@@ -48,6 +48,7 @@ cc.Class({
         this.redMagicPoint = 10;//red mp
         this.blueMagicPoint = 10;//blue mp
         this.yellowMagicPoint = 10;//yellow mp
+        this.playerHP = 3;
         this.setMP();
         this.canMove = true;
         this.dashForce = 1000000;
@@ -208,27 +209,34 @@ cc.Class({
             case cc.macro.KEY.r:
                 if(!this.canMove)
                 {
-                    //cc.director.loadScene('mainScence');
-                    this.node.setPosition(this.respawnPoint.x, this.respawnPoint.y);
-                    this.canMove = true;
-                    this.setAni('idle');
-                    this.isAttacking = false;
-                    this.isOnGround = true;
-                    if(this.yellow) {
-                        this.nodeSetAni(this.new_yellowBar,'yellowBar_refill');
-                        this.scheduleOnce(function(){this.nodeSetAni(this.new_yellowButton,'yellowButton_up');},2);
-                    }
-                    if(this.red) {
-                        this.nodeSetAni(this.new_redBar,'redBar_refill');
-                        this.scheduleOnce(function(){this.nodeSetAni(this.new_redButton,'redButton_up');},2);
-                    }
-                    if(this.blue) {
-                        this.nodeSetAni(this.new_blueBar,'blueBar_refill');
-                        this.scheduleOnce(function(){this.nodeSetAni(this.new_blueButton,'blueButton_up');},2);
-                    }
-                    this.yellow = false;
-                    this.red = false;
-                    this.blue = false;
+                    cc.tween(this.node)
+                    .call(() => {
+                        this.node.setPosition(this.respawnPoint.x, this.respawnPoint.y);
+                        this.setAni('respawn');
+                    }) 
+                    .delay(1.67)
+                    .call(() => {
+                        this.canMove = true;
+                        this.setAni('idle');
+                        this.isAttacking = false;
+                        this.isOnGround = true;
+                        if(this.yellow) {
+                            this.nodeSetAni(this.new_yellowBar,'yellowBar_refill');
+                            this.scheduleOnce(function(){this.nodeSetAni(this.new_yellowButton,'yellowButton_up');},2);
+                        }
+                        if(this.red) {
+                            this.nodeSetAni(this.new_redBar,'redBar_refill');
+                            this.scheduleOnce(function(){this.nodeSetAni(this.new_redButton,'redButton_up');},2);
+                        }
+                        if(this.blue) {
+                            this.nodeSetAni(this.new_blueBar,'blueBar_refill');
+                            this.scheduleOnce(function(){this.nodeSetAni(this.new_blueButton,'blueButton_up');},2);
+                        }
+                        this.yellow = false;
+                        this.red = false;
+                        this.blue = false;
+                    }) 
+                    .start();
                 }
                 break;
         }  
@@ -260,7 +268,6 @@ cc.Class({
         if(other.node.name == "enemyFireBall" ||other.node.name == "effect_2" ||other.node.name == "wizard_effect_1" || other.node.name == "wizard" || other.node.name == "archer" || other.node.name == "arrow" || other.node.name == "laser" || other.node.name == "laserHalf" || other.node.name == "the_shot" || other.node.name =="sworder" || other.node.name =="bat" || other.node.name == "slime_attack_2_effect_1_0"
            || other.node.name == "NewFireBall" || other.node.name == "wizard_effect_2" || other.node.name == "Boss_wizard" || other.node.name == "wizard_effect_3_2") {
             this.dead();
-            this.canMove = false;
         }
     },
 
@@ -287,7 +294,6 @@ cc.Class({
         {
             //if(!this.isDashing) cc.log('deadStatus'); else cc.log('undeadStatus');
             this.dead();
-            this.canMove = false;
             cc.log("dead");
         }
         else if(otherCollider.node.name == "final")
@@ -357,6 +363,8 @@ cc.Class({
 
     dead()
     {
+        if(this.canMove) this.playerHP--;
+        this.setHP();
         this.canMove = false;
         this.rb.linearVelocity.x = 0;
         this.rb.linearVelocity.y = 0;
@@ -709,6 +717,44 @@ cc.Class({
             snowRb.applyForceToCenter( cc.v2(40000,12000));
         }
 
+    },
+
+    setHP(){
+        this.HP1 = cc.find("Canvas/bar_UI/UI_hp_bar/UI_hp1");
+        this.HP2 = cc.find("Canvas/bar_UI/UI_hp_bar/UI_hp2");
+        this.HP3 = cc.find("Canvas/bar_UI/UI_hp_bar/UI_hp3");
+        if(this.playerHP == 3) {
+            this.HP1.active = true;
+            this.HP2.active = true;
+            this.HP3.active = true;
+        }
+        else if(this.playerHP == 2)
+        {
+            cc.tween(this.HP3)
+            .blink(0.5, 3)
+            .call(() => {
+                this.HP3.active = false;
+            }) 
+            .start();
+        }
+        else if(this.playerHP == 1)
+        {
+            cc.tween(this.HP2)
+            .blink(0.5, 3)
+            .call(() => {
+                this.HP2.active = false;
+            }) 
+            .start();
+        }
+        else if(this.playerHP == 0)
+        {
+            cc.tween(this.HP1)
+            .blink(0.5, 3)
+            .call(() => {
+                this.HP1.active = false;
+            }) 
+            .start();
+        }
     },
 
     setMP(){
