@@ -213,7 +213,7 @@
       "array": [
         0,
         0,
-        348.1963389090809,
+        348.26682737507485,
         0,
         0,
         0,
@@ -289,6 +289,7 @@
     "icon_UI": {
       "__id__": 58
     },
+    "score_UI": null,
     "BG_Layer_back": {
       "__id__": 89
     },
@@ -690,8 +691,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -46,
-        16,
+        -113.101,
+        79.201,
         0,
         0,
         0,
@@ -779,8 +780,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -222.192,
-        206.908,
+        0,
+        0,
         0,
         0,
         0,
@@ -841,8 +842,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -70.911,
-        0,
+        -138.012,
+        63.201,
         0,
         0,
         0,
@@ -937,8 +938,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -44.412,
-        0,
+        -111.513,
+        63.201,
         0,
         0,
         0,
@@ -1033,8 +1034,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -19.407,
-        0,
+        -86.508,
+        63.201,
         0,
         0,
         0,
@@ -1132,8 +1133,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -50.361,
-        7.666,
+        -117.462,
+        70.867,
         0,
         0,
         0,
@@ -1249,8 +1250,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -53.361,
-        15.666,
+        -120.462,
+        78.867,
         0,
         0,
         0,
@@ -1366,8 +1367,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -72.361,
-        8.666,
+        -139.462,
+        71.867,
         0,
         0,
         0,
@@ -1483,8 +1484,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -69.361,
-        15.666,
+        -136.462,
+        78.867,
         0,
         0,
         0,
@@ -1600,8 +1601,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -61.361,
-        8.666,
+        -128.462,
+        71.867,
         0,
         0,
         0,
@@ -1717,8 +1718,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -61.361,
-        15.666,
+        -128.462,
+        78.867,
         0,
         0,
         0,
@@ -2721,8 +2722,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        96.708,
-        -100.235,
+        86.917,
+        -78.205,
         0,
         0,
         0,
@@ -2798,8 +2799,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -204.107,
-        203.894,
+        0,
+        0,
         0,
         0,
         0,
@@ -2864,8 +2865,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        133.118,
-        -100.236,
+        123.327,
+        -78.206,
         0,
         0,
         0,
@@ -3056,8 +3057,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        151.62,
-        -100.652,
+        141.829,
+        -78.622,
         0,
         0,
         0,
@@ -3248,8 +3249,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        114.79,
-        -101.189,
+        104.999,
+        -79.159,
         0,
         0,
         0,
@@ -3440,8 +3441,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        60.537,
-        -99.28,
+        50.746,
+        -77.25,
         0,
         0,
         0,
@@ -3632,8 +3633,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        80.361,
-        -99.615,
+        70.57,
+        -77.585,
         0,
         0,
         0,
@@ -4003,7 +4004,7 @@
     "tag": 2,
     "_density": 1,
     "_sensor": false,
-    "_friction": 0.2,
+    "_friction": 0,
     "_restitution": 0,
     "body": null,
     "_offset": {
@@ -4029,7 +4030,7 @@
     "tag": 3,
     "_density": 1,
     "_sensor": false,
-    "_friction": 0.2,
+    "_friction": 0,
     "_restitution": 0,
     "body": null,
     "_offset": {
