@@ -61,7 +61,7 @@ cc.Class({
                 this.scheduleOnce(function(){ this.hurt();;},0.5);
             this.isHit = true;
             else*/
-            this.hurt();
+            if(this.hp > 0) this.hurt();
         }
     },
     detectPlayer()

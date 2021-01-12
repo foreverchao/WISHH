@@ -44,6 +44,7 @@ cc.Class({
 */
         this.node.getComponent(cc.Animation).play("move");
         this.end = true;
+        this.isDead = false;
     },
     move()
     {
@@ -97,16 +98,19 @@ cc.Class({
                 this.scheduleOnce(function(){ this.node.destroy();},0.5);
             //this.isHit = true;
             else*/
-
-            this.shakeEffect(0.3);
-            cc.tween(this.node)
-            .blink(0.5, 3)
-            .call(() => {
-                Variables.score += 200;
-                Variables.scoreChange = true;
-                this.node.destroy();
-            }) 
-            .start();
+            if(!this.isDead)
+            {
+                this.isDead = true;
+                this.shakeEffect(0.3);
+                cc.tween(this.node)
+                .blink(0.5, 3)
+                .call(() => {
+                    Variables.score += 200;
+                    Variables.scoreChange = true;
+                    this.node.destroy();
+                }) 
+                .start();
+            }
         }
     },
 
