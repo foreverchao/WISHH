@@ -43,7 +43,9 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {},
+    onLoad () {
+        this.switchON = false;
+    },
 
     start () {
 
@@ -51,10 +53,12 @@ cc.Class({
 
     onCollisionEnter(other, self)
     {
-        cc.log(other.node.name)
-       this.node.getComponent(cc.Animation).play();
-       this.afterDoor.getComponent(cc.Animation).play();
-       this.afterDoor.getComponent(cc.PhysicsBoxCollider).enabled = false;
+       if(!this.switchON) {
+           this.switchON = true;
+        this.node.getComponent(cc.Animation).play();
+        this.afterDoor.getComponent(cc.Animation).play();
+        this.afterDoor.getComponent(cc.PhysicsBoxCollider).enabled = false;
+       }
     },
     // update (dt) {},
 });

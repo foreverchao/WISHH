@@ -15,6 +15,7 @@ cc.Class({
         },
         position1: [cc.Vec2],
         position2: [cc.Vec2],
+        distance: [cc.Integer],
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -22,6 +23,7 @@ cc.Class({
     onLoad () {
         this.trigger = false;
         this.swithON = false;
+        this.speed = 10;
     },
 
     onCollisionEnter(other, self)
@@ -45,6 +47,15 @@ cc.Class({
         this.trigger = true;
     },
 
+    newPlatformMove()
+    {
+        for(var i=0; i<this.platform.length; i++) {
+            if(this.position1[i].x == this.position2[i].x) {
+                
+            }
+        }
+    },
+
     start () {
 
     },
@@ -53,6 +64,7 @@ cc.Class({
         if(this.swithON)
         {
             this.platformMove();
+            var d = this.speed * this._direction * dt;
         }
     },
 });

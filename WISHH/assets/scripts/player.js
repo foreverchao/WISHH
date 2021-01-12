@@ -868,16 +868,17 @@ cc.Class({
             }
         }
         var fallMultiplier = 2.5;    //控制下墜時的重力
-        var lowJumpMultiplier = 3; //控制輕跳時的重力
-        var limitMultiplier = 1.5; //增加重力避免漂浮感
+        var lowJumpMultiplier = 2; //控制輕跳時的重力
+        var limitMultiplier = 1.6; //增重力避免漂浮感 origin = 1.5
         this.lv = this.rb.linearVelocity;
         //cc.log(this.lv.y);
         if(!this.isDashing) {
             if(this.lv.y < 0) { //當角色下降時
                 this.lv.y += cc.Vec2.UP.y * cc.director.getPhysicsManager().gravity.y * (fallMultiplier - 1) * dt;
-            } else if(this.lv.y > 0 && !Input[cc.macro.KEY.w]) { //當角色輕跳時
+            } 
+            /*else if(this.lv.y > 0 && !Input[cc.macro.KEY.w]) { //當角色輕跳時
                 this.lv.y += cc.Vec2.UP.y * cc.director.getPhysicsManager().gravity.y * (lowJumpMultiplier - 1) * dt;
-            }
+            }*/
             else if(this.lv.y > 0) { //當角色上升時
                 this.lv.y += cc.Vec2.UP.y * cc.director.getPhysicsManager().gravity.y * (limitMultiplier - 1) * dt;
             }

@@ -14,6 +14,8 @@ cc.Class({
         icon_UI: cc.Node,
         score_UI: cc.Node,
         BG_Layer_back: cc.Node,
+        BG_Layer_back1: cc.Node,
+
         // foo: {
         //     // ATTRIBUTES:
         //     default: null,        // The default value will be used only when the component attaching
@@ -58,7 +60,8 @@ cc.Class({
         {
             currentPosition.lerp(targerPosition, 0.1, currentPosition);
             this.node.setPosition(currentPosition);
-            this.BG_Layer_back.setPosition(currentPosition.x/2,currentPosition.y/2)
+            this.BG_Layer_back1.setPosition(currentPosition.x/2,currentPosition.y/2);
+            this.BG_Layer_back.setPosition(currentPosition.x/4,currentPosition.y/4);
             targerPosition.y = cc.misc.clampf(targerPosition.y, -4000, 650);
             this.node.getComponent(cc.Camera).zoomRatio = 1;
             this.bar_UI.setPosition(currentPosition.x,currentPosition.y);
