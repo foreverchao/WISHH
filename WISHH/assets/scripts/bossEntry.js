@@ -37,15 +37,27 @@ cc.Class({
     reach() {
         this.flagUsed = true;
         this.node.getComponent(cc.Animation).play("final");
-        cc.director.loadScene("bossScence");
+
     },
 
     onLoad () {
         this.flagUsed = false;
+        this.flag = this.node.getComponent(cc.Animation);
+        this.flag.on('finished', this.onAnimaFinished, this);
+    },
+    onAnimaFinished(e, data)
+    {
+        if(data.name == 'final')
+        {
+            this.node.getComponent(cc.Animation).play("changeScene");
+        }
+        else if(data.name == 'changeScene')
+        {
+            cc.director.loadScene("bossScence");
+        }
     },
 
     start () {
-
     },
 
     // update (dt) {},

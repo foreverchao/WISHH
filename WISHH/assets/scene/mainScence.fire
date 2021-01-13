@@ -419,8 +419,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -2977.82,
-        -470.149,
+        -276.169,
+        -109.15,
         0,
         0,
         0,
@@ -36268,6 +36268,9 @@
     "_clips": [
       {
         "__uuid__": "708f2c01-86ee-4575-a87a-04bcf284f1ca"
+      },
+      {
+        "__uuid__": "6084aa1d-daf2-4e73-b498-f00c0ba968c8"
       }
     ],
     "playOnLoad": false,
