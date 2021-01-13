@@ -31,7 +31,7 @@ cc.Class({
     
     onCollisionEnter(other, self)
     {
-        if(!this.flagUsed) this.reach();
+        if(!this.flagUsed &&  other.node.group == 'Player') this.reach();
     },
 
     reach() {

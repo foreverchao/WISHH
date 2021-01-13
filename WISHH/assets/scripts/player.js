@@ -699,7 +699,7 @@ cc.Class({
     snow()
     {
         this.colorCoolDown(2);
-        this.canvasNode = cc.find("Canvas");
+        this.canvasNode = cc.find("Canvas/playerEffect");
         var snowBall = cc.instantiate(this.snowBallPerfab);
         snowBall.x = this.node.x;
         snowBall.y = this.node.y;

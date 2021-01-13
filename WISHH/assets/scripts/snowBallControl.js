@@ -40,7 +40,7 @@ cc.Class({
 
     ice()
     {
-        var canvas = cc.find("Canvas");
+        var canvas = cc.find("Canvas/playerEffect");
         var ice = cc.instantiate(this.icePrefab);
         ice.x = this.node.x;
         ice.y = this.node.y-30;
