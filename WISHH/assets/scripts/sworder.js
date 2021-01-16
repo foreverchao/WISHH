@@ -181,7 +181,7 @@ cc.Class({
         this.lv.x = 0;
         this.rb.linearVelocity = this.lv;
         this.rest = 50;
-        this.shakeEffect(0.3);
+        if(this.hp > 0) this.shakeEffect(0.3);
         this.playerNode = cc.find("Canvas/player");
         this.nodeWorld = this.localConvertWorldPoint(this.node);
         this.playerWorld = this.localConvertWorldPoint(this.playerNode);
