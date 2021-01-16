@@ -100,6 +100,7 @@ cc.Class({
             else*/
             if(!this.isDead)
             {
+                this.node.group = "defult"
                 this.isDead = true;
                 this.shakeEffect(0.3);
                 cc.tween(this.node)

@@ -79,60 +79,6 @@
           }
         ]
       },
-      "cc.PhysicsBoxCollider": {
-        "size": [
-          {
-            "frame": 8,
-            "value": {
-              "__type__": "cc.Size",
-              "width": 9,
-              "height": 0.6
-            }
-          },
-          {
-            "frame": 9,
-            "value": {
-              "__type__": "cc.Size",
-              "width": 33.1,
-              "height": 28.1
-            }
-          },
-          {
-            "frame": 12,
-            "value": {
-              "__type__": "cc.Size",
-              "width": 9,
-              "height": 0.6
-            }
-          }
-        ],
-        "offset": [
-          {
-            "frame": 8,
-            "value": {
-              "__type__": "cc.Vec2",
-              "x": -0.5,
-              "y": -15.6
-            }
-          },
-          {
-            "frame": 9,
-            "value": {
-              "__type__": "cc.Vec2",
-              "x": 7.7,
-              "y": -1.9
-            }
-          },
-          {
-            "frame": 12,
-            "value": {
-              "__type__": "cc.Vec2",
-              "x": -0.5,
-              "y": -15.6
-            }
-          }
-        ]
-      },
       "cc.BoxCollider": {
         "size": [
           {

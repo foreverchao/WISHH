@@ -105,12 +105,14 @@ cc.Class({
     },
     attack()
     {
+        cc.log("call attack")
         this.lv.x = 0;
         this.rb.linearVelocity = this.lv;
         if(this.isAttacking)
             return;
         this.sworderSound = cc.audioEngine.play(this.audio[0], false, 1);
         this.setAni("attack");
+        this.scheduleOnce(function(){ this.isAttacking = false;},1);
     },
     move()
     {   
@@ -191,7 +193,9 @@ cc.Class({
         else if(this.playerWorld.x - this.nodeWorld.x < 0) // 往右邊退
             back = 120;
 
-        this.node.runAction(cc.moveBy(0.2, cc.v2(back, 0)),);
+        //this.node.runAction(cc.moveBy(0.2, cc.v2(back, 0)),)
+        this.lv.x = back;
+        this.rb.linearVelocity = this.lv;
 
 
         cc.tween(this.node)
@@ -201,6 +205,8 @@ cc.Class({
             if(this.hp <=0) {
                 Variables.score += 350;
                 Variables.scoreChange = true;
+                this.camera = cc.find("Canvas/Main Camera")
+                this.camera.stopAllActions();
                 this.node.destroy();
             }
         }) 
