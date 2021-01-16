@@ -225,7 +225,7 @@
       "array": [
         0,
         0,
-        340.43819405724787,
+        348.1963389090809,
         0,
         0,
         0,
@@ -310,6 +310,12 @@
     "BG_Layer_back1": {
       "__id__": 135
     },
+    "door_1": null,
+    "door_2": null,
+    "door_3": null,
+    "door_4": null,
+    "door_5": null,
+    "door_6": null,
     "_id": "cd8pWjLhpCDJGwo2Ekm1KH"
   },
   {
@@ -2760,9 +2766,7 @@
       },
       {
         "__uuid__": "69bf04fb-95e3-4295-825f-50d48c410e75"
-      },
-      null,
-      null
+      }
     ],
     "playOnLoad": false,
     "_id": "b590TGKpRKYrMEnSpacNzv"
@@ -2805,6 +2809,18 @@
       },
       {
         "__uuid__": "dff1a510-0ef4-40c1-a6fd-fae2be60905c"
+      },
+      {
+        "__uuid__": "28160922-b169-4d93-b5ba-27bf48cd7096"
+      },
+      {
+        "__uuid__": "f392999e-cf61-485d-b6df-af34b36eb16d"
+      },
+      {
+        "__uuid__": "02784a49-61c8-472f-8df8-c139d5b76643"
+      },
+      {
+        "__uuid__": "25dfce8d-61d4-499a-b0eb-8278e89a6fed"
       }
     ],
     "_id": "26+XYBZHNFob8De65Xp4SG"

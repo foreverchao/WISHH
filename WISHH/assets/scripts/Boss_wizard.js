@@ -59,7 +59,10 @@ cc.Class({
         this.hurtMeNow = false;
         cc.tween(this.node)
         // flash 動畫時間 = 0.33 
-        .call(() => {this.setAni("flash");}) // wizard 消失
+        .call(() => {
+            this.setAni("flash");
+            this.flashSound = cc.audioEngine.play(this.audio[5], false, 1);
+        }) // wizard 消失
         .delay(0.33)
         .call(() => {
             if(this.map_center.x - this.playerNode.x > 0){ // 玩家在地圖左半邊            
@@ -75,6 +78,7 @@ cc.Class({
         .call(() => { // wizard 出現
             this.node.getComponent(cc.Sprite).enabled  = true;
             this.setAni("flash");
+            this.flashSound = cc.audioEngine.play(this.audio[5], false, 1);
         })
         .delay(0.33)
         .call(() => { // attack_0 動畫時間 = 1.30
@@ -82,7 +86,11 @@ cc.Class({
             this.hurtMeNow = true;
             this.setAni("attack_0");
         })
-        .delay(1.3)
+        .delay(0.85)
+        .call(() => {
+            this.attack_0Sound = cc.audioEngine.play(this.audio[4], false, 1);
+        })
+        .delay(0.45)
         .call(() => {
             this.circleCollider.radius = 0;
             this.circleCollider.enabled = false;
@@ -96,7 +104,10 @@ cc.Class({
         this.bossCollider.enabled = false;
         this.hurtMeNow = false;
         cc.tween(this.node)
-        .call(() => {this.setAni("flash");}) // wizard 消失
+        .call(() => {
+            this.setAni("flash");
+            this.flashSound = cc.audioEngine.play(this.audio[5], false, 1);
+        }) // wizard 消失
         .delay(0.33)
         .call(() => {
             this.node.getComponent(cc.Sprite).enabled = false;
@@ -106,6 +117,7 @@ cc.Class({
         .call(() => { // wizard 出現
             this.node.getComponent(cc.Sprite).enabled  = true;
             this.setAni("flash");
+            this.flashSound = cc.audioEngine.play(this.audio[5], false, 1);
         })
         .delay(0.33)
         // effect_1 圓圈圈 動畫時間 = 2.58
@@ -131,7 +143,10 @@ cc.Class({
         this.bossCollider.enabled = false;
         this.hurtMeNow = false;
         cc.tween(this.node)
-        .call(() => {this.setAni("flash");}) 
+        .call(() => {
+            this.setAni("flash");
+            this.flashSound = cc.audioEngine.play(this.audio[5], false, 1);
+        }) 
         .delay(0.33)
         .call(() => {
             this.node.getComponent(cc.Sprite).enabled = false;
@@ -153,10 +168,14 @@ cc.Class({
             if(this.node.x == -410) this.node.scaleX = 5;
             else this.node.scaleX = -5;
             this.setAni("flash");
+            this.flashSound = cc.audioEngine.play(this.audio[5], false, 1);
         })
         .delay(0.33)
         .call(() => { // attack_0 動畫時間 = 1.75
             this.setAni("attack_2");
+            this.scheduleOnce(function(){
+                this.attack_2Sound = cc.audioEngine.play(this.audio[6], false, 1);
+            },0.5);
             this.bossCollider.enabled = true;
             this.hurtMeNow = true;
             var effect = cc.instantiate(this.effect_2);
@@ -177,7 +196,10 @@ cc.Class({
         this.hurtMeNow = false;
         var where = 0;
         cc.tween(this.node)
-        .call(() => {this.setAni("flash");}) 
+        .call(() => {
+            this.setAni("flash");
+            this.flashSound = cc.audioEngine.play(this.audio[5], false, 1);
+        }) 
         .delay(0.33)
         .call(() => {
             this.node.getComponent(cc.Sprite).enabled  = false;
@@ -212,6 +234,7 @@ cc.Class({
         .call(() => {
             this.node.getComponent(cc.Sprite).enabled  = true;
             this.setAni("flash");
+            this.flashSound = cc.audioEngine.play(this.audio[5], false, 1);
         }) 
         .delay(0.33)
         .call(() => { // attack_3 動畫時間 = 1.00
@@ -253,6 +276,7 @@ cc.Class({
             this.effectLoopBall.destroy();
             this.effectLaser.destroy();
             this.setAni("flash");
+            this.flashSound = cc.audioEngine.play(this.audio[5], false, 1);
             this.bossCollider.enabled = false;
             this.hurtMeNow = false;
         })
@@ -295,6 +319,7 @@ cc.Class({
         .call(() => {
             this.node.getComponent(cc.Sprite).enabled  = true;
             this.setAni("flash");
+            this.flashSound = cc.audioEngine.play(this.audio[5], false, 1);
         }) 
         .delay(0.33)
         .call(() => { // attack_3 動畫時間 = 1.00
@@ -336,6 +361,7 @@ cc.Class({
             this.effectLoopBall.destroy();
             this.effectLaser.destroy();
             this.setAni("flash");
+            this.flashSound = cc.audioEngine.play(this.audio[5], false, 1);
             this.bossCollider.enabled = false;
             this.hurtMeNow = false;
         })
@@ -379,6 +405,7 @@ cc.Class({
         .call(() => {
             this.node.getComponent(cc.Sprite).enabled  = true;
             this.setAni("flash");
+            this.flashSound = cc.audioEngine.play(this.audio[5], false, 1);
         }) 
         .delay(0.33)
         .call(() => { // attack_3 動畫時間 = 1.00
@@ -428,7 +455,10 @@ cc.Class({
         this.bossCollider.enabled = false;
         this.hurtMeNow = false;
         cc.tween(this.node)
-        .call(() => {this.setAni("flash");}) 
+        .call(() => {
+            this.setAni("flash");
+            this.flashSound = cc.audioEngine.play(this.audio[5], false, 1);
+        }) 
         .delay(0.33)
         .call(() => {
             this.node.getComponent(cc.Sprite).enabled  = false;
@@ -462,10 +492,12 @@ cc.Class({
         .call(() => {
             this.node.getComponent(cc.Sprite).enabled  = true;
             this.setAni("flash");
+            this.flashSound = cc.audioEngine.play(this.audio[5], false, 1);
         }) 
         .delay(0.33)
         .call(() => {
             this.setAni("attack_4");
+            this.attack_4Sound = cc.audioEngine.play(this.audio[7], false, 1);
             this.bossCollider.enabled = true;
             this.hurtMeNow = true;
             this.OrangeInteractItem = cc.find("Canvas/OrangeInteractItem");

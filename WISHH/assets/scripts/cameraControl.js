@@ -16,6 +16,18 @@ cc.Class({
         BG_Layer_back: cc.Node,
         BG_Layer_back1: cc.Node,
 
+        door_1: cc.Node,
+        door_2: cc.Node,
+        door_3: cc.Node,
+        door_4: cc.Node,
+        door_5: cc.Node,
+        door_6: cc.Node,
+
+        audio: {
+            default: [],
+            type: cc.AudioClip
+        },
+
         // foo: {
         //     // ATTRIBUTES:
         //     default: null,        // The default value will be used only when the component attaching
@@ -35,7 +47,113 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {},
+    onLoad () {
+        this.enterPressed = false;
+        this.changeCamera = false;
+        this.player = cc.find("Canvas/player");
+        this.player.getComponent(cc.Animation).play('idle');
+        this.pressEnterToStart = cc.find("Canvas/pressEnterToStart");
+        
+        cc.tween(this.pressEnterToStart)
+        .blink(3, 3)
+        .repeatForever()
+        .start();
+
+        cc.systemEvent.on('keydown', this.onKeydown, this);
+    },
+    onDestroy()
+    {
+        cc.systemEvent.off('keydown', this.onKeydown, this);
+    },
+
+    onKeydown(e)
+    {
+        switch(e.keyCode) {
+            case cc.macro.KEY.enter:
+                this.beginAnimation();
+                break;
+            }
+    },
+    
+    beginAnimation() {
+        if(!this.enterPressed) {
+            this.enterPressed = true;
+            cc.tween(this.node)
+            .call(() => {
+                this.shakeEffect(0.2);
+                this.door_1.getComponent(cc.Animation).play();
+                this.doorSound = cc.audioEngine.play(this.audio[0], false, 1);
+                this.door_1.getComponent(cc.PhysicsBoxCollider).enabled = false;
+            }) 
+            .delay(0.44)
+            .call(() => {
+                this.shakeEffect(0.2);
+                this.door_2.getComponent(cc.Animation).play();
+                this.doorSound = cc.audioEngine.play(this.audio[0], false, 1);
+                this.door_2.getComponent(cc.PhysicsBoxCollider).enabled = false;
+            }) 
+            .delay(0.44)
+            .call(() => {
+                this.shakeEffect(0.2);
+                this.door_3.getComponent(cc.Animation).play();
+                this.doorSound = cc.audioEngine.play(this.audio[0], false, 1);
+                this.door_3.getComponent(cc.PhysicsBoxCollider).enabled = false;
+            }) 
+            .delay(0.44)
+            .call(() => {
+                this.shakeEffect(0.2);
+                this.door_4.getComponent(cc.Animation).play();
+                this.doorSound = cc.audioEngine.play(this.audio[0], false, 1);
+                this.door_4.getComponent(cc.PhysicsBoxCollider).enabled = false;
+            }) 
+            .delay(0.44)
+            .call(() => {
+                this.shakeEffect(0.2);
+                this.door_5.getComponent(cc.Animation).play();
+                this.doorSound = cc.audioEngine.play(this.audio[0], false, 1);
+                this.door_5.getComponent(cc.PhysicsBoxCollider).enabled = false;
+            }) 
+            .delay(0.44)
+            .call(() => {
+                this.shakeEffect(0.2);
+                this.door_6.getComponent(cc.Animation).play();
+                this.doorSound = cc.audioEngine.play(this.audio[0], false, 1);
+                this.door_6.getComponent(cc.PhysicsBoxCollider).enabled = false;
+            }) 
+            .delay(0.7)
+            .call(() => {
+                this.pressEnterToStart.active = false;
+                this.changeCamera = true;
+                this.bar_UI.active = true;
+                this.icon_UI.active = true;
+            }) 
+            .start();
+        }
+    },
+
+    shakeEffect(duration) {
+        var seq = cc.repeatForever(
+            cc.sequence(
+                cc.moveBy(0.02, cc.v2(5, 7)),
+                cc.moveBy(0.02, cc.v2(-6, 7)),
+                cc.moveBy(0.02, cc.v2(-13, 3)),
+                cc.moveBy(0.02, cc.v2(3, -6)),
+                cc.moveBy(0.02, cc.v2(-5, 5)),
+                cc.moveBy(0.02, cc.v2(2, -8)),
+                cc.moveBy(0.02, cc.v2(-8, -10)),
+                cc.moveBy(0.02, cc.v2(3, 10)),
+                cc.moveBy(0.02, cc.v2(0, 0))
+            )
+        )
+        this.camera = this.node;
+        this.camera.runAction(seq);
+
+        setTimeout(() => {
+            //this.camera.stopAllActions();
+            this.camera.stopAction(seq);
+            this.camera.setPosition(0,0);
+        }, duration*1000);
+    },
 
     start () {
 
@@ -57,7 +175,7 @@ cc.Class({
             this.icon_UI.setPosition(currentPosition.x,currentPosition.y);
             this.score_UI.setPosition(currentPosition.x,currentPosition.y);
         }
-        else if(cc.director.getScene().name == "mainScence" || cc.director.getScene().name == "menuScence")
+        else if(cc.director.getScene().name == "mainScence")
         {
             currentPosition.lerp(targerPosition, 0.1, currentPosition);
             this.node.setPosition(currentPosition);
@@ -68,6 +186,23 @@ cc.Class({
             this.bar_UI.setPosition(currentPosition.x,currentPosition.y);
             this.score_UI.setPosition(currentPosition.x,currentPosition.y);
             this.icon_UI.setPosition(currentPosition.x,currentPosition.y);
+        }
+        else if(cc.director.getScene().name == "menuScence")
+        {
+            if(this.changeCamera) {
+                currentPosition.lerp(targerPosition, 0.1, currentPosition);
+                this.node.setPosition(currentPosition);
+                this.BG_Layer_back1.setPosition(currentPosition.x/2,currentPosition.y/2);
+                this.BG_Layer_back.setPosition(currentPosition.x/4,currentPosition.y/4);
+                targerPosition.y = cc.misc.clampf(targerPosition.y, -4000, 650);
+                this.node.getComponent(cc.Camera).zoomRatio = 1;
+                this.bar_UI.setPosition(currentPosition.x,currentPosition.y);
+                this.score_UI.setPosition(currentPosition.x,currentPosition.y);
+                this.icon_UI.setPosition(currentPosition.x,currentPosition.y);
+            }
+            else {
+                currentPosition = cc.v2(0,0);
+            }
         }
 
     },
