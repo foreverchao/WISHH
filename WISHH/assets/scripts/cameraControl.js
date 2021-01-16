@@ -57,7 +57,7 @@ cc.Class({
             this.icon_UI.setPosition(currentPosition.x,currentPosition.y);
             this.score_UI.setPosition(currentPosition.x,currentPosition.y);
         }
-        else if(cc.director.getScene().name == "mainScence")
+        else if(cc.director.getScene().name == "mainScence" || cc.director.getScene().name == "menuScence")
         {
             currentPosition.lerp(targerPosition, 0.1, currentPosition);
             this.node.setPosition(currentPosition);
