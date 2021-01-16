@@ -105,7 +105,6 @@ cc.Class({
     },
     attack()
     {
-        cc.log("call attack")
         this.lv.x = 0;
         this.rb.linearVelocity = this.lv;
         if(this.isAttacking)

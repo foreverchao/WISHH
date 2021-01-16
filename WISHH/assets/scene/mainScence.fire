@@ -270,7 +270,7 @@
       "array": [
         0,
         0,
-        340.43819405724787,
+        341.52795915733947,
         0,
         0,
         0,
@@ -355,6 +355,13 @@
     "BG_Layer_back1": {
       "__id__": 515
     },
+    "door_1": null,
+    "door_2": null,
+    "door_3": null,
+    "door_4": null,
+    "door_5": null,
+    "door_6": null,
+    "audio": [],
     "_id": "cd8pWjLhpCDJGwo2Ekm1KH"
   },
   {
@@ -20160,7 +20167,7 @@
       "__id__": 523
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 525
@@ -20254,7 +20261,7 @@
       "__id__": 523
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 527
@@ -20348,7 +20355,7 @@
       "__id__": 523
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 529
@@ -20442,7 +20449,7 @@
       "__id__": 523
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 531

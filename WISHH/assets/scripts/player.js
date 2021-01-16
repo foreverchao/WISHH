@@ -1,3 +1,4 @@
+let Variables = require("./gameGlobalVariable");
 
 const Input = {};
 cc.Class({
@@ -67,11 +68,13 @@ cc.Class({
         this.playerAni.on('finished', this.onAnimaFinished, this);
         this.isOnGround = false;
         this.onWall = false;
+        this.isDead = false;
         this.pushingWall = false;
         this.isDashing = false;
         this.wallSide = -1; //判斷目前貼的是左邊還是右邊 右邊:-1 左邊: 1
         this.isAttacking = false;
         this.greening = false;
+        this.respawning = false;
         this.respawnPoint = cc.v2(-327,-191); //預設復活座標
         cc.systemEvent.on('keydown', this.onKeydown, this);
         cc.systemEvent.on('keyup', this.onKeyup, this);
@@ -209,7 +212,7 @@ cc.Class({
             case cc.macro.KEY.r:
                 if(!this.canMove)
                 {
-                    cc.tween(this.node)
+                    /*cc.tween(this.node)
                     .call(() => {
                         this.node.setPosition(this.respawnPoint.x, this.respawnPoint.y);
                         this.setAni('respawn');
@@ -236,7 +239,7 @@ cc.Class({
                         this.red = false;
                         this.blue = false;
                     }) 
-                    .start();
+                    .start();*/
                 }
                 break;
         }  
@@ -366,8 +369,10 @@ cc.Class({
         if(this.canMove) this.playerHP--;
         this.setHP();
         this.canMove = false;
+        Variables.playerCanMove = false;
         this.rb.linearVelocity.x = 0;
         this.rb.linearVelocity.y = 0;
+        this.isDead = true;
         this.setAni('player_die');
     },
 
@@ -848,20 +853,51 @@ cc.Class({
 
     update (dt) 
     {    
+        if(cc.director.getScene().name == "menuScence") this.canMove = Variables.playerCanMove;
         //cc.log(this.isOnGround);
         //cc.log("isDashing " + this.isDashing);
-        //cc.log(this.node.group)
         if(this.canMove){
             this.color_detect();
             if(/*this.playerState == State.stand && */!this.isDashing && !this.isAttacking)
             {
                 this.move();
             }
-        }
-        else {
-            if(this.isOnGround) {
-                this.lv.x = 0;
-                this.rb.linearVelocity = this.lv; 
+        } else {
+            if(this.isOnGround && !this.respawning && this.isDead) {
+                this.respawning = true;
+                cc.tween(this.node)
+                .call(() => {
+                    this.isDead = false;
+                    this.isAttacking = false;
+                    if(this.yellow) {
+                        this.nodeSetAni(this.new_yellowBar,'yellowBar_refill');
+                        this.scheduleOnce(function(){this.nodeSetAni(this.new_yellowButton,'yellowButton_up');},2);
+                    }
+                    if(this.red) {
+                        this.nodeSetAni(this.new_redBar,'redBar_refill');
+                        this.scheduleOnce(function(){this.nodeSetAni(this.new_redButton,'redButton_up');},2);
+                    }
+                    if(this.blue) {
+                        this.nodeSetAni(this.new_blueBar,'blueBar_refill');
+                        this.scheduleOnce(function(){this.nodeSetAni(this.new_blueButton,'blueButton_up');},2);
+                    }
+                    this.yellow = false;
+                    this.red = false;
+                    this.blue = false;
+                }) 
+                .delay(2)
+                .call(() => {
+                    this.node.group = "Invincible";
+                    this.setAni('idle');
+                    this.canMove = true;
+                    Variables.playerCanMove = true;
+                    this.scheduleOnce(function(){this.node.group = "Player";},3);
+                }) 
+                .blink(3, 10)
+                .call(() => {
+                    this.respawning = false;
+                }) 
+                .start();
             }
         }
         var fallMultiplier = 2.5;    //控制下墜時的重力

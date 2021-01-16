@@ -5,6 +5,8 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
+let Variables = require("./gameGlobalVariable");
+
 cc.Class({
     extends: cc.Component,
 
@@ -48,16 +50,19 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-        this.enterPressed = false;
-        this.changeCamera = false;
-        this.player = cc.find("Canvas/player");
-        this.player.getComponent(cc.Animation).play('idle');
-        this.pressEnterToStart = cc.find("Canvas/pressEnterToStart");
-        
-        cc.tween(this.pressEnterToStart)
-        .blink(3, 3)
-        .repeatForever()
-        .start();
+        if(cc.director.getScene().name == "menuScence") {
+            this.enterPressed = false;
+            this.changeCamera = false;
+            this.player = cc.find("Canvas/player");
+            this.player.getComponent(cc.Animation).play('idle');
+            this.pressEnterToStart = cc.find("Canvas/pressEnterToStart");
+            Variables.playerCanMove = false;
+            
+            cc.tween(this.pressEnterToStart)
+            .blink(3, 3)
+            .repeatForever()
+            .start();
+        }
 
         cc.systemEvent.on('keydown', this.onKeydown, this);
     },
@@ -126,6 +131,7 @@ cc.Class({
                 this.changeCamera = true;
                 this.bar_UI.active = true;
                 this.icon_UI.active = true;
+                Variables.playerCanMove = true;
             }) 
             .start();
         }
@@ -189,6 +195,8 @@ cc.Class({
         }
         else if(cc.director.getScene().name == "menuScence")
         {
+            if(!this.changeCamera) Variables.playerCanMove = false;
+
             if(this.changeCamera) {
                 currentPosition.lerp(targerPosition, 0.1, currentPosition);
                 this.node.setPosition(currentPosition);
