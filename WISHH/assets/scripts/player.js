@@ -671,15 +671,15 @@ cc.Class({
             }
         }
         if(Math.abs(attackedEnemy.x - this.node.x) >= 800 || Math.abs(attackedEnemy.y - this.node.y) >= 270)
-            retrun;
+            return;
         if(attackedEnemy != null) {
             this.shakeEffect(0.2);
-        let tempNode = cc.instantiate(this.orangeEffect);
-        attackedEnemy.addChild(tempNode);
-        if(attackedEnemy.name == 'barrier' || attackedEnemy.name == 'wizard_effect_4' )
-        {
-            this.scheduleOnce(function(){attackedEnemy.destroy();},0.5);
-        }
+            let tempNode = cc.instantiate(this.orangeEffect);
+            attackedEnemy.addChild(tempNode);
+            if(attackedEnemy.name == 'barrier' || attackedEnemy.name == 'wizard_effect_4' )
+            {
+                this.scheduleOnce(function(){attackedEnemy.destroy();},0.5);
+            }
         }
     },
     fire()

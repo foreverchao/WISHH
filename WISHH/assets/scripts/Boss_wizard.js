@@ -592,6 +592,7 @@ cc.Class({
     },
 
     start () {
+        cc.find("Canvas/initial").getComponent(cc.Animation).play("initial");
         //this.scheduleOnce(function(){
         //    this.attack_0();
 

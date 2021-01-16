@@ -1,22 +1,16 @@
 {
   "__type__": "cc.AnimationClip",
-  "_name": "changeScene",
+  "_name": "initial",
   "_objFlags": 0,
   "_native": "",
-  "_duration": 5,
+  "_duration": 8,
   "sample": 1,
-  "speed": 2,
+  "speed": 3,
   "wrapMode": 1,
   "curveData": {
     "comps": {
       "cc.Sprite": {
         "spriteFrame": [
-          {
-            "frame": -1,
-            "value": {
-              "__uuid__": "eac40106-7a7e-49b8-b0a1-36b2367a452d"
-            }
-          },
           {
             "frame": 0,
             "value": {
@@ -30,11 +24,11 @@
       "x": [
         {
           "frame": 0,
-          "value": -828.093
+          "value": -145
         },
         {
-          "frame": 5,
-          "value": -351.383
+          "frame": 8,
+          "value": 2479.802
         }
       ]
     }

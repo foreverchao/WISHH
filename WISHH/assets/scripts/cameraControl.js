@@ -48,13 +48,14 @@ cc.Class({
         if(cc.director.getScene().name == "bossScence") {
             targerPosition.x = cc.misc.clampf(targerPosition.x, -300, 0);
             targerPosition.y = cc.misc.clampf(targerPosition.y, 0, 0);
+            currentPosition.lerp(targerPosition, 0.1, currentPosition);
+            this.node.setPosition(currentPosition);
+            this.BG_Layer_back1.setPosition(currentPosition.x/2,currentPosition.y/2);
+            this.BG_Layer_back.setPosition(currentPosition.x/4,currentPosition.y/4);
             this.node.getComponent(cc.Camera).zoomRatio = 0.8;
             this.bar_UI.setPosition(currentPosition.x,currentPosition.y);
             this.icon_UI.setPosition(currentPosition.x,currentPosition.y);
-            //this.score_UI.setPosition(currentPosition.x,currentPosition.y);
-            currentPosition.lerp(targerPosition, 0.1, currentPosition);
-            this.node.setPosition(currentPosition);
-            this.BG_Layer_back.setPosition(currentPosition.x/2,currentPosition.y/2)
+            this.score_UI.setPosition(currentPosition.x,currentPosition.y);
         }
         else if(cc.director.getScene().name == "mainScence")
         {
