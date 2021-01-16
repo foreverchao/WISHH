@@ -46,11 +46,27 @@ cc.Class({
         .delay(5)
         .call(() => { this.randomLaser(); })
         .delay(5)
+        .call(() => { this.randomTwoEmptyLaser(); })
+        .delay(5)
+        .call(() => { this.randomLaser(); })
+        .delay(5)
+        .call(() => { this.randomLaser(); })
+        .delay(5)
+        .call(() => { this.randomLaser(); })
+        .delay(5)
         .call(() => { this.randomLaser(); })
         .delay(5)
         .call(() => { this.randomTwoEmptyLaser(); })
         .delay(5)
         .call(() => { this.threeLaser(); })
+        .delay(5)
+        .call(() => { this.randomLaser(); })
+        .delay(5)
+        .call(() => { this.randomLaser(); })
+        .delay(5)
+        .call(() => { this.randomLaser(); })
+        .delay(5)
+        .call(() => { this.randomTwoEmptyLaser(); })
         .delay(5)
         .call(() => { this.randomLaser(); })
         .delay(5)
@@ -173,7 +189,7 @@ cc.Class({
 
 
     update (dt) {
-       if(this.wizard <=1 && this.flag == false){
+       if(this.wizard <=5 && this.flag == false){
            this.laserOpen();
        }
        if(this.stop == true)

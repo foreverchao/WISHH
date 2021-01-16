@@ -31,7 +31,7 @@ cc.Class({
         this.canvasNode = this.node.getParent().getParent();
         this.bossEffectNode = cc.find("Canvas/bossEffect");
         this.hurtMeNow = false; // true 時可以被攻擊
-        this.hp = 2;
+        this.hp = 10;
         this.bossCollider = this.node.getComponent(cc.PolygonCollider);
         this.circleCollider = this.node.getComponent(cc.CircleCollider);
         this.bossCollider.enabled = false;
@@ -46,6 +46,124 @@ cc.Class({
             return;
         this.anima = anima;
         this.wizardAni.play(anima);
+    },
+
+    setHP()
+    {
+        this.wizardHP_UI = cc.find("Canvas/bar_UI/UI_wizard_hp_bar")
+        this.HP1 = cc.find("Canvas/bar_UI/UI_wizard_hp_bar/UI_hp1");
+        this.HP2 = cc.find("Canvas/bar_UI/UI_wizard_hp_bar/UI_hp2");
+        this.HP3 = cc.find("Canvas/bar_UI/UI_wizard_hp_bar/UI_hp3");
+        this.HP4 = cc.find("Canvas/bar_UI/UI_wizard_hp_bar/UI_hp4");
+        this.HP5 = cc.find("Canvas/bar_UI/UI_wizard_hp_bar/UI_hp5");
+        this.HP6 = cc.find("Canvas/bar_UI/UI_wizard_hp_bar/UI_hp6");
+        this.HP7 = cc.find("Canvas/bar_UI/UI_wizard_hp_bar/UI_hp7");
+        this.HP8 = cc.find("Canvas/bar_UI/UI_wizard_hp_bar/UI_hp8");
+        this.HP9 = cc.find("Canvas/bar_UI/UI_wizard_hp_bar/UI_hp9");
+        this.HP10 = cc.find("Canvas/bar_UI/UI_wizard_hp_bar/UI_hp10");
+        if(this.hp == 10) {
+            this.HP1.active = true;
+            this.HP2.active = true;
+            this.HP3.active = true;
+            this.HP4.active = true;
+            this.HP5.active = true;
+            this.HP6.active = true;
+            this.HP7.active = true;
+            this.HP8.active = true;
+            this.HP9.active = true;
+            this.HP10.active = true;
+        }
+        else if(this.hp == 9)
+        {
+            cc.tween(this.HP10)
+            .blink(0.5, 3)
+            .call(() => {
+                this.HP10.active = false;
+            }) 
+            .start();
+        }
+        else if(this.hp == 8)
+        {
+            cc.tween(this.HP9)
+            .blink(0.5, 3)
+            .call(() => {
+                this.HP9.active = false;
+            }) 
+            .start();
+        }
+        else if(this.hp == 7)
+        {
+            cc.tween(this.HP8)
+            .blink(0.5, 3)
+            .call(() => {
+                this.HP8.active = false;
+            }) 
+            .start();
+        }
+        else if(this.hp == 6)
+        {
+            cc.tween(this.HP7)
+            .blink(0.5, 3)
+            .call(() => {
+                this.HP7.active = false;
+            }) 
+            .start();
+        }
+        else if(this.hp == 5)
+        {
+            cc.tween(this.HP6)
+            .blink(0.5, 3)
+            .call(() => {
+                this.HP6.active = false;
+            }) 
+            .start();
+        }
+        else if(this.hp == 4)
+        {
+            cc.tween(this.HP5)
+            .blink(0.5, 3)
+            .call(() => {
+                this.HP5.active = false;
+            }) 
+            .start();
+        }
+        else if(this.hp == 3)
+        {
+            cc.tween(this.HP4)
+            .blink(0.5, 3)
+            .call(() => {
+                this.HP4.active = false;
+            }) 
+            .start();
+        }
+        else if(this.hp == 2)
+        {
+            cc.tween(this.HP3)
+            .blink(0.5, 3)
+            .call(() => {
+                this.HP3.active = false;
+            }) 
+            .start();
+        }
+        else if(this.hp == 1)
+        {
+            cc.tween(this.HP2)
+            .blink(0.5, 3)
+            .call(() => {
+                this.HP2.active = false;
+            }) 
+            .start();
+        }
+        else if(this.hp == 0)
+        {
+            cc.tween(this.HP1)
+            .blink(0.5, 3)
+            .call(() => {
+                this.HP1.active = false;
+            }) 
+            .start();
+        }
+
     },
 
     getRandom(min,max){
@@ -584,6 +702,7 @@ cc.Class({
         .blink(0.5, 3)
         .call(() => {
             this.hp--;
+            this.setHP();
             var temp = cc.find("Canvas");
             temp.getComponent("bossScene").wizard=this.hp;
         }) 
@@ -682,6 +801,38 @@ cc.Class({
         .then(attack_4_anima)
         .then(idle_anima)
         .then(attack_3_anima)
+        .then(idle_anima)
+        .then(attack_0_anima)
+        .then(idle_anima)
+        .then(attack_2_anima)
+        .then(idle_anima)
+        .then(attack_4_anima)
+        .then(idle_anima)
+        .then(attack_1_anima)
+        .then(idle_anima)
+        .then(attack_3_anima)
+        .then(idle_anima)
+        .then(attack_0_anima)
+        .then(idle_anima)
+        .then(attack_1_anima)
+        .then(idle_anima)
+        .then(attack_2_anima)
+        .then(idle_anima)
+        .then(attack_4_anima)
+        .then(idle_anima)
+        .then(attack_3_anima)
+        .then(idle_anima)
+        .then(attack_4_anima)
+        .then(idle_anima)
+        .then(attack_3_anima)
+        .then(idle_anima)
+        .then(attack_2_anima)
+        .then(idle_anima)
+        .then(attack_1_anima)
+        .then(idle_anima)
+        .then(attack_0_anima)
+        .then(idle_anima)
+        .then(attack_2_anima)
         .then(idle_anima)
         .start();
 
