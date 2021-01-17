@@ -4,6 +4,7 @@
 //  - https://docs.cocos.com/creator/manual/en/scripting/reference/attributes.html
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
+let Variables = require("./gameGlobalVariable");
 
 cc.Class({
     extends: cc.Component,
@@ -24,6 +25,7 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
+        Variables.scoreChange = true;
         this.wizardAni = this.node.getComponent(cc.Animation);
         this.setAni("idle");
         this.wizardAni.on('finished', this.onAnimaFinished, this);
@@ -743,7 +745,6 @@ cc.Class({
     },
 
     start () {
-        cc.find("Canvas/initial").getComponent(cc.Animation).play("initial");
         //this.scheduleOnce(function(){
         //    this.attack_0();
 
@@ -773,7 +774,7 @@ cc.Class({
         let idle_anima = cc.tween().call(() => {this.air_idle();}).delay(2);
         
         cc.tween(this.node)
-        .delay(2)
+        .delay(5)
         .then(attack_0_anima)
         .then(idle_anima)
         .then(attack_1_anima)

@@ -5,6 +5,8 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
+let Variables = require("./gameGlobalVariable");
+
 cc.Class({
     extends: cc.Component,
 
@@ -19,7 +21,7 @@ cc.Class({
         this.attacked = false;
         this.targetX = 0;
         this.targetY = 0;
-        this.enemies = this.node.getParent().getChildByName("enemies");
+        this.enemies = cc.find("Canvas/enemies");
     },
 
     getRandom(min,max){
@@ -54,7 +56,10 @@ cc.Class({
         .to(0.4,{position: cc.v2(this.targetX, this.targetY)})
         .call(() => {  this.node.getComponent(cc.Animation).play('purpleEffect_End');}) 
         .delay(0.5)
-        .call(() => { this.node.destroy();})
+        .call(() => { 
+            Variables.purpleAmount--;
+            this.node.destroy();
+        })
         .start();
         //this.node.getComponent(cc.Animation).stop('purpleEffect');
         //this.node.getComponent(cc.Animation).playAdditive('purpleEffect_End');
@@ -67,7 +72,7 @@ cc.Class({
     update (dt) {
         this.search();
         if(!this.targetLock && !this.attacked) {
-            this.player = this.node.getParent().getChildByName("player");
+            this.player = cc.find("Canvas/player");
             //cc.log(this.player);
             //計算精靈與角色距離
             var xDist = this.node.position.sub(this.player.position).x;

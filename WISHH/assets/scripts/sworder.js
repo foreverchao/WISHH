@@ -37,6 +37,7 @@ cc.Class({
         this.setAni("idle");
         this.sworderAni.on('finished', this.onAnimaFinished, this);
         this.rest = 0;
+        this.hurtRest = 0;
     },
     onAnimaFinished(e, data)
     {
@@ -61,7 +62,7 @@ cc.Class({
                 this.scheduleOnce(function(){ this.hurt();;},0.5);
             this.isHit = true;
             else*/
-            if(this.hp > 0) this.hurt();
+            if(this.hp > 0 && this.hurtRest == 0) this.hurt();
         }
     },
     detectPlayer()
@@ -179,6 +180,7 @@ cc.Class({
     hurt()
     {
         this.lv.x = 0;
+        this.hurtRest = 30;
         this.rb.linearVelocity = this.lv;
         this.rest = 50;
         if(this.hp > 0) this.shakeEffect(0.3);
@@ -200,8 +202,12 @@ cc.Class({
         cc.tween(this.node)
         .blink(0.5, 3)
         .call(() => {
-            this.hp--;
+            if(this.hurtRest == 0) 
+            {   
+                this.hp--;
+            }
             if(this.hp <=0) {
+                this.node.group = "defult"
                 Variables.score += 350;
                 Variables.scoreChange = true;
                 this.camera = cc.find("Canvas/Main Camera")
@@ -222,6 +228,7 @@ cc.Class({
 
     update (dt) {
         if(this.rest > 0) this.rest--;
+        if(this.hurtRest > 0) this.hurtRest--;
         this.detectPlayer();
      },
 });

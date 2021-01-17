@@ -1,11 +1,11 @@
 {
   "__type__": "cc.AnimationClip",
-  "_name": "changeScene",
+  "_name": "changeScene1",
   "_objFlags": 0,
   "_native": "",
-  "_duration": 5,
+  "_duration": 10,
   "sample": 1,
-  "speed": 2,
+  "speed": 5,
   "wrapMode": 1,
   "curveData": {
     "comps": {
@@ -30,11 +30,23 @@
       "x": [
         {
           "frame": 0,
-          "value": -828.093
+          "value": -2722.285
         },
         {
-          "frame": 5,
-          "value": -351.383
+          "frame": 10,
+          "value": 37.681
+        }
+      ],
+      "height": [
+        {
+          "frame": 0,
+          "value": 3619
+        }
+      ],
+      "width": [
+        {
+          "frame": 0,
+          "value": 3008
         }
       ]
     }

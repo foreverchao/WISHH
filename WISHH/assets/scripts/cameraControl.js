@@ -66,6 +66,7 @@ cc.Class({
 
         cc.systemEvent.on('keydown', this.onKeydown, this);
     },
+
     onDestroy()
     {
         cc.systemEvent.off('keydown', this.onKeydown, this);
@@ -81,7 +82,7 @@ cc.Class({
     },
     
     beginAnimation() {
-        if(!this.enterPressed) {
+        if(!this.enterPressed && cc.director.getScene().name == "menuScence") {
             this.enterPressed = true;
             cc.tween(this.node)
             .call(() => {

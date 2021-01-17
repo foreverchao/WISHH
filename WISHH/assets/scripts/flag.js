@@ -4,6 +4,7 @@
 //  - https://docs.cocos.com/creator/manual/en/scripting/reference/attributes.html
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
+let Variables = require("./gameGlobalVariable");
 
 cc.Class({
     extends: cc.Component,
@@ -38,12 +39,34 @@ cc.Class({
         this.flagUsed = true;
         this.node.getComponent(cc.Animation).play("final");
         var playerNode = cc.find('Canvas/player');
-        var point = playerNode.getComponent('player').respawnPoint;
-        point.x = this.node.x - 97;
-        point.y = this.node.y - 14;
-        playerNode.getComponent('player').respawnPoint = point;
-
-        //cc.director.loadScene("bossScence");
+        var lifeCount = 0;
+        this.HP1 = cc.find("Canvas/bar_UI/UI_hp_bar/UI_hp1");
+        this.HP2 = cc.find("Canvas/bar_UI/UI_hp_bar/UI_hp2");
+        this.HP3 = cc.find("Canvas/bar_UI/UI_hp_bar/UI_hp3");
+        if(Variables.playerHP == 1) {
+            lifeCount = 1;
+            cc.tween(this.HP2)
+            .call(() => {
+                this.HP2.active = true;
+                Variables.playerHP++;
+            }) 
+            .delay(0.5)
+            .call(() => {
+                this.HP3.active = true;
+                Variables.playerHP++;
+            }) 
+            .start();
+        }
+        else if(Variables.playerHP == 2) {
+            lifeCount = 2;
+            this.HP3.active = true;
+            Variables.playerHP++;
+        }
+        else if(Variables.playerHP == 3) {
+            lifeCount = 3;
+        }
+        Variables.score += 1000*lifeCount;
+        Variables.scoreChange = true;
     },
 
     onLoad () {

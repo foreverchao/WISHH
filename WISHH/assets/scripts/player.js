@@ -366,7 +366,10 @@ cc.Class({
 
     dead()
     {
-        if(this.canMove) this.playerHP--;
+        if(this.canMove) {
+            Variables.playerHP--;
+            this.playerHP = Variables.playerHP;
+        }
         this.setHP();
         this.canMove = false;
         Variables.playerCanMove = false;
@@ -643,16 +646,21 @@ cc.Class({
     {
         this.colorCoolDown(1);
         this.colorCoolDown(2);
-        this.scheduleOnce(function(){
-            var purpleGhost = cc.instantiate(this.purpleEffect);
-            purpleGhost.x = this.node.x + 100;
-            purpleGhost.y = this.node.y;
-            this.playerShadow.addChild(purpleGhost);
-            var purpleGhost = cc.instantiate(this.purpleEffect);
-            purpleGhost.x = this.node.x + -100;
-            purpleGhost.y = this.node.y;
-            this.playerShadow.addChild(purpleGhost);
-            },0.9);
+        if(Variables.purpleAmount == 0) {
+            this.scheduleOnce(function(){
+                Variables.purpleAmount = 2;
+                this.effectNode = cc.find("Canvas/playerEffect")
+                var purpleGhost = cc.instantiate(this.purpleEffect);
+                purpleGhost.x = this.node.x + 100;
+                purpleGhost.y = this.node.y;
+                this.effectNode.addChild(purpleGhost);
+                var purpleGhost = cc.instantiate(this.purpleEffect);
+                purpleGhost.x = this.node.x + -100;
+                purpleGhost.y = this.node.y;
+                this.effectNode.addChild(purpleGhost);
+                },0.9);            
+        }
+
     },
 
     orangeAttack()
@@ -791,42 +799,6 @@ cc.Class({
         return null;
     },
 
-    addShakerEffect( node , time ){
-        if (time === null &&  node === null){
-            return;
-        }
-        let actionName = 'ShakerActionName';
-
-        let shaker = {}
-        shaker.init_x = 0       //[[初始位置x]]
-        shaker.init_y = 0       //[[初始位置y]]
-        shaker.diff_x = 0       //[[偏移量x]]
-        shaker.diff_y = 0       //[[偏移量y]]
-        shaker.diff_max = 10     //[[最大偏移量]]
-        shaker.interval = 0.01  //[[震动频率]]
-        shaker.totalTime = 0    //[[震动时间]]
-        shaker.time = 0         //[[计时器]]
-
-        shaker.target = node
-        var temp = this.localConvertWorldPoint(node)
-        shaker.init_x = temp.x
-        shaker.init_y = temp.y
-        shaker.totalTime = time
-
-        shaker.target[actionName] = this.schedule(function (){
-            if (shaker.time >= shaker.totalTime){
-                shaker.target.stopAction(shaker.target[actionName]);
-                shaker.target[actionName] = null;
-                shaker.target.setPosition(shaker.init_x, shaker.init_y);
-                return;
-            }
-            shaker.time = shaker.time + shaker.interval
-            shaker.diff_x = Math.random()*(shaker.diff_max + shaker.diff_max+1)-shaker.diff_max;
-            shaker.diff_y = Math.random()*(shaker.diff_max + shaker.diff_max+1)-shaker.diff_max;
-            shaker.target.setPosition(shaker.init_x+shaker.diff_x, shaker.init_y+shaker.diff_y);
-        },shaker.interval);
-    },
-
     shakeEffect(duration) {
         this.camera = cc.find("Canvas/Main Camera")
         this.camera.runAction(
@@ -853,6 +825,7 @@ cc.Class({
 
     update (dt) 
     {    
+        this.playerHP = Variables.playerHP;
         if(cc.director.getScene().name == "menuScence") this.canMove = Variables.playerCanMove;
         //cc.log(this.isOnGround);
         //cc.log("isDashing " + this.isDashing);
