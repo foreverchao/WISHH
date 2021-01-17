@@ -228,7 +228,7 @@
       "array": [
         0,
         0,
-        333.52803363248194,
+        324.25074178024073,
         0,
         0,
         0,
@@ -1157,8 +1157,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 7,
-      "height": 19
+      "width": 13,
+      "height": 36
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1169,16 +1169,16 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -125.11,
+        -125.6,
         70.867,
         0,
         0,
         0,
         0,
         1,
-        2,
-        2,
-        2
+        1,
+        1,
+        1
       ]
     },
     "_eulerAngles": {
@@ -1210,7 +1210,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "d7ad831b-5f91-4c53-b219-d6c4464a4c61"
+      "__uuid__": "03df9eed-44e6-4509-a0de-f1514e25f028"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -1391,8 +1391,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 7,
-      "height": 20
+      "width": 13,
+      "height": 38
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1403,16 +1403,16 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -147.11,
+        -146.629,
         71.867,
         0,
         0,
         0,
         0,
         1,
-        2,
-        2,
-        2
+        1,
+        1,
+        1
       ]
     },
     "_eulerAngles": {
@@ -1444,7 +1444,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "05f0f92a-334e-48b4-8f16-f347c44bb431"
+      "__uuid__": "c24b25f9-ac57-44a3-9f46-dbcb23d0e8c8"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -1625,8 +1625,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 4,
-      "height": 20
+      "width": 8,
+      "height": 38
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1644,9 +1644,9 @@
         0,
         0,
         1,
-        2,
-        2,
-        2
+        1,
+        1,
+        1
       ]
     },
     "_eulerAngles": {
@@ -1678,7 +1678,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "6398d46a-2a36-41b6-afc5-a50189942837"
+      "__uuid__": "9dacd528-9565-48ca-87f0-5a8b4c4868a1"
     },
     "_type": 0,
     "_sizeMode": 1,
