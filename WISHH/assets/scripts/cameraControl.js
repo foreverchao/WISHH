@@ -51,6 +51,7 @@ cc.Class({
 
     onLoad () {
         if(cc.director.getScene().name == "menuScence") {
+            Variables.playerHP = 3;
             this.enterPressed = false;
             this.changeCamera = false;
             this.player = cc.find("Canvas/player");

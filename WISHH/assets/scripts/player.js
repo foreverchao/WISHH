@@ -12,6 +12,7 @@ cc.Class({
         lightPrefab: cc.Prefab,
         ghostPrefab: cc.Prefab,
         snowBallPerfab: cc.Prefab,
+        enterMyName: cc.Prefab,
         playerShadow: cc.Node,
         colorShow: cc.Node,
         colorBar: cc.Node,
@@ -75,6 +76,7 @@ cc.Class({
         this.isAttacking = false;
         this.greening = false;
         this.respawning = false;
+        this.entering = false;
         this.respawnPoint = cc.v2(-327,-191); //預設復活座標
         cc.systemEvent.on('keydown', this.onKeydown, this);
         cc.systemEvent.on('keyup', this.onKeyup, this);
@@ -836,7 +838,7 @@ cc.Class({
                 this.move();
             }
         } else {
-            if(this.isOnGround && !this.respawning && this.isDead) {
+            if(this.isOnGround && !this.respawning && this.isDead && this.playerHP > 0) {
                 this.respawning = true;
                 cc.tween(this.node)
                 .call(() => {
@@ -871,6 +873,18 @@ cc.Class({
                     this.respawning = false;
                 }) 
                 .start();
+            }
+            else if(this.playerHP <= 0 && !this.entering) {
+                //this.scheduleOnce(function(){cc.director.loadScene("menuScence");;},2);
+                this.entering = true;
+                this.scheduleOnce(function() {
+                this.canvas = cc.find("Canvas");
+                this.camera = cc.find("Canvas/Main Camera");
+                var enterName = cc.instantiate(this.enterMyName);
+                enterName.getChildByName("point").getComponent(cc.Label).string = Variables.score;
+                enterName.x = this.camera.x;
+                enterName.y = this.camera.y;
+                 this.canvas.addChild(enterName);},2);
             }
         }
         var fallMultiplier = 2.5;    //控制下墜時的重力
