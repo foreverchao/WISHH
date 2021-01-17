@@ -1,0 +1,37 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "skull_light",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 3,
+  "sample": 1,
+  "speed": 8,
+  "wrapMode": 2,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "251fc1aa-1c1c-407c-8ce5-0c80a97c79a2"
+            }
+          },
+          {
+            "frame": 1,
+            "value": {
+              "__uuid__": "8afbb08b-d33e-451b-a997-599416b11eef"
+            }
+          },
+          {
+            "frame": 2,
+            "value": {
+              "__uuid__": "c70cc738-4fdb-41eb-ab3f-c65666c0bbe2"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}
