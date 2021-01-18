@@ -774,7 +774,7 @@ cc.Class({
         let idle_anima = cc.tween().call(() => {this.air_idle();}).delay(2);
         
         cc.tween(this.node)
-        .delay(5)
+        .delay(4)
         .then(attack_0_anima)
         .then(idle_anima)
         .then(attack_1_anima)
@@ -782,8 +782,6 @@ cc.Class({
         .then(attack_2_anima)
         .then(idle_anima)
         .then(attack_3_anima)
-        .then(idle_anima)
-        .then(attack_4_anima)
         .then(idle_anima)
         .then(attack_4_anima)
         .then(idle_anima)

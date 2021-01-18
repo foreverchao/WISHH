@@ -39,6 +39,11 @@ cc.Class({
             type : cc.Node,
         },
 
+        audio: {
+            default: [],
+            type: cc.AudioClip
+        },
+
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -57,6 +62,7 @@ cc.Class({
            this.switchON = true;
         this.node.getComponent(cc.Animation).play();
         this.afterDoor.getComponent(cc.Animation).play();
+        this.doorSound = cc.audioEngine.play(this.audio[0], false, 1);
         this.afterDoor.getComponent(cc.PhysicsBoxCollider).enabled = false;
        }
     },
