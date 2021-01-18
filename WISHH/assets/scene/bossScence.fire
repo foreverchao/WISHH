@@ -228,7 +228,7 @@
       "array": [
         0,
         0,
-        324.25074178024073,
+        325.2575015979397,
         0,
         0,
         0,
@@ -591,6 +591,7 @@
     "enterMyName": {
       "__uuid__": "8a3d7a90-2997-4368-a5d0-3e9fc80fa569"
     },
+    "deadChangeScene": null,
     "playerShadow": {
       "__id__": 2
     },
@@ -11989,6 +11990,11 @@
       "__id__": 282
     },
     "_enabled": true,
+    "audio": [
+      {
+        "__uuid__": "be523492-4d75-4bb1-afac-1e8fda4cf44d"
+      }
+    ],
     "_id": "9e65vlYZ9G0qWfeTMi67zM"
   },
   {

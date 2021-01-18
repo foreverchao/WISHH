@@ -10,7 +10,10 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-
+        audio: {
+            default: [],
+            type: cc.AudioClip
+        },
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -41,6 +44,7 @@ cc.Class({
         .call(() => {
             this.player.active = false;
             this.node.getComponent(cc.Animation).play('portal_close');
+            this.portalSound = cc.audioEngine.play(this.audio[0], false, 1);
         })
         .delay(1.14)
         .call(() => {
