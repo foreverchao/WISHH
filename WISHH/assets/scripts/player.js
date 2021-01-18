@@ -13,6 +13,7 @@ cc.Class({
         ghostPrefab: cc.Prefab,
         snowBallPerfab: cc.Prefab,
         enterMyName: cc.Prefab,
+        deadChangeScene: cc.Prefab,
         playerShadow: cc.Node,
         colorShow: cc.Node,
         colorBar: cc.Node,
@@ -294,7 +295,7 @@ cc.Class({
             this.jumpCount = 2;
             this.wallSide = -1;
         }
-        else if((otherCollider.node.name == "enemyFireBall" ||otherCollider.node.name == "effect_2" || otherCollider.node.name == "wizard_effect_1" ||otherCollider.node.name == "slime_attack_2_effect_1_0" || otherCollider.node.name == "bat" || otherCollider.node.name == "sworder" || otherCollider.node.name == "spike" || otherCollider.node.name == "slime" || otherCollider.node.name == "shooter" ||
+        else if((otherCollider.node.name == "enemyFireBall" ||otherCollider.node.name == "effect_2" || otherCollider.node.name == "wizard_effect_1" ||otherCollider.node.name == "slime_attack_2_effect_1_0" || otherCollider.node.name == "bat" || otherCollider.node.name == "sworder" || otherCollider.node.name == "spike" || otherCollider.node.name == "slime" ||
         otherCollider.node.name == "the_shot" || otherCollider.node.name == "wizard_effect_2" || otherCollider.node.name == "Boss_wizard") && this.node.group != "Invincible")
         {
             //if(!this.isDashing) cc.log('deadStatus'); else cc.log('undeadStatus');
@@ -884,7 +885,7 @@ cc.Class({
                 enterName.getChildByName("point").getComponent(cc.Label).string = Variables.score;
                 enterName.x = this.camera.x;
                 enterName.y = this.camera.y;
-                 this.canvas.addChild(enterName);},2);
+                this.canvas.addChild(enterName);},2);
             }
         }
         var fallMultiplier = 2.5;    //控制下墜時的重力

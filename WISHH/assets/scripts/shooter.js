@@ -24,7 +24,6 @@ cc.Class({
         this.isHit = false;
         this.shooterAni = this.node.getComponent(cc.Animation);
         this.shooterAni.play("shooter");
-
         
      },
 

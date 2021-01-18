@@ -1,0 +1,55 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "changeScene4",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 10,
+  "sample": 1,
+  "speed": 5,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": -1,
+            "value": {
+              "__uuid__": "eac40106-7a7e-49b8-b0a1-36b2367a452d"
+            }
+          },
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "eac40106-7a7e-49b8-b0a1-36b2367a452d"
+            }
+          }
+        ]
+      }
+    },
+    "props": {
+      "x": [
+        {
+          "frame": 0,
+          "value": 5762
+        },
+        {
+          "frame": 10,
+          "value": 7820.737
+        }
+      ],
+      "height": [
+        {
+          "frame": 0,
+          "value": 2199
+        }
+      ],
+      "width": [
+        {
+          "frame": 0,
+          "value": 2275
+        }
+      ]
+    }
+  },
+  "events": []
+}

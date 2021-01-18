@@ -276,7 +276,7 @@
       "array": [
         0,
         0,
-        324.25074178024073,
+        348.1963389090809,
         0,
         0,
         0,
@@ -636,6 +636,7 @@
     "enterMyName": {
       "__uuid__": "8a3d7a90-2997-4368-a5d0-3e9fc80fa569"
     },
+    "deadChangeScene": null,
     "playerShadow": {
       "__id__": 2
     },
@@ -38056,7 +38057,7 @@
       "__id__": 2
     },
     "_children": [],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 1012

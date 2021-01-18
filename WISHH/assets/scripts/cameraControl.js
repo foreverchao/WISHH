@@ -51,6 +51,7 @@ cc.Class({
 
     onLoad () {
         if(cc.director.getScene().name == "menuScence") {
+            Variables.atMenu = true;
             Variables.playerHP = 3;
             this.enterPressed = false;
             this.changeCamera = false;
@@ -58,7 +59,7 @@ cc.Class({
             this.player.getComponent(cc.Animation).play('idle');
             this.pressEnterToStart = cc.find("Canvas/pressEnterToStart");
             Variables.playerCanMove = false;
-            
+            this.leaderBoardShow = false;
             cc.tween(this.pressEnterToStart)
             .blink(3, 3)
             .repeatForever()
@@ -79,11 +80,15 @@ cc.Class({
             case cc.macro.KEY.enter:
                 this.beginAnimation();
                 break;
+            case cc.macro.KEY.tab:
+                this.leaderBoardShow = !this.leaderBoardShow;
+                break;
             }
     },
     
     beginAnimation() {
-        if(!this.enterPressed && cc.director.getScene().name == "menuScence") {
+        if(!this.enterPressed && cc.director.getScene().name == "menuScence" && !this.leaderBoardShow) {
+            Variables.atMenu = false;
             this.enterPressed = true;
             cc.tween(this.node)
             .call(() => {

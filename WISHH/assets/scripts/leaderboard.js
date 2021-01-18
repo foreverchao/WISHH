@@ -39,10 +39,12 @@ cc.Class({
     {
         switch(e.keyCode) {
             case cc.macro.KEY.tab:
-                this.leaderBoardUpdate();
-                this.show = !this.show;
-                if(this.show) this.node.getComponent(cc.Animation).play('leaderboard_in');
-                else this.node.getComponent(cc.Animation).play('leaderboard_out');
+                if(Variables.atMenu) {
+                    this.leaderBoardUpdate();
+                    this.show = !this.show;
+                    if(this.show) this.node.getComponent(cc.Animation).play('leaderboard_in');
+                    else this.node.getComponent(cc.Animation).play('leaderboard_out');
+                }
                 break;
             }
     },

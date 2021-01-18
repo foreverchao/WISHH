@@ -614,6 +614,9 @@
       "__id__": 2
     },
     "_enabled": true,
+    "deadChangeScene": {
+      "__uuid__": "6869fab2-7390-41b8-91ef-7afeab7d3ad2"
+    },
     "_id": ""
   },
   {
